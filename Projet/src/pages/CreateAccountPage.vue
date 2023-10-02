@@ -3,7 +3,7 @@
 </script>
 
 <template>
-
+  <h1>Create account Page</h1>
 </template>
 
 <style scoped>

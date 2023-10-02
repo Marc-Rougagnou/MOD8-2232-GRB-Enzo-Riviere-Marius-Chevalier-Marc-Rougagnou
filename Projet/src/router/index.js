@@ -6,6 +6,8 @@ import Sheets from '../views/Sheets.vue'
 import HomePage from "../pages/HomePage.vue";
 import SheetPage from "../pages/SheetsPage.vue";
 import SheetsPage from "../pages/SheetsPage.vue";
+import CreateAccountPage from "@/pages/CreateAccountPage.vue";
+import LogInPage from "@/pages/LogInPage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,12 +20,12 @@ const router = createRouter({
     {
       path: '/sign-in',
       name: 'SignIn',
-      component: SignIn
+      component: LogInPage
     },
     {
       path: '/create-account',
       name: 'CreateAccount',
-      component: CreateAccount
+      component: CreateAccountPage
     },
     {
       path:'/sheets',
