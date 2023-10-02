@@ -6,24 +6,26 @@ import { RouterLink, RouterView } from 'vue-router'
   <header>
     <section id="title">
       <img src="../img/logo.ico" />
-      <h1><RouterLink to="/" id="link">Not My Tempo</RouterLink></h1>
+      <h1><RouterLink to="/" class="link">Not My Tempo</RouterLink></h1>
     </section>
     <section id="nav_top">
-      <RouterLink to="/sheets" id="link" class="left">Sheets Page</RouterLink>
-      <div id="right">
-        <RouterLink to="/sign-in" id="link" class="right">Sign in</RouterLink>
-        <RouterLink to="/create-account" id="link" class="right">Create account</RouterLink>
-        <button id="btn">Sign out</button>
+      <div>
+        <RouterLink to="/sheets" class="link">Sheets Page</RouterLink>
+      </div>
+      <div>
+        <RouterLink to="/sign-in" class="link">Sign in</RouterLink>
+        <RouterLink to="/create-account" class="link">Create account</RouterLink>
+        <button class="link">Sign out</button>
       </div>
     </section>
   </header>
-  <body>
-    <RouterView />
-  </body>
+  
+  <RouterView />
+  
   <footer>
     <nav>
-      <RouterLink to="/" id="link">Home</RouterLink>
-      <RouterLink to="/sheets" id="link">Sheets Page</RouterLink>
+      <RouterLink to="/" class="link">Home</RouterLink>
+      <RouterLink to="/sheets" class="link">Sheets Page</RouterLink>
     </nav>
     <p id="copyright">©NotMyTemp-Corp 2023</p>
   </footer>
@@ -31,45 +33,31 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <style scoped>
 header{
-  display:flexbox;
   background-color: black;
   align-items: center;
 }
+
 #title{
   padding:0.5%;
   text-align: center;
   align-items: center;
   
 }
-#copyright{
-  color: white;
-  padding:0.5%;
+
+#nav_top{
+  justify-content: space-between;
+  display: flex;
 }
+
 a{
   color:#FCB90C;
 }
-#nav_top{
-  overflow: hidden;
-}
-#link{
-  padding:1%;
+.link{
   text-decoration: none;
+  margin-right: 1rem;
+  margin-left: 1rem;
 }
 
-#btn{
-  text-align: center;
-  align-items: center;
-  width: auto;
-}
-#left{
-  float: left;
-  display: flex;
-}
-#right{
-  float: right;
-  display: flexbox;
-  justify-content: space-between;
-}
 footer{
   background-color: rgb(0, 0, 0);
   bottom:0;
@@ -79,4 +67,8 @@ footer{
   padding-top: 1%;
 }
 
+#copyright{
+  color: white;
+  padding:0.5%;
+}
 </style>
