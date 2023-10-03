@@ -1,5 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import {ref} from "vue";
+const username ='marius'
 </script>
 
 <template>
@@ -15,6 +17,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <div>
         <RouterLink to="/sign-in" class="link">Sign in</RouterLink>
         <RouterLink to="/create-account" class="link">Create account</RouterLink>
+        <RouterLink :to="'/profile/' + username" class="link">Profile</RouterLink>
         <button class="link">Sign out</button>
       </div>
     </section>
