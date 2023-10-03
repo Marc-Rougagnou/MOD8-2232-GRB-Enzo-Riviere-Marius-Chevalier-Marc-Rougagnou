@@ -242,15 +242,18 @@ img {
     width: 40%;
   }
 
-  .image-between img {
-    width: 100%; /* Ajustez la largeur de l'image pour occuper toute la largeur disponible */
+  img {
+    width: 90%; /* Ajustez la largeur de l'image pour occuper toute la largeur disponible */
     margin-bottom: 20px;
+    margin-left: auto;
   }
 
   .instrument {
     padding: 10px;
     display: flex;
     flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
   }
 
   .info-grid {
