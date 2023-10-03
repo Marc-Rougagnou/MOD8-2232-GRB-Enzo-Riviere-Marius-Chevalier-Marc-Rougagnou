@@ -1,7 +1,13 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import {ref} from "vue";
+import {computed, ref} from "vue";
+import store from "@/store";
 const username ='marius'
+const currentuser = computed(()=>store.current_user)
+const currentId = computed(()=>store.current_user.id)
+function signOut(){
+  store.current_user=store.users[0];
+}
 </script>
 
 <template>
@@ -17,8 +23,8 @@ const username ='marius'
       <div>
         <RouterLink to="/sign-in" class="link">Sign in</RouterLink>
         <RouterLink to="/create-account" class="link">Create account</RouterLink>
-        <RouterLink :to="'/profile/' + username" class="link">Profile</RouterLink>
-        <button class="link">Sign out</button>
+        <RouterLink :to="'/profile/' + currentId" class="link">Profile</RouterLink>
+        <button class="link" @click="signOut">Sign out</button>
       </div>
     </section>
   </header>
