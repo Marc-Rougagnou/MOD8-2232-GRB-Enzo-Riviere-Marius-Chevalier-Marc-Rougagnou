@@ -35,6 +35,14 @@ export const state = reactive({
     ],
     users:[
         {
+            id: 0,
+            username: '',
+            email: '',
+            password: '',
+            passwordConfirm: '',
+            gender:'',
+        },
+        {
             id: 1,
             username: 'Marc',
             email: 'marc@rougagnou.fr',

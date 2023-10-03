@@ -42,7 +42,7 @@ const handleSubmit = () => {
         <label for="passwordConfirmation" class="item">Confirm Password:</label>
         <input type="password" v-model="passwordConfirmation" placeholder="Confirm Password" class="item">
     </fieldset>
-    <fieldset class="field">
+    <fieldset id="radio">
         <legend>Choose your gender</legend>
         <div>
             <input type="radio" v-model="gender" id="man" name="gender" value="Man" class="item">
@@ -70,37 +70,36 @@ const handleSubmit = () => {
   color:white;
   border:1px solid white;
   border-radius: 30px;
-  padding: 10%;
+  padding:2%;
   background-color: #000000c0;
   font-weight: bold;
   border-radius:15px;
-  width:130%;
-}
-
+} 
 .field{
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem;
+  border: transparent;
 }
 .item{
-    margin-right:10%;
-    margin-left:10%;
-}
-#btn{
-    margin-top: 5%;
-    margin-bottom: 5%;
-    background-color: #fcb90c;
-    border-radius: 15px;
-    border: 1px solid white;
-    padding: 2%;
-    font-weight: bold;
-    font-size: 0.8rem;
-    color: black;
-}
-#btn:hover{
-    background-color: #fcb80c70;
-    color: black;
-    border: 1px solid black;
+  padding-left: 3%;
+  padding-right:3%;
 }
 
+#radio{
+  border-radius: 15px;
+  margin:3%;
+}
+
+#btn{
+  margin:2%;
+  background-color: #FCB90C;
+  font-weight: bold;
+}
+#btn:hover{
+  background-color: #fcb80c67;
+  color: black;
+}
 </style>
 

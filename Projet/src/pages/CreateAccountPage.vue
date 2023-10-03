@@ -3,7 +3,6 @@ import AccountForm from '../components/AccountForm.vue';
 import {state, id_user,id_sheet} from '../store.js';
 
 function createAccount(newuser){
-  console.log('createAccount');
   id_user.value++;
     state.users.push({
       id_user: id_user.value,
@@ -36,30 +35,29 @@ function createAccount(newuser){
 </template>
 
 <style scoped>
-section{
-  background-image: url('../../img/backcreate.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height:80vh;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-h1{
-  text-align: center;
-  background-color: #000000c0;
-  color: aliceblue;
-  margin: 2%;
-  
-}
-
-
 
 ul{
   color:rgb(255, 255, 255);
   background-color: rgb(6, 6, 6);
 }
+section {
+  background-image: url('../../img/backcreate.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 80vh;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h1 {
+  text-align: center;
+  background-color: #000000c0;
+  color: aliceblue;
+  margin: 2%;
+  padding: 1%;
+  border:1px solid white;
+  border-radius: 15px;
+}
 </style>
