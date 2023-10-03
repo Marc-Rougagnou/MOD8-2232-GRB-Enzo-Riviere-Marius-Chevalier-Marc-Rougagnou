@@ -1,11 +1,21 @@
 <script setup>
 import SignInForm from '../components/SignInForm.vue';
-import { state } from '../store.js';
+import store, {state} from "@/store";
+import {computed, ref} from "vue";
+const currentuser = computed(()=>store.current_user)
+
 
 function signIn(tryuser){
+  console.log(state.current_user);
   for(let i=0;i<state.users.length;i++){
     if(state.users[i].email===tryuser.email && state.users[i].password===tryuser.password){
       window.alert('You are logged in');
+      //changer la valeur de current_user
+      state.current_user=state.users[i];
+      console.log(state.current_user);
+
+      console.log(state.users[i]);
+
       return;
     }
   }

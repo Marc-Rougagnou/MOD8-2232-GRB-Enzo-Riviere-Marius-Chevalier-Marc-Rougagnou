@@ -10,6 +10,7 @@ export const state = reactive({
             group: 'Group 1',
             difficulty: 'Easy',
             instruments: 'Piano',
+            id_creator: 1,
         },
         {
             id: 2,
@@ -17,6 +18,7 @@ export const state = reactive({
             group: 'Group 2',
             difficulty: 'Easy',
             instruments: 'Piano',
+            id_creator: 2,
         },
         {
             id: 3,
@@ -24,6 +26,7 @@ export const state = reactive({
             group: 'Group 3',
             difficulty: 'Easy',
             instruments: 'Piano',
+            id_creator: 1,
         },
         {
             id: 4,
@@ -31,6 +34,7 @@ export const state = reactive({
             group: 'Group 4',
             difficulty: 'Easy',
             instruments: 'Piano',
+            id_creator: 2,
         }
     ],
     users:[
@@ -66,7 +70,16 @@ export const state = reactive({
             passwordConfirm: 'azer',
             gender:'Other',
         },
-    ]
+    ],
+    current_user: {
+        id: 0,
+        username: 'ouioui',
+        email: 'kuzhdize',
+        password: '',
+        passwordConfirm: '',
+        gender:'Man',
+    }
+
 });
 
 
