@@ -1,43 +1,51 @@
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 
-const state = reactive({
+export let sheet_id = ref(0);
+
+export const state = reactive({
     sheets: [
         {
-            id: 1,
+            id: sheet_id.value++,
             title: 'Title 1',
             group: 'Group 1',
-            difficulty: 'Easy',
+            difficulty: 'Hard',
             instruments: 'Piano',
+            done: 'Yes',
         },
         {
-            id: 2,
+            id: sheet_id.value++,
             title: 'Title 2',
             group: 'Group 2',
             difficulty: 'Easy',
             instruments: 'Piano',
+            done: 'Yes',
         },
         {
-            id: 3,
+            id: sheet_id.value++,
             title: 'Title 3',
             group: 'Group 3',
-            difficulty: 'Easy',
-            instruments: 'Piano',
+            difficulty: 'Medium',
+            instruments: 'Guitar',
+            done: 'No',
         },
         {
-            id: 4,
+            id: sheet_id.value++,
             title: 'Title 4',
             group: 'Group 4',
-            difficulty: 'Easy',
+            difficulty: 'Medium',
             instruments: 'Piano',
+            done: 'No',
+
+        },
+        {
+            id: sheet_id.value++,
+            title: 'Title 5',
+            group: 'Group 5',
+            difficulty: 'Professional',
+            instruments: 'Saxophone',
+            done: 'Yes',
         }
-    ],
-    sheet: {
-        id: 0,
-        title: '',
-        group: '',
-        difficulty: 0,
-        instruments: '',
-    }
+    ]
 });
 
 
