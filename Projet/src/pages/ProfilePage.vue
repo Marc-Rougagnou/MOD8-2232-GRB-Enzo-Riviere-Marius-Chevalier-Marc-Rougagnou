@@ -74,6 +74,10 @@ h1 {
   border-radius: 15px;
   width: 40%; /* Largeur des titres */
 }
+a{
+  color:#FCB90C;
+  text-decoration: none;
+}
 
 #details {
   background-color: #000000c0;
@@ -117,6 +121,10 @@ h1 {
     align-items: center;
     text-align: center;
 
+  }
+  a{
+    color:#FCB90C;
+    text-decoration: none;
   }
   section h1 {
     margin: 0 auto;
