@@ -1,6 +1,8 @@
-import { reactive } from 'vue';
+import { reactive,ref } from 'vue';
+export const id_user = ref(3);
+export const id_sheet = ref(4);
 
-const state = reactive({
+export const state = reactive({
     sheets: [
         {
             id: 1,
@@ -31,13 +33,32 @@ const state = reactive({
             instruments: 'Piano',
         }
     ],
-    sheet: {
-        id: 0,
-        title: '',
-        group: '',
-        difficulty: 0,
-        instruments: '',
-    }
+    users:[
+        {
+            id: 1,
+            username: 'Marc',
+            email: 'marc@rougagnou.fr',
+            password: 'azer',
+            passwordConfirm: 'azer',
+            gender:'Man',
+        },
+        {
+            id: 2,
+            username: 'Marius',
+            email: 'marius@chevalier.fr',
+            password: 'azer',
+            passwordConfirm: 'azer',
+            gender:'Man',
+        },
+        {
+            id: 3,
+            username: 'Enzo',
+            email: 'enzo@riviere.fr',
+            password: 'azer',
+            passwordConfirm: 'azer',
+            gender:'Other',
+        },
+    ]
 });
 
 
