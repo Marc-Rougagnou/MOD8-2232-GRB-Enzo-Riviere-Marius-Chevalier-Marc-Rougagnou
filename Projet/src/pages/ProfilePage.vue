@@ -2,81 +2,150 @@
 import {computed, ref} from 'vue';
 import {RouterLink, useRouter} from 'vue-router';
 import store, {state} from "@/store";
+import AccountForm from "@/components/AccountForm.vue";
 const currentuser = computed(()=>state.current_user)
 const router = useRouter();
+function modifyAccount(modifyuser){
+  for(let i=0;i<state.users.length;i++){
+    if(state.users[i].id===currentuser.value.id){
+      state.users[i].username=modifyuser.username;
+      state.users[i].email=modifyuser.email;
+      state.users[i].password=modifyuser.password;
+      state.users[i].passwordConfirmation=modifyuser.passwordConfirmation;
+      window.alert('Account modified');
+      return;
+    }
+  }
+  window.alert('Wrong email or password');
+}
 
 
 </script>
 
 <template>
-    <main>
-        <section v-if="currentuser.id!=0">
-            <h1>Profile</h1>
-            <p>Username: {{currentuser.username}}</p>
-            <p>Email: {{currentuser.email}}</p>
-            <p>Password: {{currentuser.password}}</p>
-            <p>Id: {{currentuser.id}}</p>
-            </section>
-        <section v-else>
-            <h1>Profile</h1>
-            <p>You are not logged in</p>
-            <RouterLink to="/sign-in" class="link">Sign in</RouterLink>
-        </section>
-    </main>
+  <section v-if="currentuser.id!==0">
+    <div id="details">
+      <h1>Profile</h1>
+      <p>Username: {{currentuser.username}}</p>
+      <p>Email: {{currentuser.email}}</p>
+      <p>Gender : {{currentuser.gender}}</p>
+    </div>
+    <div id="formulaire">
+      <h1>Modify my details</h1>
+      <AccountForm
+          :button-text="'Modify my Account'" @submit="modifyAccount"
+      />
+    </div>
+    </section>
+  <section v-else>
+    <div id="nologged">
+      <h1>Profile</h1>
+      <p>You are not logged in</p>
+      <RouterLink to="/sign-in" class="link">Sign in</RouterLink>
+    </div>
+
+  </section>
+
+
+
+
+
 </template>
 
 <style scoped>
-body {
-  font-family: Arial, sans-serif;
-
-  margin: 0;
-  padding: 0;
-}
-
-/* Style de la section profil */
-
-main{
+section {
   background-image: url('../../img/backprofile.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 80vh;
-  margin:0;
-  padding:0;
-}
-
-
-section {
-  background-color: white;
-  max-width: 600px;
-  padding: 20px;
-  box-shadow: 0 0 10px orange;
+  display: flex;
+  justify-content: center; /* Centrer le contenu horizontalement */
+  align-items: flex-start; /* Aligner les éléments en haut */
 }
 
 h1 {
-  font-size: 24px;
   text-align: center;
+  background-color: #000000c0;
+  color: aliceblue;
+  margin: 2%;
+  padding: 1%;
+  border: 1px solid white;
+  border-radius: 15px;
+  width: 40%; /* Largeur des titres */
 }
 
-/* Style des informations utilisateur */
-p {
-  font-size: 18px;
-  margin-bottom: 10px;
+#details {
+  background-color: #000000c0;
+  color: aliceblue;
+  margin: 2%;
+  padding: 1%;
+  border: 1px solid white;
+  border-radius: 15px;
+  width: 40%; /* Largeur des détails du profil */
 }
 
-/* Style du lien de connexion */
-.link {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #0078d4;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+#formulaire {
+  background-color: #000000c0;
+  color: aliceblue;
+  margin: 2%;
+  padding: 1%;
+  border: 1px solid white;
+  border-radius: 15px;
+  width: 40%; /* Largeur du formulaire de modification */
 }
+#nologged {
+  background-color: #000000c0;
+  color: aliceblue;
+  margin: 2%;
+  padding: 1%;
+  border: 1px solid white;
+  border-radius: 15px;
+  width: 40%; /* Largeur du formulaire de modification */
+  text-align: center;
+  align-content: center;
+  align-items: center;
+}
+#nologged h1{
+  margin:0 auto;
+  margin-bottom: 2%;
+}
+@media screen and (max-width: 768px) {
+  section {
+    font-size: 24px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 
-.link:hover {
-  background-color: #005ea2;
-}
+  }
+  section h1 {
+    margin: 0 auto;
+    margin-bottom: 2%;
+    width: 70%;
+  }
+  #details {
+    margin: 0 auto;
+    margin-bottom: 2%;
+    margin-top: 4%;
+    width: 70%;
+  }
+  #formulaire {
+    margin: 0 auto;
+    margin-bottom: 2%;
+    margin-top: 4%;
+    width: 70%;
+  }
+  #nologged {
+    margin: 0 auto;
+    margin-bottom: 2%;
+    margin-top: 4%;
+    width: 70%;
+  }
+
+  img {
+    width: 90%; /* Ajustez la largeur de l'image pour occuper toute la largeur disponible */
+    margin-bottom: 20px;
+    margin-left: auto;
+  }}
 
 </style>
