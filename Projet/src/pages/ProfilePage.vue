@@ -11,7 +11,6 @@ function modifyAccount(modifyuser){
       state.users[i].username=modifyuser.username;
       state.users[i].email=modifyuser.email;
       state.users[i].password=modifyuser.password;
-      state.users[i].passwordConfirmation=modifyuser.passwordConfirmation;
       window.alert('Account modified');
       return;
     }
@@ -45,11 +44,6 @@ function modifyAccount(modifyuser){
     </div>
 
   </section>
-
-
-
-
-
 </template>
 
 <style scoped>
@@ -60,8 +54,9 @@ section {
   background-repeat: no-repeat;
   min-height: 80vh;
   display: flex;
-  justify-content: center; /* Centrer le contenu horizontalement */
-  align-items: flex-start; /* Aligner les éléments en haut */
+  justify-content: center; 
+  align-items: flex-start; 
+  
 }
 
 h1 {
@@ -72,7 +67,8 @@ h1 {
   padding: 1%;
   border: 1px solid white;
   border-radius: 15px;
-  width: 40%; /* Largeur des titres */
+ 
+  width: 40%;
 }
 a{
   color:#FCB90C;
@@ -86,7 +82,8 @@ a{
   padding: 1%;
   border: 1px solid white;
   border-radius: 15px;
-  width: 40%; /* Largeur des détails du profil */
+
+  width: 40%; 
 }
 
 #formulaire {
@@ -96,7 +93,7 @@ a{
   padding: 1%;
   border: 1px solid white;
   border-radius: 15px;
-  width: 40%; /* Largeur du formulaire de modification */
+  width: 40%;
 }
 #nologged {
   background-color: #000000c0;
@@ -105,7 +102,7 @@ a{
   padding: 1%;
   border: 1px solid white;
   border-radius: 15px;
-  width: 40%; /* Largeur du formulaire de modification */
+  width: 40%; 
   text-align: center;
   align-content: center;
   align-items: center;
@@ -151,9 +148,12 @@ a{
   }
 
   img {
-    width: 90%; /* Ajustez la largeur de l'image pour occuper toute la largeur disponible */
+    width: 90%;
     margin-bottom: 20px;
     margin-left: auto;
   }}
+  div{
+    font-size:15px;
+  }
 
 </style>

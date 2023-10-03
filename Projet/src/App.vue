@@ -1,43 +1,13 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import {computed, ref} from "vue";
-import store from "@/store";
-const username ='marius'
-const currentuser = computed(()=>store.current_user)
-const currentId = computed(()=>store.current_user.id)
-function signOut(){
-  store.current_user=store.users[0];
-}
+import { RouterView } from 'vue-router'
+import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
 </script>
 
 <template>
-  <header>
-    <section id="title">
-      <img src="../img/logo.ico" />
-      <h1><RouterLink to="/" class="link">Not My Tempo</RouterLink></h1>
-    </section>
-    <section id="nav_top">
-      <div>
-        <RouterLink to="/sheets" class="link">Sheets Page</RouterLink>
-      </div>
-      <div>
-        <RouterLink to="/sign-in" class="link">Sign in</RouterLink>
-        <RouterLink to="/create-account" class="link">Create account</RouterLink>
-        <RouterLink :to="'/profile/' + currentId" class="link">Profile</RouterLink>
-        <button class="link" @click="signOut">Sign out</button>
-      </div>
-    </section>
-  </header>
-  
+  <Header></Header>
   <RouterView />
-  
-  <footer>
-    <nav>
-      <RouterLink to="/" class="link">Home</RouterLink>
-      <RouterLink to="/sheets" class="link">Sheets Page</RouterLink>
-    </nav>
-    <p id="copyright">©NotMyTemp-Corp 2023</p>
-  </footer>
+  <Footer></Footer>
 </template>
 
 <style scoped>
@@ -61,6 +31,7 @@ header{
 a{
   color:#FCB90C;
 }
+
 .link{
   text-decoration: none;
   margin-right: 1rem;

@@ -7,7 +7,6 @@ const emits = defineEmits(['submit']);
 const username = ref('');
 const email = ref('');
 const password = ref('');
-const passwordConfirmation=ref('');
 const gender=ref('');
 
 const handleSubmit = () => {
@@ -15,14 +14,12 @@ const handleSubmit = () => {
     username: username.value,
     email: email.value,
     password: password.value,
-    passwordConfirmation: passwordConfirmation.value,
     gender: gender.value,
   });
   
   username.value = '';
   email.value = '';
   password.value = '';
-  passwordConfirmation.value='';
   gender.value='';
 };
 </script>
@@ -39,8 +36,6 @@ const handleSubmit = () => {
     <fieldset class="field">
         <label for="password" class="item">Password:</label>
         <input type="password" v-model="password" placeholder="Password" class="item">
-        <label for="passwordConfirmation" class="item">Confirm Password:</label>
-        <input type="password" v-model="passwordConfirmation" placeholder="Confirm Password" class="item">
     </fieldset>
     <fieldset id="radio">
         <legend>Choose your gender</legend>
