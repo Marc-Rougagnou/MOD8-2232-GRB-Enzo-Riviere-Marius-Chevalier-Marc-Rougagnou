@@ -236,6 +236,45 @@ img {
   background-color: black;
   color: #f2f2f2;
 }
+@media screen and (max-width: 768px) {
+  section h1 {
+    font-size: 24px;
+    width: 40%;
+  }
+
+  .image-between img {
+    width: 100%; /* Ajustez la largeur de l'image pour occuper toute la largeur disponible */
+    margin-bottom: 20px;
+  }
+
+  .instrument {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .info-item {
+    margin: 10px;
+  }
+
+  .large-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .large-box {
+    margin-bottom: 20px;
+    width: 80%;
+  }
+  .instrument-info {
+    flex-direction: column;
+  }
+}
 
 
 
