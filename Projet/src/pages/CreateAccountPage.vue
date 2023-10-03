@@ -9,7 +9,6 @@ function createAccount(newuser){
       username: newuser.username,
       email: newuser.email,
       password: newuser.password,
-      passwordConfirmation: newuser.passwordConfirmation,
       gender:newuser.gender,
     });
     window.alert('Account created');
@@ -25,21 +24,10 @@ function createAccount(newuser){
       :button-text="'Create Account'" @submit="createAccount" 
       />
     </div>
-    <!-- <ul>
-      <p>Juste pour vérif que ça s'ajoute bien</p>
-    <li v-for="us in state.users" :key="us.id">
-      {{ us.username }} + {{ us.email }} + {{ us.gender }}+{{ us.password }}+{{ us.passwordConfirmation }}
-    </li>
-  </ul> -->
 </section>
 </template>
 
 <style scoped>
-
-ul{
-  color:rgb(255, 255, 255);
-  background-color: rgb(6, 6, 6);
-}
 section {
   background-image: url('../../img/backcreate.jpg');
   background-position: center;

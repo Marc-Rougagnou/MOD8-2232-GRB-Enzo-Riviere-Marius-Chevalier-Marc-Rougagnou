@@ -1,29 +1,25 @@
-<script setup>
-
-</script>
-
 <template>
-  <h1>Home Page</h1>
+  <h1>Welcome to Not My Tempo </h1>
   <section class="instrument">
-    <h1>Batterie</h1>
+    <h1>Battery</h1>
     <div class="instrument-info">
       <img src="../../img/batterie.jpg" alt="Batterie">
       <div class="info-grid">
         <div class="info-item">
-          <h2>Création de l'instrument</h2>
-          <p>La batterie moderne a évolué à partir de différents instruments de percussion.</p>
+          <h2>Instrument creation</h2>
+          <p>Modern drums have evolved from a variety of percussion instruments.</p>
         </div>
         <div class="info-item">
-          <h2>Composition de l'instrument</h2>
-          <p>La batterie est composée de caisses claires, de toms, de cymbales et d'une pédale de grosse caisse.</p>
+          <h2>Instrument composition</h2>
+          <p>The drum kit consists of snare drums, toms, cymbals and a bass drum pedal.</p>
         </div>
         <div class="info-item">
-          <h2>Style de musique</h2>
-          <p>La batterie est utilisée dans divers styles de musique, notamment le rock, le jazz et le funk.</p>
+          <h2>Music style</h2>
+          <p>Drums are used in a variety of musical styles, including rock, jazz and funk.</p>
         </div>
         <div class="info-item">
-          <h2>Grands auteurs</h2>
-          <p>Des batteurs légendaires comme John Bonham et Keith Moon ont marqué l'histoire de la batterie.</p>
+          <h2>Great musicians</h2>
+          <p>Legendary drummers such as John Bonham and Keith Moon have left their mark on drumming history.</p>
         </div>
       </div>
     </div>
@@ -31,25 +27,25 @@
   <div class="separator"></div>
 
   <section class="instrument">
-    <h1>Guitare</h1>
+    <h1>Guitar</h1>
     <div class="instrument-info">
       <img src="../../img/guitare.jpg" alt="Guitare">
       <div class="info-grid">
         <div class="info-item">
-          <h2>Création de l'instrument</h2>
-          <p>La guitare est un instrument à cordes qui existe depuis des siècles, évoluant à partir d'instruments similaires tels que le luth.</p>
+          <h2>Instrument creation</h2>
+          <p>The guitar is a stringed instrument that has been around for centuries, evolving from similar instruments such as the lute.</p>
         </div>
         <div class="info-item">
-          <h2>Composition de l'instrument</h2>
-          <p>Une guitare acoustique se compose généralement d'une caisse de résonance, d'un manche et de cordes en acier ou en nylon.</p>
+          <h2>Instrument composition</h2>
+          <p>An acoustic guitar generally consists of a body, neck and steel or nylon strings.</p>
         </div>
         <div class="info-item">
-          <h2>Style de musique</h2>
-          <p>La guitare est polyvalente et est utilisée dans une grande variété de styles musicaux, notamment le rock, le blues, le classique et la musique folk.</p>
+          <h2>Music style</h2>
+          <p>The guitar is versatile and is used in a wide variety of musical styles, including rock, blues, classical and folk.</p>
         </div>
         <div class="info-item">
-          <h2>Grands auteurs</h2>
-          <p>Des guitaristes emblématiques tels que Jimi Hendrix, Eric Clapton et Jimmy Page ont laissé leur marque dans l'histoire de la musique.</p>
+          <h2>Great musicians</h2>
+          <p>Iconic guitarists such as Jimi Hendrix, Eric Clapton and Jimmy Page have left their mark on music history.</p>
         </div>
       </div>
     </div>
@@ -62,20 +58,20 @@
       <img src="../../img/piano.jpg" alt="Piano">
       <div class="info-grid">
         <div class="info-item">
-          <h2>Création de l'instrument</h2>
-          <p>Le piano est un instrument à clavier inventé au début du XVIIIe siècle par Bartolomeo Cristofori en Italie.</p>
+          <h2>Instrument creation</h2>
+          <p>The piano is a keyboard instrument invented in early 18th-century Italy by Bartolomeo Cristofori.</p>
         </div>
         <div class="info-item">
-          <h2>Composition de l'instrument</h2>
-          <p>Un piano se compose de touches, de marteaux, de cordes et d'une caisse de résonance en bois.</p>
+          <h2>Instrument composition</h2>
+          <p>A piano consists of keys, hammers, strings and a wooden resonance box.</p>
         </div>
         <div class="info-item">
-          <h2>Style de musique</h2>
-          <p>Le piano est un instrument polyvalent utilisé dans divers genres musicaux, tels que la musique classique, le jazz, le pop et bien d'autres.</p>
+          <h2>Music style</h2>
+          <p>The piano is a versatile instrument used in a variety of musical genres, such as classical, jazz, pop and many others.</p>
         </div>
         <div class="info-item">
-          <h2>Grands auteurs</h2>
-          <p>Des compositeurs célèbres comme Ludwig van Beethoven, Wolfgang Amadeus Mozart et Frédéric Chopin ont créé des œuvres emblématiques pour le piano.</p>
+          <h2>Great musicians</h2>
+          <p>Famous composers such as Ludwig van Beethoven, Wolfgang Amadeus Mozart and Frédéric Chopin created iconic works for the piano.</p>
         </div>
       </div>
     </div>
@@ -88,20 +84,20 @@
       <img src="../../img/saxophone.jpg" alt="Saxophone">
       <div class="info-grid">
         <div class="info-item">
-          <h2>Création de l'instrument</h2>
-          <p>Le saxophone a été inventé par Adolphe Sax au XIXe siècle en Belgique. C'est un instrument à vent en laiton.</p>
+          <h2>Instrument creation</h2>
+          <p>The saxophone was invented by Adolphe Sax in Belgium in the 19th century. It is a brass wind instrument.</p>
         </div>
         <div class="info-item">
-          <h2>Composition de l'instrument</h2>
-          <p>Un saxophone est composé d'un corps principal, d'un bec et d'un mécanisme de clés pour produire différentes notes.</p>
+          <h2>Instrument composition</h2>
+          <p>A saxophone consists of a main body, a mouthpiece and a key mechanism for producing different notes.</p>
         </div>
         <div class="info-item">
-          <h2>Style de musique</h2>
-          <p>Le saxophone est associé à des genres musicaux variés, tels que le jazz, le blues, la musique classique et la musique contemporaine.</p>
+          <h2>Music style</h2>
+          <p>The saxophone is associated with a wide variety of musical genres, including jazz, blues, classical and contemporary music.</p>
         </div>
         <div class="info-item">
-          <h2>Grands auteurs</h2>
-          <p>Des saxophonistes célèbres tels que Charlie Parker, John Coltrane et Stan Getz ont laissé une empreinte indélébile dans l'histoire de la musique.</p>
+          <h2>Great musicians</h2>
+          <p>Famous saxophonists such as Charlie Parker, John Coltrane and Stan Getz have left an indelible mark on music history.</p>
         </div>
       </div>
     </div>
@@ -126,19 +122,30 @@
 
 
 <style scoped>
-
-
 section.instrument {
   text-align: center;
   padding: 20px;
   margin-bottom: 50px;
 }
 
+h1{
+  text-align: center;
+  margin:1%;
+  color:#FCB90C;
+  border: 3px solid #FCB90C;
+  background-color: #000000;
+  width: fit-content;
+  padding: 1%;;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+
+}
 
 section h1 {
   font-size: 36px;
   color: #FCB90C;
-  background: black;
+  background: #000000;
   padding: 10px;
   border-radius: 5px;
   width: 20%;
@@ -184,42 +191,39 @@ img {
 .info-item p {
   font-size: 14px;
 }
-.info-item:nth-child(1),
-.info-item:nth-child(4) {
-  background-color: black;
+.info-item:nth-child(1), .info-item:nth-child(4) {
+  background-color: #000000;
   color: #f2f2f2;
 }
 
-.info-item:nth-child(2),
-.info-item:nth-child(3) {
-  background-color: orange;
-  color: black;
-}
-.separator {
-  border-bottom: 1px solid #939393; /* Ligne fine gris foncé en bas de la div */
-  margin: 0 auto; /* Espace autour de la div */
-  width: 50%; /* Largeur de la div */
-  margin-bottom: 20px;
-}
-/* Style de la grande section */
-.large-section {
-  display: flex; /* Affiche les éléments enfants en ligne */
-  justify-content: space-between; /* Répartit les éléments avec un espace égal entre eux */
-  margin-top: 40px; /* Espace au-dessus de la grande section */
-  margin-bottom: 40px; /* Espace en dessous de la grande section */
+.info-item:nth-child(2), .info-item:nth-child(3) {
+  background-color: #ffa500;
+  color: #000000;
 }
 
-/* Style des carrés égaux */
+.separator {
+  border-bottom: 1px solid #939393; 
+  margin: 0 auto; 
+  width: 50%; 
+  margin-bottom: 20px;
+}
+
+.large-section {
+  display: flex; 
+  justify-content: space-between; 
+  margin-top: 40px;
+  margin-bottom: 40px; 
+}
+
 .large-box {
-  flex: 1; /* Chaque carré occupe une part égale de l'espace disponible */
+  flex: 1;
   background-color: #f2f2f2;
   padding: 20px;
   text-align: center;
   border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Ombre légère */
+  box-shadow: 0 0 5px #00000033; 
 }
 
-/* Style des titres h3 */
 .large-box h3 {
   font-size: 24px;
   margin: 0;
@@ -229,13 +233,14 @@ img {
   margin: 10px 0 0 0;
 }
 .orange-background {
-  background-color: orange;
-  color: black;
+  background-color: #ffa500;
+  color: #000000;
 }
 .black-background {
-  background-color: black;
+  background-color: #000000;
   color: #f2f2f2;
 }
+
 @media screen and (max-width: 768px) {
   section h1 {
     font-size: 24px;
@@ -243,9 +248,9 @@ img {
   }
 
   img {
-    width: 90%; /* Ajustez la largeur de l'image pour occuper toute la largeur disponible */
     margin-bottom: 20px;
     margin-left: auto;
+    margin-right: auto;
   }
 
   .instrument {
@@ -274,11 +279,9 @@ img {
     margin-bottom: 20px;
     width: 80%;
   }
+
   .instrument-info {
     flex-direction: column;
   }
 }
-
-
-
 </style>

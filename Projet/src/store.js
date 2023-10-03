@@ -43,7 +43,6 @@ export const state = reactive({
             username: '',
             email: '',
             password: '',
-            passwordConfirm: '',
             gender:'',
         },
         {
@@ -51,7 +50,6 @@ export const state = reactive({
             username: 'Marc',
             email: 'marc@rougagnou.fr',
             password: 'azer',
-            passwordConfirm: 'azer',
             gender:'Man',
         },
         {
@@ -59,7 +57,6 @@ export const state = reactive({
             username: 'Marius',
             email: 'marius@chevalier.fr',
             password: 'azer',
-            passwordConfirm: 'azer',
             gender:'Man',
         },
         {
@@ -67,7 +64,6 @@ export const state = reactive({
             username: 'Enzo',
             email: 'enzo@riviere.fr',
             password: 'azer',
-            passwordConfirm: 'azer',
             gender:'Other',
         },
     ],
@@ -76,7 +72,6 @@ export const state = reactive({
         username: 'ouioui',
         email: 'kuzhdize',
         password: '',
-        passwordConfirm: '',
         gender:'Man',
     }
 
