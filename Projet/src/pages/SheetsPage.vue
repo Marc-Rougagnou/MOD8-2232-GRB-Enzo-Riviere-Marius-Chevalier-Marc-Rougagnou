@@ -69,8 +69,7 @@ const filteredList = computed(() => {
                   </SheetItem>
           </li>
       </ul>
-    
-    
+    <RouterLink to='/add-sheets' class="link">Add a sheet</RouterLink>
   </main>
 </template>
 

@@ -14,7 +14,7 @@
 
     <router-link :to= "'/sheet-detail/' + id">
         <slot name="details">
-            No sheet information passed yet
+            No link passed yet
         </slot>
 
     </router-link>
