@@ -9,7 +9,7 @@
         sheet_init : Object
     })
 
-    const current_sheet = ref(sheet_init ? {...sheet_init} : {title: " ", group: " ", difficulty: " ", instrument: " ", done: "No", id: -1})
+    const current_sheet = ref(sheet_init ? {...sheet_init} : {title: "", group: "", difficulty: "", instruments: "", done: "No", id: -1})
     
     function submit(){
         if(current_sheet.value.id === -1){
