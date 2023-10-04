@@ -3,7 +3,6 @@ import SignInForm from '../components/SignInForm.vue';
 import { state } from '../store.js';
 
 function signIn(tryuser){
-  console.log(state.current_user);
   for(let i=0;i<state.users.length;i++){
     if(state.users[i].email===tryuser.email && state.users[i].password===tryuser.password){
       window.alert('You are logged in');
