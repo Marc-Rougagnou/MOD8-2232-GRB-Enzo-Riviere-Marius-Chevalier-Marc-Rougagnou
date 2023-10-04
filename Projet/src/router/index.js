@@ -2,6 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../pages/HomePage.vue'
 import SignIn from '../pages/LogInPage.vue'
 import CreateAccount from '../pages/CreateAccountPage.vue'
+
+import Sheets from '../pages/SheetsPage.vue'
+import SheetDetail from '../pages/SheetDetailPage.vue'
+import AddSheet from '../pages/AddSheetPage.vue'
+
 import ProfilePage from "@/pages/ProfilePage.vue";
 import SheetsPage from "@/pages/SheetsPage.vue";
 import SheetItem from "@/components/SheetItem.vue";
@@ -32,6 +37,16 @@ const router = createRouter({
       component: SheetsPage
     },
     {
+
+      path:'/sheet-detail/:id',
+      name: 'SheetDetail',
+      component: SheetDetail
+    },
+    {
+      path: '/add-sheets',
+      name: 'AddSheet',
+      component: AddSheet
+
       path:'/sheets/:id',
       name: 'Sheet',
       component: SheetItem
