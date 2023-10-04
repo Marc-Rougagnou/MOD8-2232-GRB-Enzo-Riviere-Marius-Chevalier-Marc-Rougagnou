@@ -11,6 +11,7 @@ const handleSubmit = () => {
     email: email.value,
     password: password.value,
   });
+  
   email.value = '';
   password.value = '';
 }

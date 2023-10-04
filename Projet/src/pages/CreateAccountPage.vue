@@ -1,6 +1,6 @@
 <script setup>
 import AccountForm from '../components/AccountForm.vue';
-import {state, id_user,id_sheet} from '../store.js';
+import {state, id_user} from '../store.js';
 
 function createAccount(newuser){
   id_user.value++;

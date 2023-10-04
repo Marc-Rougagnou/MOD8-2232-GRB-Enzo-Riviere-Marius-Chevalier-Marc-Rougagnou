@@ -6,7 +6,6 @@ export let sheet_id = ref(0);
 export const id_user = ref(3);
 
 
-
 export const state = reactive({
     sheets: [
         {
@@ -61,10 +60,8 @@ export const state = reactive({
             done: 'Yes',
             id_creator: 2,
         }
-    ]
-            
-        }
     ],
+            
     users:[
         {
             id: 0,

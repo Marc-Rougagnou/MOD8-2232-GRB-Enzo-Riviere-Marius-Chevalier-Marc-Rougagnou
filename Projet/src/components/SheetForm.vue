@@ -1,6 +1,6 @@
 <script setup>
     import { ref } from 'vue'
-    import { sheet_id } from '../store.js'
+    import { sheet_id,id_creator } from '../store.js'
 
     const emit = defineEmits(['response'])
 

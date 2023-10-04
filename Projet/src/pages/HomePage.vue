@@ -1,7 +1,7 @@
 <template>
   <h1>Welcome to Not My Tempo </h1>
   <section class="instrument">
-    <h1>Battery</h1>
+    <h1>Drums</h1>
     <div class="instrument-info">
       <img src="../../img/batterie.jpg" alt="Batterie">
       <div class="info-grid">
