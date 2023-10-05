@@ -2,15 +2,26 @@
 import SignInForm from '../components/SignInForm.vue';
 import { state } from '../store.js';
 
-function signIn(tryuser){
-  for(let i=0;i<state.users.length;i++){
-    if(state.users[i].email===tryuser.email && state.users[i].password===tryuser.password){
-      window.alert('You are logged in');
-      state.current_user=state.users[i];
-      return;
-    }
+function signIn(tryuser){//security update
+  if(state.current_user.id!==0){
+    window.alert('You are already logged in');
+    return;
   }
-  window.alert('Wrong email or password');
+  else{
+    if(tryuser.email==='' || tryuser.password===''){
+    window.alert('Please fill all the fields');
+    return;
+    }
+    for(let i=0;i<state.users.length;i++){
+      if(state.users[i].email===tryuser.email && state.users[i].password===tryuser.password){
+        window.alert('You are logged in');
+        state.current_user=state.users[i];
+        return;
+      }
+    }
+    window.alert('Wrong email or password');
+  }
+  
 }
 </script>
 

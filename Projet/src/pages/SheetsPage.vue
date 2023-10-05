@@ -12,13 +12,12 @@ let selectedDone = ref("");
 const filteredList = computed(() => {
   return state.sheets.filter((sheet) =>
     (sheet.title.toLowerCase().includes(input.value.toLowerCase()) ||
-     sheet.group.toLowerCase().includes(input.value.toLowerCase())) &&
+    sheet.group.toLowerCase().includes(input.value.toLowerCase())) &&
     (sheet.instruments.toLowerCase().includes(selectedInstrument.value.toLowerCase())) &&
     (sheet.difficulty.toLowerCase().includes(selectedDifficulty.value.toLowerCase())) &&
     (sheet.done.toLowerCase().includes(selectedDone.value.toLowerCase()))
   );
 });
-
 </script>
 
 <template>
@@ -27,7 +26,6 @@ const filteredList = computed(() => {
   <main>
 
     <fieldset>
-      
       <label for="instru">Instrument</label>
       <select name="instru" id="instru" v-model="selectedInstrument">
           <option value="">--Every instruments--</option>
@@ -57,18 +55,17 @@ const filteredList = computed(() => {
 
     <input type="text" placeholder="Search for sheets..." v-model="input"/>
       
-      <ul>
-          <li  v-for="sheet in filteredList" :key="sheet.id">
-                  <SheetItem :id="sheet.id" class="link">
-                    <template #info>
-                      {{ "Name : " + sheet.title + " | Group : " + sheet.group + " | Instrument : " + sheet.instruments + " | Difficulty :  " + sheet.difficulty + " | Done : " + sheet.done}}
-                    </template>
-                    <p>" "</p>
-                    <template #details>| See details</template>
-
-                  </SheetItem>
-          </li>
-      </ul>
+    <ul>
+        <li  v-for="sheet in filteredList" :key="sheet.id">
+          <SheetItem :id="sheet.id" class="link">
+            <template #info>
+              {{ "Name : " + sheet.title + " | Group : " + sheet.group + " | Instrument : " + sheet.instruments + " | Difficulty :  " + sheet.difficulty + " | Done : " + sheet.done}}
+            </template>
+            
+            <template #details>| See details</template>
+          </SheetItem>
+        </li>
+    </ul>
     <RouterLink to='/add-sheets' class="link">Add a sheet</RouterLink>
   </main>
 </template>
@@ -79,14 +76,19 @@ main{
 }
 
 ul{
-  background-color: #D9D9D9;
   margin-top: 3rem;
   margin-left: auto;
   margin-right: auto;
   list-style: none;
+  text-align: center;
+  background-color: #000000c0;
+  color: aliceblue;
+  margin: 2%;
+  padding: 1%;
+ 
 }
 li{
-  background-color: black;
+  
   color: white;
   width: fit-content;
   margin-left: auto;

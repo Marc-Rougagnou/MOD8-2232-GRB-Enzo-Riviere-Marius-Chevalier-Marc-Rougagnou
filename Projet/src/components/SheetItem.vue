@@ -7,7 +7,6 @@
 
 <template>
     <div class="item">
-    
         <slot name = "info">
             No sheet information passed yet
         </slot>

@@ -1,11 +1,20 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import {computed, ref} from "vue";
-import store from "@/store";
+import { RouterLink } from 'vue-router'
+import {computed} from "vue";
+import {state} from "../store.js";
 
-const currentId = computed(()=>store.current_user.id)
+const currentId = computed(()=>state.current_user.id)
 function signOut(){
-  store.current_user=store.users[0];
+  if(state.current_user.id===0){
+    window.alert('You are not logged in');
+    return;
+  }
+  state.current_user.id=0;
+  state.current_user.username='';
+  state.current_user.email='';
+  state.current_user.password='';
+  state.current_user.gender='';
+  window.alert('You are logged out');
 }
 </script>
 

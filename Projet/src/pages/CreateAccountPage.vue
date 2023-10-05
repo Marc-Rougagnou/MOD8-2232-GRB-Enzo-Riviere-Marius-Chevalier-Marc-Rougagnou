@@ -2,16 +2,32 @@
 import AccountForm from '../components/AccountForm.vue';
 import {state, id_user} from '../store.js';
 
-function createAccount(newuser){
+function createAccount(newuser){// security update
   id_user.value++;
-    state.users.push({
-      id_user: id_user.value,
-      username: newuser.username,
-      email: newuser.email,
-      password: newuser.password,
-      gender:newuser.gender,
-    });
-    window.alert('Account created');
+  if(newuser.email==='' || newuser.password==='' || newuser.username===''||newuser.gender===''){
+    window.alert('Please fill all the fields');
+    return;
+    }
+  for(let i=0;i<state.users.length;i++){
+    if(state.users[i].email===newuser.email){
+      window.alert('Email already used');
+      return;
+    }
+  }
+  for(let i=0;i<state.users.length;i++){
+    if(state.users[i].username===newuser.username){
+      window.alert('Username already used');
+      return;
+    }
+  }
+  state.users.push({
+    id_user: id_user.value,
+    username: newuser.username,
+    email: newuser.email,
+    password: newuser.password,
+    gender:newuser.gender,
+  });
+  window.alert('Account created');
 }
 
 </script>
