@@ -61,9 +61,6 @@ export const state = reactive({
             done: 'Yes',
             id_creator: 2,
         }
-    ]
-            
-        }
     ],
     users:[
         {

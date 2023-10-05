@@ -46,7 +46,8 @@ const router = createRouter({
       path: '/add-sheets',
       name: 'AddSheet',
       component: AddSheet
-
+    },
+    {
       path:'/sheets/:id',
       name: 'Sheet',
       component: SheetItem
