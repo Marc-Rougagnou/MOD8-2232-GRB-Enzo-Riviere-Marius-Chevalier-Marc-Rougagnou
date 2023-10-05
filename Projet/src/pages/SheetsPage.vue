@@ -38,10 +38,10 @@ const filteredList = computed(() => {
       <label for="difficulty">Difficulty level</label>
       <select name="difficulty" id="difficulty" v-model="selectedDifficulty">
           <option value="">--Any difficulty--</option>
-          <option value="Easy">1</option>
-          <option value="Medium">2</option>
-          <option value="Hard">3</option>
-          <option value="Professional">4</option>
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+          <option value="Professional">Professional</option>
       </select>
 
       <label for="done">Learned ?</label>

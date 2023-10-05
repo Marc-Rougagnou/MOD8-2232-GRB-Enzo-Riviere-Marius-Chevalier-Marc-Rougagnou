@@ -4,17 +4,20 @@ import {computed} from "vue";
 import {state} from "../store.js";
 
 const currentId = computed(()=>state.current_user.id)
-function signOut(){
-  if(state.current_user.id===0){
-    window.alert('You are not logged in');
-    return;
-  }
-  state.current_user.id=0;
-  state.current_user.username='';
-  state.current_user.email='';
-  state.current_user.password='';
-  state.current_user.gender='';
-  window.alert('You are logged out');
+function signOut(){//security done
+  for(let i=0;i<state.users.length;i++){
+    if(state.users[i].id===state.current_user.id){
+      const temp={...state.current_user};
+      state.current_user.id=0;
+      state.current_user.username='';
+      state.current_user.email='';
+      state.current_user.password='';
+      state.current_user.gender='';
+      console.log(temp);
+      state.users[i]=temp;
+      window.alert('You are logged out');
+    }
+  }  
 }
 </script>
 
@@ -26,17 +29,34 @@ function signOut(){
     <section id="nav_top">
       <div>
         <RouterLink to="/sheets" class="link" id="sheetlink">Sheets Page</RouterLink>
+        
       </div>
       <div>
-        <RouterLink to="/sign-in" class="link">Sign in</RouterLink>
-        <RouterLink to="/create-account" class="link">Create account</RouterLink>
-        <RouterLink :to="'/profile/' + currentId" class="link">Profile</RouterLink>
-        <button class="link" id="btn" @click="signOut">Sign out</button>
+        <div v-if="state.current_user.id!==0" id="log">
+        You are logged in as
+        {{state.current_user.username}}
+          <RouterLink to="/create-account" class="link">Create account</RouterLink>
+          <RouterLink :to="'/profile/' + currentId" class="link">Profile</RouterLink>
+          <button class="link" id="btn" @click="signOut">Sign out</button>
+        </div>
+        <div v-else>
+          <RouterLink to="/sign-in" class="link">Sign in</RouterLink>
+          <RouterLink to="/create-account" class="link">Create account</RouterLink>
+          <RouterLink :to="'/profile/' + currentId" class="link">Profile</RouterLink>
+    
+        </div>
+        
       </div>
     </section>
 </template>
 
 <style scoped>
+
+#log{
+  color: #FCB90C;
+  margin-left: 1rem;
+}
+
 #btn{
   background-color: #000000;
   color: #FCB90C;

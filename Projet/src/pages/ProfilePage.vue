@@ -7,7 +7,6 @@ import SheetItem from '../components/SheetItem.vue';
 const currentuser = computed(()=>state.current_user)
 
 function modifyAccount(modifyuser){ //security update
-  
   for(let i=0;i<state.users.length;i++){
     if(state.users[i].id===currentuser.value.id){
 
