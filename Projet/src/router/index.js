@@ -3,7 +3,6 @@ import Home from '../pages/HomePage.vue'
 import SignIn from '../pages/LogInPage.vue'
 import CreateAccount from '../pages/CreateAccountPage.vue'
 
-import Sheets from '../pages/SheetsPage.vue'
 import SheetDetail from '../pages/SheetDetailPage.vue'
 import AddSheet from '../pages/AddSheetPage.vue'
 
@@ -57,7 +56,6 @@ const router = createRouter({
       name: 'Profile',
       component: ProfilePage
     }
-
   ]
 })
 

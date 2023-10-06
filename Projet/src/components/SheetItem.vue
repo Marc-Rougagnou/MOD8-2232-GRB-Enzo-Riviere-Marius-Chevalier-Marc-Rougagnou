@@ -15,9 +15,7 @@
         <slot name="details">
             No link passed yet
         </slot>
-
     </router-link>
-
 </div>
 </template>
 

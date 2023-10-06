@@ -4,6 +4,9 @@ export let sheet_id = ref(0);
 
 export const id_user = ref(3);
 
+export const id_sheet = ref(2);
+
+export const id_comment = ref(3);
 
 export const state = reactive({
     sheets: [
@@ -94,8 +97,27 @@ export const state = reactive({
         email: '',
         password: '',
         gender:'',
-    }
-
+    },
+    comments:[
+        {
+            id: 1,
+            id_sheet: 0,
+            id_user: 2,
+            text: 'jure cest un commetaire',
+        },
+        {
+            id:2,
+            id_sheet: 0,
+            id_user: 1,
+            text: 'jure cest encore un commetaire',
+        },
+        {
+            id:3,
+            id_sheet: 1,
+            id_user: 3,
+            text: 'jure cest encore un putain de commetaire',
+        }
+    ]
 });
 
 export default state;
