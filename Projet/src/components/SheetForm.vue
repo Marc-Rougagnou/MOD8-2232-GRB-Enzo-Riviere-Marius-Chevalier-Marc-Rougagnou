@@ -1,6 +1,6 @@
 <script setup>
     import { ref } from 'vue'
-    import { sheet_id,id_creator } from '../store.js'
+    import { sheet_id } from '../store.js'
 
     const emit = defineEmits(['response'])
 
@@ -9,7 +9,7 @@
         sheet_init : Object
     })
 
-    const current_sheet = ref(sheet_init ? {...sheet_init} : {title: " ", group: " ", difficulty: " ", instrument: " ", done: "No", id: -1})
+    const current_sheet = ref(sheet_init ? {...sheet_init} : {title: " ", group: " ", difficulty: " ", instruments: " ", done: "No", id: -1})
     
     function submit(){
         if(current_sheet.value.id === -1){
@@ -39,7 +39,7 @@
                 <label for="sheet-difficulty">Difficulty of the sheet : </label>
                 <input type="text" id="sheet-difficulty" name="sheet-difficulty" v-model= "current_sheet.difficulty" placeholder="Sheet difficulty">
             </fieldset>
-            <RouterLink to="/">
+            <RouterLink to="/sheets">
                 <button @click="submit">{{ button_text || 'No button text passed yet' }}</button>
             </RouterLink>
         </form> 

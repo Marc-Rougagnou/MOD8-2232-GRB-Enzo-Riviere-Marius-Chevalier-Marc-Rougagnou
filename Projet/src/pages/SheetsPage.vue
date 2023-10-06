@@ -22,9 +22,8 @@ const filteredList = computed(() => {
 </script>
 
 <template>
-  <h1>Sheets</h1>
-
   <main>
+    <h1>Sheets</h1>
 
     <fieldset>
       
@@ -69,11 +68,14 @@ const filteredList = computed(() => {
                   </SheetItem>
           </li>
       </ul>
-    <RouterLink to='/add-sheets' class="link">Add a sheet</RouterLink>
+    <RouterLink id="add-button" to='/add-sheets' class="link">
+      <button>Add a sheet</button>
+    </RouterLink>
   </main>
 </template>
 
 <style>
+
 main{
   text-align: center;
 }
@@ -84,6 +86,10 @@ ul{
   margin-left: auto;
   margin-right: auto;
   list-style: none;
+  width: fit-content;
+  border: 1rem solid #D9D9D9;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
 }
 li{
   background-color: black;
@@ -92,8 +98,14 @@ li{
   margin-left: auto;
   margin-right: auto;
   margin-top: 1rem;
+  border: 0.2rem solid black;
+  border-radius: 0.5rem;
 }
 li a{
   color: white;
+}
+
+#button{
+  margin-top: 50rem;
 }
 </style>
