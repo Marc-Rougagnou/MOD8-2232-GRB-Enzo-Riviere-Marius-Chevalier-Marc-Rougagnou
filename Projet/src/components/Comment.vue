@@ -32,12 +32,56 @@ function addComment(comment_){
         </li>
     </ul>
     <section v-if="currentuser.id!==0">
-        <input type="text" v-model="comment_" placeholder="your comment">
+        <input type="text" v-model="comment_" placeholder="Write a comment here">
         <button @click="addComment(comment_)">Add a comment</button>
     </section>
     <section v-else>
         <p>You are not logged to add a comment</p>
-    </section>  
+    </section>
 </template>
 <style scoped>
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: #f9f9f9;
+  color: #666;
+}
+
+section {
+  margin-top: 20px;
+}
+
+input[type="text"] {
+  width: 50%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+button {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  color: #666;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #ddd;
+}
+
+p {
+  color: #f00;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
 </style>

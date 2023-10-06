@@ -43,5 +43,7 @@ const sheet = ref(state.sheets.find((sheet) => sheet.id === current_sheet_id));
   width: 20%;
   margin: 0 auto;
   margin-bottom: 2%;
+  border: none;
 }
+
 </style>
