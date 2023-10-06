@@ -19,6 +19,7 @@
 </script>
 
 <template>
+  <section>
   <h1>Add a sheet</h1>
   <section v-if="state.current_user.id!==0">
     <button @click="openFileExplorer">select</button>
@@ -31,10 +32,13 @@
       <RouterLink to="/sign-in" class="link">Sign in</RouterLink>
     </div>
   </section>
-  
+</section>
 </template>
 
 <style scoped>
+
+
+
 #nologged {
   background-color: #000000c0;
   color: aliceblue;
@@ -50,10 +54,13 @@
 #nologged h1{
   margin:0 auto;
   margin-bottom: 2%;
-  
+
 }
 a{
   color:#FCB90C;
   text-decoration: none;
+}
+h1{
+  text-align: center;
 }
 </style>
