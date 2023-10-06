@@ -64,4 +64,12 @@ h1 {
   border:1px solid white;
   border-radius: 15px;
 }
+
+@media screen and (max-width: 768px) {
+  h1{
+    font-size:20px;
+  }
+}
+  
+
 </style>

@@ -205,8 +205,31 @@ a{
     width: 90%;
     margin-bottom: 20px;
     margin-left: auto;
-  }}
+  }
+
   div{
     font-size:15px;
   }
+  
+  section {
+    font-size: 16px;
+  }
+
+  h1 {
+    width: 90%;
+    font-size: 24px;
+  }
+
+  .details {
+    width: 90%;
+  }
+
+  #nologged {
+    width: 90%;
+  }
+
+  li {
+    list-style-type: none;
+  }
+}
 </style>

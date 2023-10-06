@@ -31,15 +31,15 @@ function signOut(){//security done
         <RouterLink to="/sheets" class="link" id="sheetlink">Sheets Page</RouterLink>
         
       </div>
-      <div>
-        <div v-if="state.current_user.id!==0" id="log">
-        You are logged in as
-        {{state.current_user.username}}
+      <div id="navigation">
+        <div v-if="state.current_user.id!==0" class="log">
+        <p class="link">You are logged in as: 
+        {{state.current_user.username}}</p>
           <RouterLink to="/create-account" class="link">Create account</RouterLink>
           <RouterLink :to="'/profile/' + currentId" class="link">Profile</RouterLink>
           <button class="link" id="btn" @click="signOut">Sign out</button>
         </div>
-        <div v-else>
+        <div v-else class="log">
           <RouterLink to="/sign-in" class="link">Sign in</RouterLink>
           <RouterLink to="/create-account" class="link">Create account</RouterLink>
           <RouterLink :to="'/profile/' + currentId" class="link">Profile</RouterLink>
@@ -55,6 +55,10 @@ function signOut(){//security done
 #log{
   color: #FCB90C;
   margin-left: 1rem;
+}
+
+p{
+  color:#FCB90C;
 }
 
 #btn{
@@ -93,11 +97,16 @@ a{
 }
 
 @media screen and (max-width: 768px){
-  #nav_top{
+ 
+  .log, #nav_top{
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    padding-top: 0.5rem;
   }
-  #nav_top div{
-    margin:1rem;
-  } 
+  .link{
+    padding-top: 0.5rem;
+  }
 }
+
 </style>
