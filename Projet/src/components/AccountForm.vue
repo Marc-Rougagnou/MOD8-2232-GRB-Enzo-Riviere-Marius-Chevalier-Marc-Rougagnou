@@ -96,5 +96,11 @@ const handleSubmit = () => {
   background-color: #fcb80c67;
   color: black;
 }
+@media screen and (max-width: 768px) {
+template{
+  font-size: 10px;
+}
+}
+
 </style>
 

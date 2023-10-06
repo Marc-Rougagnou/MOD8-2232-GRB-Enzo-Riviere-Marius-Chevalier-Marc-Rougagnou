@@ -1,11 +1,23 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import {computed, ref} from "vue";
-import store from "@/store";
+import { RouterLink } from 'vue-router'
+import {computed} from "vue";
+import {state} from "../store.js";
 
-const currentId = computed(()=>store.current_user.id)
-function signOut(){
-  store.current_user=store.users[0];
+const currentId = computed(()=>state.current_user.id)
+function signOut(){//security done
+  for(let i=0;i<state.users.length;i++){
+    if(state.users[i].id===state.current_user.id){
+      const temp={...state.current_user};
+      state.current_user.id=0;
+      state.current_user.username='';
+      state.current_user.email='';
+      state.current_user.password='';
+      state.current_user.gender='';
+      console.log(temp);
+      state.users[i]=temp;
+      window.alert('You are logged out');
+    }
+  }  
 }
 </script>
 
@@ -17,17 +29,38 @@ function signOut(){
     <section id="nav_top">
       <div>
         <RouterLink to="/sheets" class="link" id="sheetlink">Sheets Page</RouterLink>
+        
       </div>
-      <div>
-        <RouterLink to="/sign-in" class="link">Sign in</RouterLink>
-        <RouterLink to="/create-account" class="link">Create account</RouterLink>
-        <RouterLink :to="'/profile/' + currentId" class="link">Profile</RouterLink>
-        <button class="link" id="btn" @click="signOut">Sign out</button>
+      <div id="navigation">
+        <div v-if="state.current_user.id!==0" class="log">
+        <p class="link">You are logged in as: 
+        {{state.current_user.username}}</p>
+          <RouterLink to="/create-account" class="link">Create account</RouterLink>
+          <RouterLink :to="'/profile/' + currentId" class="link">Profile</RouterLink>
+          <button class="link" id="btn" @click="signOut">Sign out</button>
+        </div>
+        <div v-else class="log">
+          <RouterLink to="/sign-in" class="link">Sign in</RouterLink>
+          <RouterLink to="/create-account" class="link">Create account</RouterLink>
+          <RouterLink :to="'/profile/' + currentId" class="link">Profile</RouterLink>
+    
+        </div>
+        
       </div>
     </section>
 </template>
 
 <style scoped>
+
+#log{
+  color: #FCB90C;
+  margin-left: 1rem;
+}
+
+p{
+  color:#FCB90C;
+}
+
 #btn{
   background-color: #000000;
   color: #FCB90C;
@@ -64,11 +97,16 @@ a{
 }
 
 @media screen and (max-width: 768px){
-  #nav_top{
+ 
+  .log, #nav_top{
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    padding-top: 0.5rem;
   }
-  #nav_top div{
-    margin:1rem;
-  } 
+  .link{
+    padding-top: 0.5rem;
+  }
 }
+
 </style>

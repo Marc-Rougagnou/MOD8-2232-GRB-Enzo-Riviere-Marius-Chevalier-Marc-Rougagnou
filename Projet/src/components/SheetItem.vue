@@ -7,7 +7,6 @@
 
 <template>
     <div class="item">
-    
         <slot name = "info">
             No sheet information passed yet
         </slot>
@@ -23,5 +22,8 @@
 </template>
 
 <style scoped>
-
+@media screen and (max-width: 768px) {
+    
+    
+}
 </style>

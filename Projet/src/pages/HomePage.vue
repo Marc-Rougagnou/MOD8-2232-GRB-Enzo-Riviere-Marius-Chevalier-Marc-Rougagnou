@@ -242,31 +242,27 @@ img {
 }
 
 @media screen and (max-width: 768px) {
+  h1 {
+    font-size: 24px;
+  }
+
   section h1 {
     font-size: 24px;
-    width: 40%;
+    width: 60%;
   }
 
   img {
-    margin-bottom: 20px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
   }
 
   .instrument {
     padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    flex-wrap: wrap;
   }
 
   .info-grid {
     grid-template-columns: repeat(1, 1fr);
-  }
-
-  .info-item {
-    margin: 10px;
   }
 
   .large-section {
@@ -276,7 +272,6 @@ img {
   }
 
   .large-box {
-    margin-bottom: 20px;
     width: 80%;
   }
 

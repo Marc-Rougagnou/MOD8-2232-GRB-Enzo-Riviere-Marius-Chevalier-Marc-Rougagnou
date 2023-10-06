@@ -1,4 +1,3 @@
-
 import { reactive, ref } from 'vue';
 
 export let sheet_id = ref(0);
@@ -14,7 +13,6 @@ export const state = reactive({
             group: 'Group 1',
             difficulty: 'Hard',
             instruments: 'Piano',
-
             done: 'Yes',
             id_creator: 1,
 
@@ -25,7 +23,6 @@ export const state = reactive({
             group: 'Group 2',
             difficulty: 'Easy',
             instruments: 'Piano',
-
             done: 'Yes',
             id_creator: 2,
 
@@ -34,7 +31,6 @@ export const state = reactive({
             id: sheet_id.value++,
             title: 'Title 3',
             group: 'Group 3',
-
             difficulty: 'Medium',
             instruments: 'Guitar',
             done: 'No',

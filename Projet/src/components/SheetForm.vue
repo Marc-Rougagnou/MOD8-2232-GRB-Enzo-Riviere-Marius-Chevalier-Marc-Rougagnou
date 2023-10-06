@@ -1,6 +1,6 @@
 <script setup>
     import { ref } from 'vue'
-    import { sheet_id,id_creator } from '../store.js'
+    import { sheet_id,state } from '../store.js'
 
     const emit = defineEmits(['response'])
 
@@ -9,7 +9,7 @@
         sheet_init : Object
     })
 
-    const current_sheet = ref(sheet_init ? {...sheet_init} : {title: " ", group: " ", difficulty: " ", instrument: " ", done: "No", id: -1})
+    const current_sheet = ref(sheet_init ? {...sheet_init} : {title: " ", group: " ", difficulty: " ", instruments: " ", done: "No", id: -1, id_creator: state.current_user.id})
     
     function submit(){
         if(current_sheet.value.id === -1){
@@ -32,13 +32,25 @@
                 <input type="text" id="sheet-group" name="sheet-group" v-model= "current_sheet.group" placeholder="sheet group">
             </fieldset>
             <fieldset>
-                <label for="sheet-instrument">Instrument for the sheet : </label>
-                <input type="text" id="sheet-instrument" name="sheet-instrument" v-model= "current_sheet.instrument" placeholder="Instrument for the sheet">
+                <label for="instru">Instrument</label>
+                <select id="sheet-instrument" name="sheet-instrument" v-model="current_sheet.instruments">
+                    <option value="Saxophone">Saxophone</option>
+                    <option value="Piano">Piano</option>
+                    <option value="Guitar">Guitar</option>
+                    <option value="Drums">Drums</option>
+                </select>
             </fieldset>
             <fieldset>
-                <label for="sheet-difficulty">Difficulty of the sheet : </label>
-                <input type="text" id="sheet-difficulty" name="sheet-difficulty" v-model= "current_sheet.difficulty" placeholder="Sheet difficulty">
+                <label for="sheet-difficulty">Difficulty level</label>
+                <select id="sheet-difficulty" name="sheet-difficulty" v-model="current_sheet.difficulty">
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                    <option value="Professional">Professional</option>
+                </select>
             </fieldset>
+
+
             <RouterLink to="/">
                 <button @click="submit">{{ button_text || 'No button text passed yet' }}</button>
             </RouterLink>
