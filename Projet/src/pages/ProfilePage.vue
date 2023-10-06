@@ -80,6 +80,7 @@ const filterList = computed(() => {
             </template>
             <template #details>|See details</template>
           </SheetItem>
+          <RouterLink :to="'/edit-sheet/' + sheet.id" class="link">Edit</RouterLink>
         </li>
       </ul>
     </div>
@@ -100,6 +101,7 @@ const filterList = computed(() => {
 }
 
 ul{
+  border:hidden;
   background-color: transparent;
 }
 

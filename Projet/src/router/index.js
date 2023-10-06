@@ -3,14 +3,14 @@ import Home from '../pages/HomePage.vue'
 import SignIn from '../pages/LogInPage.vue'
 import CreateAccount from '../pages/CreateAccountPage.vue'
 
-import Sheets from '../pages/SheetsPage.vue'
 import SheetDetail from '../pages/SheetDetailPage.vue'
 import AddSheet from '../pages/AddSheetPage.vue'
 
 import ProfilePage from "@/pages/ProfilePage.vue";
 import SheetsPage from "@/pages/SheetsPage.vue";
 import SheetItem from "@/components/SheetItem.vue";
-import store from "@/store";
+
+import EditSheet from "../pages/EditSheetPage.vue";
 
 
 const router = createRouter({
@@ -56,6 +56,11 @@ const router = createRouter({
       path:'/profile/:username',
       name: 'Profile',
       component: ProfilePage
+    },
+    {
+      path:'/edit-sheet/:id',
+      name: 'EditSheet',
+      component: EditSheet
     }
 
   ]

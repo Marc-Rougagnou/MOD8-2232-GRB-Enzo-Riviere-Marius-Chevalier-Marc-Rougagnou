@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import SheetForm from '../components/SheetForm.vue'
 import { state, sheet_id } from '../store.js';
 
 const btn = ref('Save')
