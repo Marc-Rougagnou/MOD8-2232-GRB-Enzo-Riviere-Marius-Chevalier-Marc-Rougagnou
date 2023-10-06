@@ -13,7 +13,6 @@ function signOut(){//security done
       state.current_user.email='';
       state.current_user.password='';
       state.current_user.gender='';
-      console.log(temp);
       state.users[i]=temp;
       window.alert('You are logged out');
     }

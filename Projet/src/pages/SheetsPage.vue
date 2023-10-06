@@ -12,20 +12,21 @@ let selectedDone = ref("");
 const filteredList = computed(() => {
   return state.sheets.filter((sheet) =>
     (sheet.title.toLowerCase().includes(input.value.toLowerCase()) ||
-    sheet.group.toLowerCase().includes(input.value.toLowerCase())) &&
+     sheet.group.toLowerCase().includes(input.value.toLowerCase())) &&
     (sheet.instruments.toLowerCase().includes(selectedInstrument.value.toLowerCase())) &&
     (sheet.difficulty.toLowerCase().includes(selectedDifficulty.value.toLowerCase())) &&
     (sheet.done.toLowerCase().includes(selectedDone.value.toLowerCase()))
   );
 });
+
 </script>
 
 <template>
-  <h1>Sheets</h1>
-
   <main>
+    <h1>Sheets</h1>
 
     <fieldset>
+      
       <label for="instru">Instrument: </label>
       <select name="instru" id="instru" v-model="selectedInstrument">
           <option value="">--Every instruments--</option>
@@ -38,10 +39,10 @@ const filteredList = computed(() => {
       <label for="difficulty">Difficulty level: </label>
       <select name="difficulty" id="difficulty" v-model="selectedDifficulty">
           <option value="">--Any difficulty--</option>
-          <option value="Easy">Easy</option>
-          <option value="Medium">Medium</option>
-          <option value="Hard">Hard</option>
-          <option value="Professional">Professional</option>
+          <option value="Easy">1</option>
+          <option value="Medium">2</option>
+          <option value="Hard">3</option>
+          <option value="Professional">4</option>
       </select>
 
       <label for="done">Learned ? </label>
@@ -55,47 +56,56 @@ const filteredList = computed(() => {
 
     <input type="text" placeholder="Search for sheets..." v-model="input"/>
       
-    <ul>
-        <li  v-for="sheet in filteredList" :key="sheet.id">
-          <SheetItem :id="sheet.id" class="link">
-            <template #info>
-              {{ "Name : " + sheet.title + " | Group : " + sheet.group + " | Instrument : " + sheet.instruments + " | Difficulty :  " + sheet.difficulty + " | Done : " + sheet.done}}
-            </template>
-            
-            <template #details>| See details</template>
-          </SheetItem>
-        </li>
-    </ul>
-    <RouterLink to='/add-sheets' class="link">Add a sheet</RouterLink>
+      <ul>
+          <li  v-for="sheet in filteredList" :key="sheet.id">
+                  <SheetItem :id="sheet.id" class="link">
+                    <template #info>
+                      {{ "Name : " + sheet.title + " | Group : " + sheet.group + " | Instrument : " + sheet.instruments + " | Difficulty :  " + sheet.difficulty + " | Done : " + sheet.done}}
+                    </template>
+                    <p>" "</p>
+                    <template #details>| See details</template>
+
+                  </SheetItem>
+          </li>
+      </ul>
+    <RouterLink id="add-button" to='/add-sheets' class="link">
+      <button>Add a sheet</button>
+    </RouterLink>
   </main>
 </template>
 
 <style>
+
 main{
   text-align: center;
 }
 
 ul{
+  background-color: #D9D9D9;
   margin-top: 3rem;
   margin-left: auto;
   margin-right: auto;
   list-style: none;
-  text-align: center;
-  background-color: #000000c0;
-  color: aliceblue;
-  margin: 2%;
-  padding: 1%;
- 
+  width: fit-content;
+  border: 1rem solid #D9D9D9;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
 }
 li{
-  
+  background-color: black;
   color: white;
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
   margin-top: 1rem;
+  border: 0.2rem solid black;
+  border-radius: 0.5rem;
 }
 li a{
   color: white;
+}
+
+#button{
+  margin-top: 50rem;
 }
 </style>

@@ -22,7 +22,6 @@ a{
 
 section{
   background-color: rgb(0, 0, 0);
-  bottom:0;
   text-align: center;
   position:relative;
   width:100%;
