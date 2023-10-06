@@ -26,7 +26,7 @@ const filteredList = computed(() => {
   <main>
 
     <fieldset>
-      <label for="instru">Instrument</label>
+      <label for="instru">Instrument: </label>
       <select name="instru" id="instru" v-model="selectedInstrument">
           <option value="">--Every instruments--</option>
           <option value="Saxophone">Saxophone</option>
@@ -35,7 +35,7 @@ const filteredList = computed(() => {
           <option value="Drums">Drums</option>
       </select>
 
-      <label for="difficulty">Difficulty level</label>
+      <label for="difficulty">Difficulty level: </label>
       <select name="difficulty" id="difficulty" v-model="selectedDifficulty">
           <option value="">--Any difficulty--</option>
           <option value="Easy">Easy</option>
@@ -44,7 +44,7 @@ const filteredList = computed(() => {
           <option value="Professional">Professional</option>
       </select>
 
-      <label for="done">Learned ?</label>
+      <label for="done">Learned ? </label>
       <select name="done" id="done" v-model="selectedDone">
           <option value="">--Done and undone--</option>
           <option value="Yes">Done</option>
