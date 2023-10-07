@@ -12,8 +12,8 @@ export const state = reactive({
     sheets: [
         {
             id: sheet_id.value++,
-            title: 'Title 1',
-            group: 'Group 1',
+            title: 'Swan lake',
+            group: 'Tchaikovsky',
             difficulty: 'Hard',
             instruments: 'Piano',
             done: 'Yes',
@@ -22,38 +22,38 @@ export const state = reactive({
         },
         {
             id: sheet_id.value++,
-            title: 'Title 2',
-            group: 'Group 2',
+            title: 'City of stars',
+            group: 'Justin Hurwitz',
             difficulty: 'Easy',
             instruments: 'Piano',
             done: 'Yes',
             id_creator: 2,
-            imageData:'sheetPiano.jpg'
+            imageData:'city_of_stars.png'
         },
         {
             id: sheet_id.value++,
-            title: 'Title 3',
-            group: 'Group 3',
+            title: 'Stairway to heaven',
+            group: 'Led Zeppelin',
             difficulty: 'Medium',
             instruments: 'Guitar',
             done: 'No',
             id_creator: 1,
-            imageData:'sheetGuitar.jpg'
+            imageData:'stairway_to_heaven.png'
         },
         {
             id: sheet_id.value++,
-            title: 'Title 4',
-            group: 'Group 4',
+            title: 'Caravan',
+            group: 'Joe Stilgoe',
             difficulty: 'Medium',
-            instruments: 'Piano',
+            instruments: 'Drums',
             done: 'No',
             id_creator:3,
-            imageData:'sheetPiano.jpg'
+            imageData:'caravan.png'
         },
         {
             id: sheet_id.value++,
-            title: 'Title 5',
-            group: 'Group 5',
+            title: 'O grande amor',
+            group: 'Stan Getz',
             difficulty: 'Professional',
             instruments: 'Saxophone',
             done: 'Yes',
@@ -104,19 +104,19 @@ export const state = reactive({
             id: 1,
             id_sheet: 0,
             id_user: 2,
-            text: 'jure cest un commetaire',
+            text: 'Fantastic sheet i really like this music',
         },
         {
             id:2,
             id_sheet: 0,
             id_user: 1,
-            text: 'jure cest encore un commetaire',
+            text: 'I was searching for this sheet, glad to finaly find it',
         },
         {
             id:3,
             id_sheet: 1,
             id_user: 3,
-            text: 'jure cest encore un putain de commetaire',
+            text: 'This music is a classic, i love it and the sheet is perfect',
         }
     ]
 });
