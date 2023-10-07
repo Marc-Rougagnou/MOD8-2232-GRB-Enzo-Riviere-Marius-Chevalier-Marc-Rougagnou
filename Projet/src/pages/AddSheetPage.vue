@@ -2,8 +2,9 @@
   import SheetForm from "../components/SheetForm.vue";
   import { ref } from "vue";
   import { state } from "../store.js";
-  let btn = ref("add");
-  /*
+
+  let btn = ref("Add sheet");
+  
   const openFileExplorer = () => {
     const fileInput = document.createElement("input");
     fileInput.type = "file";
@@ -45,7 +46,6 @@
 #nologged {
   background-color: #000000c0;
   color: aliceblue;
-  margin: 2%;
   padding: 1%;
   border: 1px solid white;
   border-radius: 15px;
@@ -53,6 +53,7 @@
   text-align: center;
   align-content: center;
   align-items: center;
+  margin: 2% auto;
 }
 #nologged h1{
   margin:0 auto;
@@ -66,4 +67,27 @@ a{
 h1{
   text-align: center;
 }
+button{
+  background-color: #FCB90C;
+  border: 1px solid #FCB90C;
+  border-radius: 15px;
+  padding: 1%;
+  margin: 1%;
+  font-weight: bold;
+}
+button:hover{
+  background-color: #000000c0;
+  color: aliceblue;
+}
+#nologged p{
+  margin: 0 auto;
+  margin-bottom: 2%;
+}
+#nologged a:hover{
+  color: #000000c0;
+}
+#nologged a{
+  color: #FCB90C;
+}
+
 </style>

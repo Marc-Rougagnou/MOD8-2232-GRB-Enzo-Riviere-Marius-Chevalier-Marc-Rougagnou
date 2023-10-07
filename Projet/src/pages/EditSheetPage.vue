@@ -31,5 +31,23 @@ router.push('/');
 </template>
 
 <style scoped>
+#delete-button {
+    margin: 0 auto;
+    margin-bottom: 2%;
+    border: none;
+    background-color: #f9f9f9;
+    color: #666;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 20%;
+}
+#delete-button:hover {
+    background-color: #ddd;
+}
+
 
 </style>

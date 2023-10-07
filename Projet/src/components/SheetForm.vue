@@ -77,14 +77,52 @@
 </template>
 
 <style scoped>
-    form{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    fieldset{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+fieldset {
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    width: 20%;
+    margin: 0 auto;
+    margin-bottom: 2%;
+    border: none;
+}
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: rgba(148, 147, 147, 0.9);
+  color: #fff;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 2rem;
+}
+
+button:hover {
+  background-color:#FCB90C;
+  color: black;
+}
+
+button span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
 </style>

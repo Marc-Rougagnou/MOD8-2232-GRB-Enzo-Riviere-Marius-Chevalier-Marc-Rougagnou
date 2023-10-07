@@ -25,8 +25,8 @@ const filteredList = computed(() => {
   <main>
     <h1>Sheets</h1>
 
-    <fieldset>
-      
+    <fieldset id="f1">
+
       <label for="instru">Instrument: </label>
       <select name="instru" id="instru" v-model="selectedInstrument">
           <option value="">--Every instruments--</option>
@@ -39,10 +39,10 @@ const filteredList = computed(() => {
       <label for="difficulty">Difficulty level: </label>
       <select name="difficulty" id="difficulty" v-model="selectedDifficulty">
           <option value="">--Any difficulty--</option>
-          <option value="Easy">1</option>
-          <option value="Medium">2</option>
-          <option value="Hard">3</option>
-          <option value="Professional">4</option>
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+          <option value="Professional">Professional</option>
       </select>
 
       <label for="done">Learned ? </label>
@@ -54,8 +54,8 @@ const filteredList = computed(() => {
 
     </fieldset>
 
-    <input type="text" placeholder="Search for sheets..." v-model="input"/>
-      
+    <input id="sheetsearch" type="text" placeholder="Search for sheets..." v-model="input"/>
+
       <ul>
           <li  v-for="sheet in filteredList" :key="sheet.id">
                   <SheetItem :id="sheet.id" class="link">
@@ -68,13 +68,12 @@ const filteredList = computed(() => {
           </li>
       </ul>
     <RouterLink id="add-button" to='/add-sheets' class="link">
-      <button>Add a sheet</button>
+      <button class="custom-button">Add a sheet</button>
     </RouterLink>
   </main>
 </template>
 
 <style>
-
 main{
   text-align: center;
   background-image: url('../../img/back-sheet-list.jpg');
@@ -109,7 +108,91 @@ li a{
   color: white;
 }
 
-#button{
-  margin-top: 50rem;
+.filters label {
+  font-weight: bold;
 }
+
+.filters select {
+  padding: 0.5rem;
+  border: 2px solid #FCB90C;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+input{
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+
+
+#f1{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  border: 2px solid #FCB90C;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  text-align: center;
+  margin: 0 auto;
+  width: 70%;
+
+
+}
+fieldset label{
+  margin-right: 1rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+
+}
+fieldset select{
+  margin-right: 1rem;
+  border: 2px solid #000;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+
+}
+
+#sheetsearch{
+  margin :10px;
+  border: 2px solid #000000;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  width: 40%;
+}
+.custom-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: rgba(148, 147, 147, 0.9);
+  color: #fff;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 2rem;
+}
+
+.custom-button:hover {
+  background-color:#FCB90C;
+  color: black;
+}
+
+.custom-button span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+.link{
+  text-decoration: none;
+}
+
+
+
 </style>
+
+
+
+
