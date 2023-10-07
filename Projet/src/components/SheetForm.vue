@@ -1,6 +1,7 @@
 <script setup>
-    import { ref } from 'vue'
-    import { sheet_id,state } from '../store.js'
+    import { ref } from 'vue';
+    import { sheet_id,state } from '../store.js';
+    import router from '../router';
 
     const emit = defineEmits(['response'])
 
@@ -11,13 +12,20 @@
 
     const current_sheet = ref(sheet_init ? {...sheet_init} : {title: " ", group: " ", difficulty: " ", instruments: " ", done: "No", id: -1, id_creator: state.current_user.id, imageData: ""})
     
+
     function submit(){
         if(current_sheet.value.id === -1){
             current_sheet.value.id = sheet_id.value++
         }
 
+    if(current_sheet.value.title.trim() !== "" && current_sheet.value.group.trim() !== "" && current_sheet.value.instruments.trim() !== "" && current_sheet.value.difficulty.trim() !== ""  && current_sheet.value.imageData.trim() !== ""){
         emit('response', current_sheet.value)
+        router.push('/sheets')
     }
+    else{
+        alert("Please fill all the fields first")
+    }
+}
 
 
     const base64Image = ref('');
@@ -27,7 +35,6 @@
             const reader = new FileReader();
             reader.onload = (e) => {
             base64Image.value = e.target.result;
-            console.log(base64Image.value);
             current_sheet.value.imageData = base64Image.value;
             };
             reader.readAsDataURL(file);   
@@ -67,10 +74,7 @@
             </fieldset>
             <section id="sct">
                 <input type="file" @change="convertImageToBase64" />
-
-                <RouterLink to="/sheets">
-                    <button @click="submit">{{ button_text || 'No button text passed yet' }}</button>
-                </RouterLink>
+                <button @click="submit">{{ button_text || 'No button text passed yet' }}</button>
             </section>
         </form> 
     </section>

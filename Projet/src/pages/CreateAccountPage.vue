@@ -4,7 +4,7 @@ import {state, id_user} from '../store.js';
 
 function createAccount(newuser){// security update
   id_user.value++;
-  if(newuser.email==='' || newuser.password==='' || newuser.username===''||newuser.gender===''){
+  if(newuser.email.trim()==='' || newuser.password.trim()==='' || newuser.username.trim()===''||newuser.gender.trim()===''){
     window.alert('Please fill all the fields');
     return;
     }
