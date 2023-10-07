@@ -25,7 +25,7 @@ function addComment(comment_){
 
 </script>
 <template>
-    <ul>
+    <ul v-if="filterList.length>0">
         <li v-for="comment in filterList" :key="comment.id">
             De '{{ state.users[state.users.findIndex((user) => user.id == comment.id_user)].username }}':
             {{comment.text}}
@@ -44,6 +44,7 @@ function addComment(comment_){
 ul {
   list-style: none;
   padding: 0;
+  margin-top:1%;
 }
 
 li {

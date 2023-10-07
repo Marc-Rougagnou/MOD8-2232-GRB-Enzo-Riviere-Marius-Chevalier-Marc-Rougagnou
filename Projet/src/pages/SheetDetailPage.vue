@@ -39,10 +39,7 @@ function seeFile(name) {
 <template>
   <main>
     <article>
-
-      <img :src="sheet.name" v-if="sheet.name" alt="Image en base64" />
-
-      <h2>Sheet Details</h2>
+      <h1>Sheet Details</h1>
       <h3>Name : {{ sheet.title }}</h3>
       <h3>Group : {{ sheet.group }}</h3>
       <h3>Difficulty : {{ sheet.difficulty }}</h3>
@@ -55,10 +52,10 @@ function seeFile(name) {
     </article>
     
     <section v-if="sheet.id>4">
-      <button @click="seeFile(sheet.name)">See the sheet</button>
+      <button @click="seeFile(sheet.name)" class="see">See the sheet</button>
     </section>
     <section v-else>
-      <button @click="seeFile_()">See the shet</button>
+      <button @click="seeFile_()" class="see">See the shet</button>
     </section>
     <h1>Comments of the sheet</h1>
     <Comment :sheet_init="sheet">
@@ -68,6 +65,32 @@ function seeFile(name) {
 </template>
 
 <style scoped>
+
+.see {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: rgba(148, 147, 147, 0.9);
+  color: #fff;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 2rem;
+}
+
+.see:hover {
+  background-color:#FCB90C;
+  color: black;
+}
+
+h3{
+  text-align: center;
+  padding: 0.5rem;
+  margin-bottom: 1%;
+  
+}
+
 #done-field {
   display: flex;
   flex-direction: row;
@@ -78,5 +101,4 @@ function seeFile(name) {
   margin-bottom: 2%;
   border: none;
 }
-
 </style>
