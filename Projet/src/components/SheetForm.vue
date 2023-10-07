@@ -40,15 +40,15 @@
     <main>
         <form @submit.prevent>
             <fieldset >
-                <label for="sheet-title"> Sheet Title : </label>
+                <label for="sheet-title">Title: </label>
                 <input type="text" id="sheet-title" name="sheet-title" v-model= "current_sheet.title" placeholder="Sheet title"> 
             </fieldset>
             <fieldset>
-                <label for="sheet-group">Sheet group : </label>
+                <label for="sheet-group">Group: </label>
                 <input type="text" id="sheet-group" name="sheet-group" v-model= "current_sheet.group" placeholder="sheet group">
             </fieldset>
             <fieldset>
-                <label for="instru">Instrument</label>
+                <label for="instru">Instrument: </label>
                 <select id="sheet-instrument" name="sheet-instrument" v-model="current_sheet.instruments">
                     <option value="Saxophone">Saxophone</option>
                     <option value="Piano">Piano</option>
@@ -57,7 +57,7 @@
                 </select>
             </fieldset>
             <fieldset>
-                <label for="sheet-difficulty">Difficulty level</label>
+                <label for="sheet-difficulty">Difficulty: </label>
                 <select id="sheet-difficulty" name="sheet-difficulty" v-model="current_sheet.difficulty">
                     <option value="Easy">Easy</option>
                     <option value="Medium">Medium</option>
@@ -65,30 +65,55 @@
                     <option value="Professional">Professional</option>
                 </select>
             </fieldset>
+            <section>
+                <input type="file" @change="convertImageToBase64" />
 
-            <input type="file" @change="convertImageToBase64" />
-
-        
-            <RouterLink to="/sheets">
-                <button @click="submit">{{ button_text || 'No button text passed yet' }}</button>
-            </RouterLink>
+                <RouterLink to="/sheets">
+                    <button @click="submit">{{ button_text || 'No button text passed yet' }}</button>
+                </RouterLink>
+            </section>
         </form> 
     </main>
 </template>
 
 <style scoped>
+
+section{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+
+    margin-left: auto;
+    margin-right: auto;
+   
+
+}
+
+input::file-upload-button{
+    background-color: #FCB90C;
+    border: 1px solid #FCB90C;
+    border-radius: 15px;
+    padding: 1%;
+    margin: 1%;
+    font-weight: bold;
+    color: black;
+}
+    
+
 fieldset {
     display: flex;
     flex-direction: row;
     justify-content:center;
     align-items: center;
-    width: 20%;
-    margin: 0 auto;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 2%;
     border: none;
 }
 input {
-    width: 100%;
+    width: fit-content;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
