@@ -5,19 +5,7 @@
 
   let btn = ref("Add sheet");
   
-  const openFileExplorer = () => {
-    const fileInput = document.createElement("input");
-    fileInput.type = "file";
-    fileInput.addEventListener("change", (event) => {
-      const selectedFile = event.target.files[0]; 
-
-      if (selectedFile) {
-        console.log("file selected :", selectedFile.name);
-      }
-    });
-    fileInput.click();
-  }; */
- 
+  
 
 </script>
 

@@ -11,18 +11,6 @@ const route = useRoute();
 const current_sheet_id = parseInt(route.params.id, 10);
 const sheet = ref(state.sheets.find((sheet) => sheet.id === current_sheet_id));
 
-function seeFile_() {
-  window.open('/sheets/'+sheet.value.imageData);
-}
-
-/* function seeFile(name) {
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    base64Image.value = e.target.result;
-  };
-  const file=reader.readAsDataURL(name);
-  window.open(file);
-} */
 
 const convertBase64ToImage = () => {
   if (sheet.value.imageData) {
@@ -32,6 +20,10 @@ const convertBase64ToImage = () => {
   }
   return null;
 };
+
+function seeFile_() {
+  window.open('/sheets/'+sheet.value.imageData);
+}
 
 function seeFile(name) {
   const image = convertBase64ToImage();
@@ -61,13 +53,14 @@ function seeFile(name) {
         </select>
       </fieldset>
     </article>
-    <h1>Comments of the sheet</h1>
+    
     <section v-if="sheet.id>4">
       <button @click="seeFile(sheet.name)">See the sheet</button>
     </section>
     <section v-else>
       <button @click="seeFile_()">See the shet</button>
     </section>
+    <h1>Comments of the sheet</h1>
     <Comment :sheet_init="sheet">
     </Comment>
   </main>
