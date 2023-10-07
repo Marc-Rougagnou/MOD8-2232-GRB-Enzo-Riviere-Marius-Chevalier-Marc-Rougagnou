@@ -62,11 +62,11 @@ const handleSubmit = () => {
 
 #form{
   text-align: center;
-  color:white;
-  border:1px solid white;
+  color:var(--color-SI-form-txt);
+  border:1px solid var(--color-SI-form-txt);
   border-radius: 30px;
   padding:2%;
-  background-color: #000000c0;
+  background-color: var(--color-SI-form-bg);
   font-weight: bold;
   border-radius:15px;
 } 
@@ -89,12 +89,12 @@ const handleSubmit = () => {
 
 #btn{
   margin:2%;
-  background-color: #FCB90C;
+  background-color: var(--color-SI-btn);
   font-weight: bold;
 }
 #btn:hover{
-  background-color: #fcb80c67;
-  color: black;
+  background-color: var(--color-SI-btn-hover);
+  color: var(--color-SI-btn-txt);
 }
 @media screen and (max-width: 768px) {
 template{

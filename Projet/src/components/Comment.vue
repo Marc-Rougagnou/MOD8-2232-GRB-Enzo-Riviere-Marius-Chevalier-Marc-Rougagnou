@@ -50,10 +50,10 @@ ul {
 
 li {
   margin-bottom: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   padding: 10px;
-  background-color: #f9f9f9;
-  color: #666;
+  background-color: var(--color-white);
+  color: var(--color-grey);
 }
 
 section {
@@ -63,25 +63,25 @@ section {
 input[type="text"] {
   width: 50%;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 5px;
   margin: 0 auto;
 }
 button {
   margin-top: 10px;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: var(--color-white);
   color: #666;
   cursor: pointer;
 }
 button:hover {
-  background-color: #ddd;
+  background-color: var(--color-border);
 }
 
 p {
-  color: #f00;
+  color: var(--color-red);
   font-weight: bold;
   margin-top: 10px;
 }

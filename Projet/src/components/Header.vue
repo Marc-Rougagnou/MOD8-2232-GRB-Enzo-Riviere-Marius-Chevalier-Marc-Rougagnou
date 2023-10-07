@@ -52,25 +52,25 @@ function signOut(){//security done
 <style scoped>
 
 #log{
-  color: #FCB90C;
+  
   margin-left: 1rem;
 }
 
 p{
-  color:#FCB90C;
+  color:var(--color-link);
 }
 
 #btn{
-  background-color: #000000;
-  color: #FCB90C;
-  border: 1px solid #FCB90C;
+  background-color: var(--color-black);
+  color: var(--color-link);
+  border: 1px solid var(--color-link);
   border-radius: 5px;
   padding: 0.3rem;
   margin: 1rem;
 }
 
 section{
-  background-color: #000000;
+  background-color: var(--color-black);
   align-items: center;
 }
 
@@ -86,7 +86,7 @@ section{
 }
 
 a{
-  color:#FCB90C;
+  color:var(--color-link);
 }
 
 .link{

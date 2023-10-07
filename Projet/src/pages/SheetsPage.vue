@@ -83,35 +83,41 @@ main{
   min-height: 110vh;
 }
 
+@media (prefers-color-scheme: dark){
+  main{
+    background-image: url('../../img/backsheetpage.jpg');
+  }
+}
+
 h1{
-  color: #FCB90C;
+  color: var(--color-link);
   text-align: center;
   padding:1rem;
 }
 
 ul{
-  background-color: #D9D9D9;
+  background-color: var(--color-grey);
   margin-top: 3rem;
   margin-left: auto;
   margin-right: auto;
   list-style: none;
   width: fit-content;
-  border: 1rem solid #D9D9D9;
+  border: 1rem solid var(--color-grey);
   border-radius: 0.5rem;
   margin-bottom: 1rem;
 }
 li{
-  background-color: black;
-  color: white;
+  background-color: var(--color-black);
+  color: var(--color-white);
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
   margin-top: 1rem;
-  border: 0.2rem solid black;
+  border: 0.2rem solid var(--color-black);
   border-radius: 0.5rem;
 }
 li a{
-  color: white;
+  color: var(--color-white);
 }
 
 .filters label {
@@ -120,12 +126,12 @@ li a{
 
 .filters select {
   padding: 0.5rem;
-  border: 2px solid #FCB90C;
+  border: 2px solid var(--color-link);
   border-radius: 0.5rem;
   font-size: 1rem;
 }
 input{
-  border: 2px solid black;
+  border: 2px solid var(--color-black);
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
@@ -136,7 +142,7 @@ input{
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
-  border: 2px solid #FCB90C;
+  border: 2px solid var(--color-link);
   border-radius: 0.5rem;
   padding: 0.5rem;
   text-align: center;
@@ -152,7 +158,7 @@ fieldset label{
 }
 fieldset select{
   margin-right: 1rem;
-  border: 2px solid #000;
+  border: 2px solid var(--color-black);
   border-radius: 0.5rem;
   padding: 0.5rem;
 
@@ -160,7 +166,7 @@ fieldset select{
 
 #sheetsearch{
   margin :10px;
-  border: 2px solid #000000;
+  border: 2px solid var(--color-black);
   border-radius: 0.5rem;
   padding: 0.5rem;
   width: 40%;
@@ -169,9 +175,9 @@ fieldset select{
   display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: rgba(148, 147, 147, 0.9);
-  color: #fff;
-  border: 2px solid #000000;
+  background-color: var(--color-grey);
+  color: var(--color-white);
+  border: 2px solid var(--color-black);
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -179,8 +185,8 @@ fieldset select{
 }
 
 .custom-button:hover {
-  background-color:#FCB90C;
-  color: black;
+  background-color:var(--color-link);
+  color: var(--color-black);
 }
 
 .custom-button span {

@@ -17,11 +17,11 @@
 }
 
 a{
-    color:#FCB90C;
+    color:var(--color-link);
 }
 
 section{
-  background-color: rgb(0, 0, 0);
+  background-color: var(--color-black);
   text-align: center;
   position:relative;
   width:100%;
@@ -29,7 +29,7 @@ section{
 }
 
 #copyright{
-  color: white;
+  color: var(--color-white);
   padding:0.5%;
 }
 </style>

@@ -36,11 +36,11 @@ const handleSubmit = () => {
 <style scoped>
 #form{
   text-align: center;
-  color:white;
-  border:1px solid white;
+  color:var(--color-SI-form-txt);
+  border:1px solid var(--color-SI-form-txt);
   border-radius: 30px;
   padding: 2%;
-  background-color: #000000c0;
+  background-color: var(--color-SI-form-bg);
   font-weight: bold;
   border-radius:15px;
 } 
@@ -52,15 +52,15 @@ const handleSubmit = () => {
   border: transparent;
 }
 a{
-  color:#FCB90C;
+  color:var(--color-link);
   text-decoration: none;
 }
 #btn{
-  background-color: #FCB90C;
+  background-color: var(--color-link);
   font-weight: bold;
 }
 #btn:hover{
-  background-color: #fcb80c67;
-  color: black;
+  background-color: var(--color-SI-btn-hover);
+  color: var(--color-SI-btn-txt);
 }
 </style>

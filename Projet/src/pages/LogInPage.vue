@@ -48,11 +48,11 @@ section {
 }
 h1 {
   text-align: center;
-  background-color: #000000c0;
-  color: aliceblue;
+  background-color: var(--color-LI-h1-bg);
+  color: var(--color-LI-h1-txt);
   margin: 2%;
   padding: 1%;
-  border:1px solid white;
+  border:1px solid var(--color-LI-h1-txt);
   border-radius: 15px;
 }
 
