@@ -70,9 +70,9 @@ function seeFile(name) {
   display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: rgba(148, 147, 147, 0.9);
-  color: #fff;
-  border: 2px solid #000000;
+  background-color: var(--color-grey);
+  color: var(--color-white);
+  border: 2px solid var(--color-black);
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -80,8 +80,8 @@ function seeFile(name) {
 }
 
 .see:hover {
-  background-color:#FCB90C;
-  color: black;
+  background-color:var(--color-link);
+  color: var(--color-black);
 }
 
 h3{

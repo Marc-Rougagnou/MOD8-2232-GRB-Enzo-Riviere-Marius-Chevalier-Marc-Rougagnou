@@ -118,51 +118,51 @@ section {
 
 h1 {
   text-align: center;
-  background-color: #000000c0;
-  color: aliceblue;
+  background-color: var(--color-LI-h1-bg);
+  color: var(--color-PF-white);
   margin: 2%;
   padding: 1%;
-  border: 1px solid white;
+  border: 1px solid var(--color-PF-white);
   border-radius: 15px;
   width: 40%;
 }
 a{
-  color:#FCB90C;
+  color:var(--color-link);
   text-decoration: none;
 }
 
 .details {
-  background-color: #000000c0;
+  background-color: var(--color-PF-nolog-bg);
   
-  color: aliceblue;
+  color: var(--color-PF-white);
   margin: 2%;
   padding: 1%;
-  border: 1px solid white;
+  border: 1px solid var(--color-PF-white);
   border-radius: 15px;
   width: 40%; 
 }
 
 #details{
-  background-color: #000000c0;
-  color: aliceblue;
+  background-color:  var(--color-PF-nolog-bg);
+  color: var(--color-PF-white);
   margin: 2%;
   padding: 1%;
-  border: 1px solid white;
+  border: 1px solid var(--color-PF-white);
   border-radius: 15px;
   
   width: 40%; 
 }
 
 #ligne{
-  border-bottom: aliceblue 1px solid;
+  border-bottom: var(--color-PF-white) 1px solid;
 }
 
 #nologged {
-  background-color: #000000c0;
-  color: rgb(242, 8, 8);
+  background-color: var(--color-PF-nolog-bg);
+  color: var(--color-PF-nolog-txt);
   margin: 2%;
   padding: 1%;
-  border: 1px solid white;
+  border: 1px solid var(--color-PF-white);
   border-radius: 15px;
   width: 40%; 
   text-align: center;
@@ -181,7 +181,7 @@ a{
     text-align: center;
   }
   a{
-    color:#FCB90C;
+    color:var(--color-link);
     text-decoration: none;
   }
   section h1 {

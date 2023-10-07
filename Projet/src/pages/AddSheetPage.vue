@@ -30,10 +30,10 @@
 <style scoped>
 
 #nologged {
-  background-color: #000000c0;
-  color: rgb(255, 11, 11);
+  background-color: var(--color-black-2);
+  color: var(--color-red);
   padding: 1%;
-  border: 1px solid white;
+  border: 1px solid var(--color-white);
   border-radius: 15px;
   width: 40%; 
   text-align: center;
@@ -47,7 +47,7 @@
 
 }
 a{
-  color:#FCB90C;
+  color:var(--color-link);
   text-decoration: none;
 }
 h1{
@@ -62,18 +62,18 @@ button{
   font-weight: bold;
 }
 button:hover{
-  background-color: #000000c0;
-  color: aliceblue;
+  background-color: var(--color-black-2);
+  color: var(--color-white);
 }
 #nologged p{
   margin: 0 auto;
   margin-bottom: 2%;
 }
 #nologged a:hover{
-  color: #000000c0;
+  color: var(--color-black-2);
 }
 #nologged a{
-  color: #FCB90C;
+  color: var(--color-link);
 }
 
 

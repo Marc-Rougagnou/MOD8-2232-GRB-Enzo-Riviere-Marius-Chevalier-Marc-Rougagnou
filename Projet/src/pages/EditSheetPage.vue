@@ -44,8 +44,8 @@ h2{
     margin-right: auto;
     margin-bottom: 2%;
     margin-top: 2%;
-    background-color: #FCB90C;
-    color: #666;
+    background-color: var(--color-link);
+    color: var(--color-grey);
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
@@ -55,8 +55,8 @@ h2{
     width: fit-content;
 }
 #delete-button:hover {
-    background-color: #ff0000;
-    color: #fff;
+    background-color: var(--color-red);
+    color: var(--color-white);
 }
 
 

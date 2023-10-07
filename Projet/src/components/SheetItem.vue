@@ -20,8 +20,5 @@
 </template>
 
 <style scoped>
-@media screen and (max-width: 768px) {
 
-
-}
 </style>

@@ -131,9 +131,9 @@ section.instrument {
 h1{
   text-align: center;
   margin:1%;
-  color:#FCB90C;
-  border: 3px solid #FCB90C;
-  background-color: #000000;
+  color:var(--color-h1-home);
+  border: 3px solid var(--color-h1-home);
+  background-color: var(--color-h1-bg);
   width: fit-content;
   padding: 1%;;
   margin-left: auto;
@@ -144,8 +144,8 @@ h1{
 
 section h1 {
   font-size: 36px;
-  color: #FCB90C;
-  background: #000000;
+  color: var(--color-h1-home);
+  background: var(--color-h1-bg);
   padding: 10px;
   border-radius: 5px;
   width: 20%;
@@ -178,7 +178,6 @@ img {
 }
 
 .info-item {
-  background-color: #f2f2f2;
   padding: 10px;
   border-radius: 5px;
 }
@@ -192,17 +191,17 @@ img {
   font-size: 14px;
 }
 .info-item:nth-child(1), .info-item:nth-child(4) {
-  background-color: #000000;
-  color: #f2f2f2;
+  background-color: var(--color-para-home-other);
+  color: var(--color-para-txt-home-other);
 }
 
 .info-item:nth-child(2), .info-item:nth-child(3) {
-  background-color: #ffa500;
-  color: #000000;
+  background-color: var(--color-para-home);
+  color: var(--color-para-txt-home);
 }
 
 .separator {
-  border-bottom: 1px solid #939393; 
+  border-bottom: 1px solid var(--color-grey); 
   margin: 0 auto; 
   width: 50%; 
   margin-bottom: 20px;
@@ -217,11 +216,9 @@ img {
 
 .large-box {
   flex: 1;
-  background-color: #f2f2f2;
   padding: 20px;
   text-align: center;
   border-radius: 5px;
-  box-shadow: 0 0 5px #00000033; 
 }
 
 .large-box h3 {
@@ -233,12 +230,12 @@ img {
   margin: 10px 0 0 0;
 }
 .orange-background {
-  background-color: #ffa500;
-  color: #000000;
+  background-color: var(--color-para-home);
+  color: var(--color-para-txt-home);
 }
 .black-background {
-  background-color: #000000;
-  color: #f2f2f2;
+  background-color: var(--color-para-home-other );
+  color: var(--color-para-txt-home-other);
 }
 
 @media screen and (max-width: 768px) {

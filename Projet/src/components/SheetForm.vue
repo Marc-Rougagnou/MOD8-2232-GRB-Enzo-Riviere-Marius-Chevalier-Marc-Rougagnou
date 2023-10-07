@@ -92,13 +92,13 @@
 }
 
 input::file-upload-button{
-    background-color: #FCB90C;
-    border: 1px solid #FCB90C;
+    background-color: var(--color-link);
+    border: 1px solid var(--color-link);
     border-radius: 15px;
     padding: 1%;
     margin: 1%;
     font-weight: bold;
-    color: black;
+    color: var(--color-black);
 }
     
 
@@ -116,14 +116,14 @@ fieldset {
 input {
     width: fit-content;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border);
     border-radius: 5px;
     margin: 0 auto;
 }
 select {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border);
     border-radius: 5px;
     margin: 0 auto;
 }
@@ -131,9 +131,9 @@ button {
   display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: rgba(148, 147, 147, 0.9);
-  color: #fff;
-  border: 2px solid #000000;
+  background-color: var(--color-grey);
+  color: var(--color-white);
+  border: 2px solid var(--color-black);
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -142,8 +142,8 @@ button {
 }
 
 button:hover {
-  background-color:#FCB90C;
-  color: black;
+  background-color:var(--color-link);
+  color: var(--color-black);
 }
 
 button span {

@@ -57,11 +57,11 @@ section {
 }
 h1 {
   text-align: center;
-  background-color: #000000c0;
-  color: aliceblue;
+  background-color: var(--color-black-2);
+  color: var(--color-white);
   margin: 2%;
   padding: 1%;
-  border:1px solid white;
+  border:1px solid var(--color-white);
   border-radius: 15px;
 }
 
