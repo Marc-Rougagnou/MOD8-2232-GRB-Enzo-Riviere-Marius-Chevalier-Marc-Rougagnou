@@ -25,12 +25,13 @@ function addComment(comment_){
 
 </script>
 <template>
-    <ul>
+    <ul v-if="filterList.length>0">
         <li v-for="comment in filterList" :key="comment.id">
             De '{{ state.users[state.users.findIndex((user) => user.id == comment.id_user)].username }}':
             {{comment.text}}
         </li>
     </ul>
+    <p v-else>No comments yet</p>
     <section v-if="currentuser.id!==0">
         <input type="text" v-model="comment_" placeholder="Write a comment here">
         <button @click="addComment(comment_)">Add a comment</button>
@@ -44,6 +45,7 @@ function addComment(comment_){
 ul {
   list-style: none;
   padding: 0;
+  margin-top:1%;
 }
 
 li {

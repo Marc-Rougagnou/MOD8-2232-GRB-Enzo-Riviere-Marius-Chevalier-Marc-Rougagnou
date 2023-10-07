@@ -1,6 +1,7 @@
 <script setup>
-    import { ref } from 'vue'
-    import { sheet_id,state } from '../store.js'
+    import { ref } from 'vue';
+    import { sheet_id,state } from '../store.js';
+    import router from '../router';
 
     const emit = defineEmits(['response'])
 
@@ -11,13 +12,20 @@
 
     const current_sheet = ref(sheet_init ? {...sheet_init} : {title: " ", group: " ", difficulty: " ", instruments: " ", done: "No", id: -1, id_creator: state.current_user.id, imageData: ""})
     
+
     function submit(){
         if(current_sheet.value.id === -1){
             current_sheet.value.id = sheet_id.value++
         }
 
+    if(current_sheet.value.title.trim() !== "" && current_sheet.value.group.trim() !== "" && current_sheet.value.instruments.trim() !== "" && current_sheet.value.difficulty.trim() !== ""  && current_sheet.value.imageData.trim() !== ""){
         emit('response', current_sheet.value)
+        router.push('/sheets')
     }
+    else{
+        alert("Please fill all the fields first")
+    }
+}
 
 
     const base64Image = ref('');
@@ -27,7 +35,6 @@
             const reader = new FileReader();
             reader.onload = (e) => {
             base64Image.value = e.target.result;
-            console.log(base64Image.value);
             current_sheet.value.imageData = base64Image.value;
             };
             reader.readAsDataURL(file);   
@@ -37,18 +44,18 @@
 </script>
 
 <template>
-    <main>
+    <section>
         <form @submit.prevent>
             <fieldset >
-                <label for="sheet-title"> Sheet Title : </label>
+                <label for="sheet-title">Title: </label>
                 <input type="text" id="sheet-title" name="sheet-title" v-model= "current_sheet.title" placeholder="Sheet title"> 
             </fieldset>
             <fieldset>
-                <label for="sheet-group">Sheet group : </label>
+                <label for="sheet-group">Group: </label>
                 <input type="text" id="sheet-group" name="sheet-group" v-model= "current_sheet.group" placeholder="sheet group">
             </fieldset>
             <fieldset>
-                <label for="instru">Instrument</label>
+                <label for="instru">Instrument: </label>
                 <select id="sheet-instrument" name="sheet-instrument" v-model="current_sheet.instruments">
                     <option value="Saxophone">Saxophone</option>
                     <option value="Piano">Piano</option>
@@ -57,7 +64,7 @@
                 </select>
             </fieldset>
             <fieldset>
-                <label for="sheet-difficulty">Difficulty level</label>
+                <label for="sheet-difficulty">Difficulty: </label>
                 <select id="sheet-difficulty" name="sheet-difficulty" v-model="current_sheet.difficulty">
                     <option value="Easy">Easy</option>
                     <option value="Medium">Medium</option>
@@ -65,30 +72,49 @@
                     <option value="Professional">Professional</option>
                 </select>
             </fieldset>
-
-            <input type="file" @change="convertImageToBase64" />
-
-        
-            <RouterLink to="/sheets">
+            <section id="sct">
+                <input type="file" @change="convertImageToBase64" />
                 <button @click="submit">{{ button_text || 'No button text passed yet' }}</button>
-            </RouterLink>
+            </section>
         </form> 
-    </main>
+    </section>
 </template>
 
 <style scoped>
+
+#sct{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input::file-upload-button{
+    background-color: #FCB90C;
+    border: 1px solid #FCB90C;
+    border-radius: 15px;
+    padding: 1%;
+    margin: 1%;
+    font-weight: bold;
+    color: black;
+}
+    
+
 fieldset {
     display: flex;
     flex-direction: row;
     justify-content:center;
     align-items: center;
-    width: 20%;
-    margin: 0 auto;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 2%;
     border: none;
 }
 input {
-    width: 100%;
+    width: fit-content;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -112,6 +138,7 @@ button {
   cursor: pointer;
   transition: background-color 0.3s;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 button:hover {

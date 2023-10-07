@@ -11,8 +11,9 @@
 
 <template>
   <section>
-  <h1>Add a sheet</h1>
+  
   <section v-if="state.current_user.id!==0">
+    <h1>Add a sheet</h1>
     <SheetForm :button_text="btn" @response = "(sheet) => state.sheets.push(sheet)"></SheetForm>
   </section>
   <section v-else>
@@ -23,17 +24,14 @@
       
     </div>
   </section>
-  <input type="file" @change="convertImageToBase64" />
 </section>
 </template>
 
 <style scoped>
 
-
-
 #nologged {
   background-color: #000000c0;
-  color: aliceblue;
+  color: rgb(255, 11, 11);
   padding: 1%;
   border: 1px solid white;
   border-radius: 15px;
@@ -77,5 +75,7 @@ button:hover{
 #nologged a{
   color: #FCB90C;
 }
+
+
 
 </style>

@@ -159,7 +159,7 @@ a{
 
 #nologged {
   background-color: #000000c0;
-  color: aliceblue;
+  color: rgb(242, 8, 8);
   margin: 2%;
   padding: 1%;
   border: 1px solid white;

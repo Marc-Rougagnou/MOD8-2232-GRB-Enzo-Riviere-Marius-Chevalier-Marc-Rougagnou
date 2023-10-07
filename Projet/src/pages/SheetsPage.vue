@@ -83,6 +83,12 @@ main{
   min-height: 110vh;
 }
 
+h1{
+  color: #FCB90C;
+  text-align: center;
+  padding:1rem;
+}
+
 ul{
   background-color: #D9D9D9;
   margin-top: 3rem;
@@ -124,11 +130,9 @@ input{
   padding: 0.5rem;
 }
 
-
-
 #f1{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
@@ -136,10 +140,9 @@ input{
   border-radius: 0.5rem;
   padding: 0.5rem;
   text-align: center;
-  margin: 0 auto;
-  width: 70%;
-
-
+  margin-left: auto;
+  margin-right: auto; 
+  width: fit-content;
 }
 fieldset label{
   margin-right: 1rem;
@@ -189,7 +192,19 @@ fieldset select{
   text-decoration: none;
 }
 
-
+@media screen and (max-width: 768px) {
+  #f1{
+    flex-direction: column;
+    
+  }
+  #sheetsearch{
+    width: 80%;
+  }
+  #add-button{
+    margin-top: 1rem;
+  }
+  
+}
 
 </style>
 
