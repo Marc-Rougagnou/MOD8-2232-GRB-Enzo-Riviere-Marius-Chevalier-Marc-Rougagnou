@@ -37,7 +37,7 @@
 </script>
 
 <template>
-    <main>
+    <section>
         <form @submit.prevent>
             <fieldset >
                 <label for="sheet-title">Title: </label>
@@ -65,7 +65,7 @@
                     <option value="Professional">Professional</option>
                 </select>
             </fieldset>
-            <section>
+            <section id="sct">
                 <input type="file" @change="convertImageToBase64" />
 
                 <RouterLink to="/sheets">
@@ -73,21 +73,18 @@
                 </RouterLink>
             </section>
         </form> 
-    </main>
+    </section>
 </template>
 
 <style scoped>
 
-section{
+#sct{
     display: flex;
     flex-direction: column;
     justify-content:center;
     align-items: center;
-
     margin-left: auto;
     margin-right: auto;
-   
-
 }
 
 input::file-upload-button{
@@ -137,6 +134,7 @@ button {
   cursor: pointer;
   transition: background-color 0.3s;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 button:hover {

@@ -31,6 +31,7 @@ function addComment(comment_){
             {{comment.text}}
         </li>
     </ul>
+    <p v-else>No comments yet</p>
     <section v-if="currentuser.id!==0">
         <input type="text" v-model="comment_" placeholder="Write a comment here">
         <button @click="addComment(comment_)">Add a comment</button>
