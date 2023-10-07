@@ -31,7 +31,7 @@
 
 #nologged {
   background-color: #000000c0;
-  color: rgb(255, 11, 11);
+  color: #ff0b0b;
   padding: 1%;
   border: 1px solid white;
   border-radius: 15px;
