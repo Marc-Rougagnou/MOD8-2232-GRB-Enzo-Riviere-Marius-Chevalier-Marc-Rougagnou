@@ -4,6 +4,7 @@
   import { state } from "../store.js";
 
   let btn = ref("Add sheet");
+  
   const openFileExplorer = () => {
     const fileInput = document.createElement("input");
     fileInput.type = "file";
@@ -15,14 +16,15 @@
       }
     });
     fileInput.click();
-  };
+  }; */
+ 
+
 </script>
 
 <template>
   <section>
   <h1>Add a sheet</h1>
   <section v-if="state.current_user.id!==0">
-    <button @click="openFileExplorer">select</button>
     <SheetForm :button_text="btn" @response = "(sheet) => state.sheets.push(sheet)"></SheetForm>
   </section>
   <section v-else>
@@ -30,8 +32,10 @@
       <h1>Profile</h1>
       <p>You are not logged in</p>
       <RouterLink to="/sign-in" class="link">Sign in</RouterLink>
+      
     </div>
   </section>
+  <input type="file" @change="convertImageToBase64" />
 </section>
 </template>
 

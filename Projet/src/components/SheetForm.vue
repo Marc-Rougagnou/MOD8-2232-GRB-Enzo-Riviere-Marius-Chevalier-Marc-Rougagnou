@@ -9,7 +9,7 @@
         sheet_init : Object
     })
 
-    const current_sheet = ref(sheet_init ? {...sheet_init} : {title: " ", group: " ", difficulty: " ", instruments: " ", done: "No", id: -1, id_creator: state.current_user.id})
+    const current_sheet = ref(sheet_init ? {...sheet_init} : {title: " ", group: " ", difficulty: " ", instruments: " ", done: "No", id: -1, id_creator: state.current_user.id, imageData: ""})
     
     function submit(){
         if(current_sheet.value.id === -1){
@@ -18,6 +18,22 @@
 
         emit('response', current_sheet.value)
     }
+
+
+    const base64Image = ref('');
+    const convertImageToBase64 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+            base64Image.value = e.target.result;
+            console.log(base64Image.value);
+            current_sheet.value.imageData = base64Image.value;
+            };
+            reader.readAsDataURL(file);   
+        }
+    };
+
 </script>
 
 <template>
@@ -50,8 +66,10 @@
                 </select>
             </fieldset>
 
+            <input type="file" @change="convertImageToBase64" />
 
-            <RouterLink to="/">
+        
+            <RouterLink to="/sheets">
                 <button @click="submit">{{ button_text || 'No button text passed yet' }}</button>
             </RouterLink>
         </form> 

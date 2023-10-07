@@ -18,7 +18,7 @@ export const state = reactive({
             instruments: 'Piano',
             done: 'Yes',
             id_creator: 1,
-
+            imageData:'sheetPiano.jpg'
         },
         {
             id: sheet_id.value++,
@@ -28,7 +28,7 @@ export const state = reactive({
             instruments: 'Piano',
             done: 'Yes',
             id_creator: 2,
-
+            imageData:'sheetPiano.jpg'
         },
         {
             id: sheet_id.value++,
@@ -38,7 +38,7 @@ export const state = reactive({
             instruments: 'Guitar',
             done: 'No',
             id_creator: 1,
-
+            imageData:'sheetGuitar.jpg'
         },
         {
             id: sheet_id.value++,
@@ -48,7 +48,7 @@ export const state = reactive({
             instruments: 'Piano',
             done: 'No',
             id_creator:3,
-
+            imageData:'sheetPiano.jpg'
         },
         {
             id: sheet_id.value++,
@@ -58,6 +58,7 @@ export const state = reactive({
             instruments: 'Saxophone',
             done: 'Yes',
             id_creator: 2,
+            imageData:'sheetSaxophone.jpg'
         }
     ],
             
