@@ -48,11 +48,6 @@ const router = createRouter({
       component: AddSheet
     },
     {
-      path:'/sheets/:id',
-      name: 'Sheet',
-      component: SheetItem
-    },
-    {
       path:'/profile/:username',
       name: 'Profile',
       component: ProfilePage
