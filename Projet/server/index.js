@@ -6,6 +6,10 @@ import cookieParser from 'cookie-parser'
 import compression from 'compression'
 import middleware from './middleware/index.js'
 import routes from './routes/v1/index.js'
+import sheetRepository from './persistence/sheet-repository.js'
+import { dirname, join } from 'path'
+import { fileURLToPath } from 'url'
+
 
 // Get environment defined by cross-env in package.json
 const environment = process.env.NODE_ENV
@@ -24,6 +28,11 @@ app.use(middleware.requestLogger(environment))
 
 // Helmet security middleware
 app.use(helmet())
+
+
+const clientBuildPath = join(dirname(fileURLToPath(import.meta.url)), '../client/dist')
+
+app.use(express.static(clientBuildPath))
 
 // Cross-origin resource sharing middleware
 app.use(
@@ -46,6 +55,7 @@ app.use(middleware.sessionHandler)
 // Compression middleware for compressing response bodies
 app.use(compression())
 
+
 // Mount all routes to the path '/api/v1', making them relative to '/api/v1'
 app.use('/api/v1', routes)
 
@@ -54,6 +64,11 @@ app.use(middleware.notFoundHandler)
 
 // Custom error handler middleware
 app.use(middleware.errorHandler)
+
+app.get('/api/v1/films', async (req, res) => {
+  const films = await sheetRepository.findSheets() // Find films in database table
+  res.status(200).json({ films }) // Send 200 response with films in JSON body
+})
 
 // Start listening for client requests
 const port = process.env.PORT
