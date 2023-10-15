@@ -1,28 +1,44 @@
-import database from './database.js'
+import axios from 'axios'
 
-const findSheets = async (id) => {
-    const query = 'SELECT * FROM sheets'
-    const [rows] = await database.execute(query)
-    return rows.map(mapSheet)
-}
 
-const findSheet = async (id) => {
-    const query = 'SELECT title, group_name, difficulty, instruments, done, id_creator FROM sheets WHERE id = ?;'
-    const [rows] = await database.execute(query, [id])
-    return rows.length > 0 ? rows.map(mapSheet) : null
-}
-
-function mapSheet(row) {
-    return {
-        id: row.id,
-        title: row.title,
-        group_name: row.group_name,
-        instruments: row.instruments,
-        difficulty: row.difficulty,
-        done: row.done,
-        id_creator: row.id_creator,
+const findSheets = async () => {
+    try {
+        
+        const response = await axios.get('/sheets')
+        return response.data
+    } 
+    catch (error) {
+        return handleError(error)
     }
 }
+
+function handleError(error) {
+    if (error.response) {
+      console.log(error.response.data)
+      return error.response.data
+    }
+  
+    if (error.request) {
+      console.error(error)
+      return { error: { message: 'Failed to connect to server.' } }
+    }
+  
+    console.error(error)
+    return { error: { message: 'Something went wrong.' } }
+}
+
+/*
+const findSheet = async (id) => {
+    try {
+        const response = await axios.get(`/sheets/${id}`)
+        return response.data
+    } 
+    catch (error) {
+        return handleError(error)
+    }
+}
+
+
 
 const createSheet = async (title, group, instrument, difficulty,imageData,id_creator) => {
     const sheet = {
@@ -68,30 +84,19 @@ const updateSheet = async (id, title, group_name, instruments, difficulty, done)
     return result.affectedRows > 0
 }
 
-function buildUpdateCommand(id, values) {
-    const columns = []
-    const parameters = []
-  
-    for (const column in values) {
-      const parameter = values[column]
-      if (parameter !== undefined) {
-        columns.push(column)
-        parameters.push(parameter)
-      }
-    }
-  
-    const query = `UPDATE sheets SET ${columns.map((column) => column + ' = ?').join(', ')} WHERE id = ?;`
-    parameters.push(id)
-  
-    return { query, parameters }
-}
 
 
+
+
+
+
+
+*/
 
 export default {
     findSheets,
-    findSheet,
+    /*findSheet,
     createSheet,
     deleteSheet,
-    updateSheet,
+    updateSheet,*/
 }

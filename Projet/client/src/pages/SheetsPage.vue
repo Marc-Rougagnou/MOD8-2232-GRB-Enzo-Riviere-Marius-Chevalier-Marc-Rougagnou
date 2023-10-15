@@ -1,23 +1,38 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed, ref, onMounted, watch } from "vue";
 import SheetItem from "../components/SheetItem.vue";
-import { state } from "../store.js";
+import sheetService from "../services/sheet-service.js";
 
 let input = ref("");
 let selectedInstrument = ref("");
 let selectedDifficulty = ref("");
 let selectedDone = ref("");
+let sheets = ref();
+let filteredList = ref([]);
 
+onMounted(async () => {
+  const response = await sheetService.findSheets();
+  sheets.value = response.sheets;
+  filteredList.value = response.sheets;
+  
+});
 
-const filteredList = computed(() => {
-  return state.sheets.filter((sheet) =>
+watch([input, selectedInstrument, selectedDifficulty, selectedDone], () => {
+  filteredList_();
+});
+
+async function filteredList_(){
+  
+  filteredList = sheets.value.filter((sheet) =>
     (sheet.title.toLowerCase().includes(input.value.toLowerCase()) ||
-     sheet.group.toLowerCase().includes(input.value.toLowerCase())) &&
+     sheet.group_name.toLowerCase().includes(input.value.toLowerCase())) &&
     (sheet.instruments.toLowerCase().includes(selectedInstrument.value.toLowerCase())) &&
     (sheet.difficulty.toLowerCase().includes(selectedDifficulty.value.toLowerCase())) &&
     (sheet.done.toLowerCase().includes(selectedDone.value.toLowerCase()))
   );
-});
+
+  return filteredList;
+}
 
 </script>
 
@@ -57,15 +72,15 @@ const filteredList = computed(() => {
     <input id="sheetsearch" type="text" placeholder="Search for sheets..." v-model="input"/>
 
       <ul>
-          <li  v-for="sheet in filteredList" :key="sheet.id">
-                  <SheetItem :id="sheet.id" class="link">
-                    <template #info>
-                      {{ "Name : " + sheet.title + " | Group : " + sheet.group + " | Instrument : " + sheet.instruments + " | Difficulty : " +sheet.difficulty + " | Done : " + sheet.done + " | "}}
-                    </template>
-                    <p>" "</p>
-                    <template #details>See details</template>
-                  </SheetItem>
-          </li>
+        <li  v-for="sheet in filteredList" :key="sheet.id">
+          <SheetItem :id="sheet.id" class="link">
+            <template #info>
+              {{ "Name : " + sheet.title + " | Group : " + sheet.group + " | Instrument : " + sheet.instruments + " | Difficulty : " +sheet.difficulty + " | Done : " + sheet.done + " | "}}
+            </template>
+            <p>" "</p>
+            <template #details>See details</template>
+          </SheetItem>
+        </li>
       </ul>
     <RouterLink id="add-button" to='/add-sheets' class="link">
       <button class="custom-button">Add a sheet</button>
