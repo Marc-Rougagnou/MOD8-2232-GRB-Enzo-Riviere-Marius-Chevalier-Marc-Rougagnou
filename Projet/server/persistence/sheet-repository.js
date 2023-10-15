@@ -7,7 +7,7 @@ const findSheets = async (id) => {
 }
 
 const findSheet = async (id) => {
-    const query = 'SELECT title, group_name, difficulty, instruments, done FROM sheets WHERE id = ?;'
+    const query = 'SELECT title, group_name, difficulty, instruments, done, id_creator FROM sheets WHERE id = ?;'
     const [rows] = await database.execute(query, [id])
     return rows.length > 0 ? mapSheet(rows[0]) : null
 }
@@ -20,6 +20,7 @@ function mapSheet(row) {
         instruments: row.instruments,
         difficulty: row.difficulty,
         done: row.done,
+        id_creator: row.id_creator,
     }
 }
 
