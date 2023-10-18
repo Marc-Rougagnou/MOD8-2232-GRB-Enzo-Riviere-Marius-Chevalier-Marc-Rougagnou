@@ -24,6 +24,7 @@ function mapComment(row) {
 
 
 const createComment = async (id_user, id_sheet, text) => {
+    console.log(text)
     const comment = {
       id:0,
       id_user: id_user,

@@ -28,7 +28,6 @@ onMounted(async () => {
 });
 
 watch([sheets,currentuser], () => {
-  console.log("watch active")
   filterList();
 });
 
@@ -87,10 +86,7 @@ async function filterList(){
   
   console.log("bfrbfiurbfi"+ currentuser.value.id)
   console.log(sheets.value,"(rfvygbuhnubgyvftcrdx")
-  filteredList_.value=sheets.value.filter((sheet) =>
-    sheet.id_creator === currentuser.value.id
-    
-  );
+  filteredList_.value=sheets.value.filter((sheet) => sheet.id_creator === currentuser.value.id);
   console.log("filteredList" + filteredList_.value)
   return filteredList_;
 } 
