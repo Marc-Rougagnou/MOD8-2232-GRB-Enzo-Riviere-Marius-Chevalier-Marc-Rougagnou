@@ -8,29 +8,18 @@ const selectedInstrument = ref("");
 const selectedDifficulty = ref("");
 const selectedDone = ref("");
 const sheets = ref();
-const filteredList = ref([])
+const filteredList = ref([]);
 
 onMounted(async () => {
-  
   const response = await sheetService.findSheets();
-  console.log(response);
   sheets.value = response.sheets;
   filteredList.value = response.sheets;
-  filteredList_;
   
 });
 
-watch([input, selectedInstrument, selectedDifficulty, selectedDone,filteredList.value], async () => {
-  console.log("watch");
-  const response = await sheetService.findSheets();
-  sheets.value = response.sheets;
-  filteredList.value = response.sheets;
+watch([input, selectedInstrument, selectedDifficulty, selectedDone], () => {
   filteredList_();
-  
 });
-
-input.value=" ";
-input.value="";
 
 async function filteredList_(){
   

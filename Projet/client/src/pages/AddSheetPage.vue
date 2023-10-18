@@ -1,20 +1,20 @@
 <script setup>
   import SheetForm from "../components/SheetForm.vue";
   import { ref } from "vue";
-  import { state } from "../store.js";//////////////////////////////////
-  import sheetService from "../services/sheet-service";
- 
+  import { state } from "../store.js";
 
   let btn = ref("Add sheet");
+  
+  
 
 </script>
 
 <template>
   <section>
   
-  <section v-if="state.current_user.id!==0"><!-- changer le current_user -->
+  <section v-if="state.current_user.id!==0">
     <h1>Add a sheet</h1>
-    <SheetForm :button_text="btn" @response="(current_sheet)=> sheetService.createSheet(current_sheet.title, current_sheet.group_name, current_sheet.instruments, current_sheet.difficulty,current_sheet.id_creator,current_sheet.imageData)"></SheetForm>
+    <SheetForm :button_text="btn" @response = "(sheet) => state.sheets.push(sheet)"></SheetForm>
   </section>
   <section v-else>
     <div id="nologged">

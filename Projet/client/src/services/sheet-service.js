@@ -38,40 +38,46 @@ const findSheet = async (id) => {
     }
 }
 
-const createSheet = async (title, group, instrument, difficulty,id_creator,imageData) => {
+const createSheet = async (title, group, instrument, difficulty,id_creator) => {
     try {
-        console.log(title, group, instrument, difficulty,id_creator,imageData)
-        const response = await axios.post('/sheets', { title, group, instrument, difficulty,id_creator,imageData })
+        console.log(title, group, instrument, difficulty,id_creator)
+        const response = await axios.post('/sheets', { title, group, instrument, difficulty,id_creator })
         return response.data
     } catch (error) {
         return handleError(error)
     }
 }
-
-
-const updateSheet = async (id, title, group_name, instruments, difficulty,imageData) => {
-    try {
-        const response = await axios.patch(`/sheets/${id}`, { title, group_name, instruments, difficulty, imageData })
-        return response.data
-    } catch (error) {
-        return handleError(error)
-    }
-}
-
+/*
 const deleteSheet = async (id) => {
-    try {
-        const response = await axios.delete(`/sheets/${id}`)
-        return response.data
-    } catch (error) {
-        return handleError(error)
-    }
+
+    const query = 'DELETE FROM sheets WHERE id = ?'
+
+    const parameters = [id]
+    const [result] = await database.execute(query, parameters)
+    return result.affectedRows > 0
 }
 
+const updateSheet = async (id, title, group_name, instruments, difficulty, done) => {
+    const sheet = {
+        id: id,
+        title: title,
+        group_name: group_name,
+        instruments: instruments,
+        difficulty: difficulty,
+        done: done,
+    }
+
+    const command = buildUpdateCommand(id, sheet)
+    const [result] = await database.execute(command.query, command.parameters)
+    return result.affectedRows > 0
+}
+
+*/
 
 export default {
     findSheets,
     findSheet,
-    createSheet,
-    updateSheet,
+    createSheet,/*
     deleteSheet,
+    updateSheet,*/
 }
