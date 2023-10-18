@@ -38,46 +38,31 @@ const findSheet = async (id) => {
     }
 }
 
-const createSheet = async (title, group, instrument, difficulty,id_creator) => {
+const createSheet = async (title, group, instrument, difficulty,id_creator,imageData) => {
     try {
-        console.log(title, group, instrument, difficulty,id_creator)
-        const response = await axios.post('/sheets', { title, group, instrument, difficulty,id_creator })
+        console.log(title, group, instrument, difficulty,id_creator,imageData)
+        const response = await axios.post('/sheets', { title, group, instrument, difficulty,id_creator,imageData })
         return response.data
     } catch (error) {
         return handleError(error)
     }
 }
-/*
-const deleteSheet = async (id) => {
 
-    const query = 'DELETE FROM sheets WHERE id = ?'
 
-    const parameters = [id]
-    const [result] = await database.execute(query, parameters)
-    return result.affectedRows > 0
-}
-
-const updateSheet = async (id, title, group_name, instruments, difficulty, done) => {
-    const sheet = {
-        id: id,
-        title: title,
-        group_name: group_name,
-        instruments: instruments,
-        difficulty: difficulty,
-        done: done,
+const updateSheet = async (id, title, group_name, instruments, difficulty,imageData) => {
+    try {
+        console.log(difficulty,"1333333333333333333333")
+        const response = await axios.patch(`/sheets/${id}`, { title, group_name, instruments, difficulty, imageData })
+        return response.data
+    } catch (error) {
+        return handleError(error)
     }
-
-    const command = buildUpdateCommand(id, sheet)
-    const [result] = await database.execute(command.query, command.parameters)
-    return result.affectedRows > 0
 }
 
-*/
 
 export default {
     findSheets,
     findSheet,
-    createSheet,/*
-    deleteSheet,
-    updateSheet,*/
+    createSheet,
+    updateSheet,
 }

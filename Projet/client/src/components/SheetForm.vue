@@ -1,60 +1,62 @@
 <script setup>
-    import { ref } from 'vue';
-    import { sheet_id,state } from '../store.js';
-    import router from '../router';
-    import sheetService from '../services/sheet-service.js';
+import { ref,watch } from 'vue';
+import { sheet_id, state } from '../store.js';/////////////////////////
+import router from '../router';
+import sheetService from '../services/sheet-service.js';
 
-    const emit = defineEmits(['response'])
 
-    const {button_text, sheet_init} = defineProps({
-        button_text: String,
-        sheet_init : Object
-    })
+const emit = defineEmits(['response'])
 
-    const current_sheet = ref(sheet_init ? {...sheet_init} : {title: " ", group: " ", difficulty: " ", instruments: " ", done: "No", id: -1, id_creator: state.current_user.id, imageData: ""})
-    
-    function submit(){
-        if(current_sheet.value.id === -1){
-            current_sheet.value.id = sheet_id.value++
-        }
+const { button_text, sheet_init } = defineProps({
+    button_text: String,
+    sheet_init: Object,
+})
 
-    if(current_sheet.value.title.trim() !== "" && current_sheet.value.group.trim() !== "" && current_sheet.value.instruments.trim() !== "" && current_sheet.value.difficulty.trim() !== ""  && current_sheet.value.imageData.trim() !== ""){
-        sheetService.createSheet(current_sheet.value.title, current_sheet.value.group, current_sheet.value.instruments, current_sheet.value.difficulty,current_sheet.value.id_creator)
-        router.push('/sheets')
-        emit('response', current_sheet.value)
-    }
-    else{
-        alert("Please fill all the fields first")
-    }
+const current_sheet = ref(sheet_init ? { ...sheet_init } : { title: "", group_name: "", difficulty: "", instruments: "", done: "No", id_creator: state.current_user.id, imageData: "" })
+
+function submit() {
+    console.log(current_sheet.value, "1111111111111111111")
+
+    emit('response', current_sheet.value)
+    console.log(current_sheet.value, "88888")
+
+    router.push('/sheets')
 }
 
+watch(sheet_init,()=>{
+    console.log("54")
+    current_sheet.value = { ...sheet_init }
+    
+},{deep:true})
 
 
 const base64Image = ref('');
 const convertImageToBase64 = (event) => {
-const file = event.target.files[0];
-if (file) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-    base64Image.value = e.target.result;
-    current_sheet.value.imageData = base64Image.value;
-    };
-    reader.readAsDataURL(file);   
-}
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            base64Image.value = e.target.result;
+            current_sheet.value.imageData = base64Image.value;
+        };
+        reader.readAsDataURL(file);
+    }
 };
 
 </script>
 
 <template>
     <section>
-        <form @submit.prevent>
-            <fieldset >
+        <form @submit.prevent="submit">
+            <fieldset>
                 <label for="sheet-title">Title: </label>
-                <input type="text" id="sheet-title" name="sheet-title" v-model= "current_sheet.title" placeholder="Sheet title"> 
+                <input type="text" id="sheet-title" name="sheet-title" v-model="current_sheet.title"
+                    placeholder="Sheet title">
             </fieldset>
             <fieldset>
                 <label for="sheet-group">Group: </label>
-                <input type="text" id="sheet-group" name="sheet-group" v-model= "current_sheet.group" placeholder="sheet group">
+                <input type="text" id="sheet-group" name="sheet-group" v-model="current_sheet.group_name"
+                    placeholder="sheet group">
             </fieldset>
             <fieldset>
                 <label for="instru">Instrument: </label>
@@ -76,24 +78,23 @@ if (file) {
             </fieldset>
             <section id="sct">
                 <input type="file" @change="convertImageToBase64" />
-                <button @click="submit">{{ button_text || 'No button text passed yet' }}</button>
+                <button>{{ button_text || 'No button text passed yet' }}</button>
             </section>
-        </form> 
+        </form>
     </section>
 </template>
 
 <style scoped>
-
-#sct{
+#sct {
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
 }
 
-input::file-upload-button{
+input::file-upload-button {
     background-color: var(--color-link);
     border: 1px solid var(--color-link);
     border-radius: 15px;
@@ -102,12 +103,12 @@ input::file-upload-button{
     font-weight: bold;
     color: var(--color-black);
 }
-    
+
 
 fieldset {
     display: flex;
     flex-direction: row;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     width: fit-content;
     margin-left: auto;
@@ -115,6 +116,7 @@ fieldset {
     margin-bottom: 2%;
     border: none;
 }
+
 input {
     width: fit-content;
     padding: 10px;
@@ -122,6 +124,7 @@ input {
     border-radius: 5px;
     margin: 0 auto;
 }
+
 select {
     width: 100%;
     padding: 10px;
@@ -129,29 +132,28 @@ select {
     border-radius: 5px;
     margin: 0 auto;
 }
+
 button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: var(--color-grey);
-  color: var(--color-white);
-  border: 2px solid var(--color-black);
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: var(--color-grey);
+    color: var(--color-white);
+    border: 2px solid var(--color-black);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 button:hover {
-  background-color:var(--color-link);
-  color: var(--color-black);
+    background-color: var(--color-link);
+    color: var(--color-black);
 }
 
 button span {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
-}
-
-</style>
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}</style>

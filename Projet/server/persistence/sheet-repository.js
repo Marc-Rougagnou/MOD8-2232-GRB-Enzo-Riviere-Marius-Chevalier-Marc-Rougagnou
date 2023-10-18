@@ -38,7 +38,7 @@ function mapSheet(row) {
 }
 
 
-const createSheet = async (title, group_name, instrument, difficulty,id_creator) => {
+const createSheet = async (title, group_name, instrument, difficulty,id_creator,imageData) => {
     const sheet = {
       id:0,
       title: title,
@@ -47,11 +47,12 @@ const createSheet = async (title, group_name, instrument, difficulty,id_creator)
       difficulty: difficulty,
       done: "No",
       id_creator: id_creator,
+      imageData: imageData,
     }
   
-    const query = 'INSERT INTO sheets (title, group_name, instruments, difficulty, done, id_creator) VALUES (?, ?, ?, ?, ?, ?);'
+    const query = 'INSERT INTO sheets (title, group_name, instruments, difficulty, done, id_creator,imageData) VALUES (?, ?, ?, ?, ?,?, ?);'
 
-    const parameters = [sheet.title, sheet.group, sheet.instrument, sheet.difficulty, sheet.done, sheet.id_creator]
+    const parameters = [sheet.title, sheet.group, sheet.instrument, sheet.difficulty, sheet.done, sheet.id_creator,sheet.imageData]
     const [result] = await database.execute(query, parameters)
     sheet.id = result.insertId
     return sheet
@@ -66,17 +67,14 @@ const deleteSheet = async (id) => {
     return result.affectedRows > 0
 }
 
-const updateSheet = async (id, title, group_name, instruments, difficulty, done, imageData) => {
+const updateSheet = async (id, title, group_name, instruments, difficulty, imageData) => {
     const sheet = {
-        id: id,
         title: title,
         group_name: group_name,
         instruments: instruments,
         difficulty: difficulty,
-        done: done,
         imageData: imageData,
     }
-
     const command = buildUpdateCommand(id, sheet)
     const [result] = await database.execute(command.query, command.parameters)
     return result.affectedRows > 0
