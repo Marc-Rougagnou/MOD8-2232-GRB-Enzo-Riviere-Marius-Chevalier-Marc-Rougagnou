@@ -75,7 +75,7 @@ async function filteredList_(){
         <li  v-for="sheet in filteredList" :key="sheet.id">
           <SheetItem :id="sheet.id" class="link">
             <template #info>
-              {{ "Name : " + sheet.title + " | Group : " + sheet.group + " | Instrument : " + sheet.instruments + " | Difficulty : " +sheet.difficulty + " | Done : " + sheet.done + " | "}}
+              {{ "Name : " + sheet.title + " | Group : " + sheet.group_name + " | Instrument : " + sheet.instruments + " | Difficulty : " +sheet.difficulty + " | Done : " + sheet.done + " | "}}
             </template>
             <p>" "</p>
             <template #details>See details</template>

@@ -84,13 +84,6 @@ const updateSheet = async (id, title, group_name, instruments, difficulty, done)
     return result.affectedRows > 0
 }
 
-
-
-
-
-
-
-
 */
 
 export default {
