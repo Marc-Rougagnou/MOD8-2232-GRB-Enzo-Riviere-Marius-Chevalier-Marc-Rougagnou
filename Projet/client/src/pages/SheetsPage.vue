@@ -3,12 +3,12 @@ import { computed, ref, onMounted, watch } from "vue";
 import SheetItem from "../components/SheetItem.vue";
 import sheetService from "../services/sheet-service.js";
 
-const input = ref("");
-const selectedInstrument = ref("");
-const selectedDifficulty = ref("");
-const selectedDone = ref("");
-const sheets = ref();
-const filteredList = ref([]);
+let input = ref("");
+let selectedInstrument = ref("");
+let selectedDifficulty = ref("");
+let selectedDone = ref("");
+let sheets = ref();
+let filteredList = ref([]);
 
 onMounted(async () => {
   const response = await sheetService.findSheets();
@@ -23,13 +23,15 @@ watch([input, selectedInstrument, selectedDifficulty, selectedDone], () => {
 
 async function filteredList_(){
   
-  filteredList.value = sheets.value.filter((sheet) =>
+  filteredList = sheets.value.filter((sheet) =>
     (sheet.title.toLowerCase().includes(input.value.toLowerCase()) ||
      sheet.group_name.toLowerCase().includes(input.value.toLowerCase())) &&
     (sheet.instruments.toLowerCase().includes(selectedInstrument.value.toLowerCase())) &&
     (sheet.difficulty.toLowerCase().includes(selectedDifficulty.value.toLowerCase())) &&
     (sheet.done.toLowerCase().includes(selectedDone.value.toLowerCase()))
   );
+
+  return filteredList;
 }
 
 </script>

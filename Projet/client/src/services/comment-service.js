@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const createComment = async (id_user, id_sheet, comment) => {
+const createComment = async (comment,postid) => {
     try {
-        const response = await axios.post('/comments', { id_sheet, id_user, comment })
+        const response = await axios.post('/comments', { comment,postid })
         return response.data
     } catch (error) {
         return handleError(error)
