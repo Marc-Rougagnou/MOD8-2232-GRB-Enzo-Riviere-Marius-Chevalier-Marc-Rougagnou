@@ -13,7 +13,8 @@
     "start": "cross-env NODE_ENV=production node ./server/index.js",
     "lint": "eslint ./server --ext .js,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write ./server",
-    "lint-format": "npm run lint & npm run format"
+    "lint-format": "npm run lint & npm run format",
+    "launch-web": "cd ./client/ & npm run build & cd .. & npm run dev"
   },
   "dependencies": {
     "axios": "^1.5.1",

@@ -2,6 +2,7 @@
     import { ref } from 'vue';
     import { sheet_id,state } from '../store.js';
     import router from '../router';
+    import sheetService from '../services/sheet-service.js';
 
     const emit = defineEmits(['response'])
 
@@ -12,15 +13,15 @@
 
     const current_sheet = ref(sheet_init ? {...sheet_init} : {title: " ", group: " ", difficulty: " ", instruments: " ", done: "No", id: -1, id_creator: state.current_user.id, imageData: ""})
     
-
     function submit(){
         if(current_sheet.value.id === -1){
             current_sheet.value.id = sheet_id.value++
         }
 
     if(current_sheet.value.title.trim() !== "" && current_sheet.value.group.trim() !== "" && current_sheet.value.instruments.trim() !== "" && current_sheet.value.difficulty.trim() !== ""  && current_sheet.value.imageData.trim() !== ""){
-        emit('response', current_sheet.value)
+        sheetService.createSheet(current_sheet.value.title, current_sheet.value.group, current_sheet.value.instruments, current_sheet.value.difficulty,current_sheet.value.id_creator)
         router.push('/sheets')
+        emit('response', current_sheet.value)
     }
     else{
         alert("Please fill all the fields first")
@@ -28,18 +29,19 @@
 }
 
 
-    const base64Image = ref('');
-    const convertImageToBase64 = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-            base64Image.value = e.target.result;
-            current_sheet.value.imageData = base64Image.value;
-            };
-            reader.readAsDataURL(file);   
-        }
+
+const base64Image = ref('');
+const convertImageToBase64 = (event) => {
+const file = event.target.files[0];
+if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+    base64Image.value = e.target.result;
+    current_sheet.value.imageData = base64Image.value;
     };
+    reader.readAsDataURL(file);   
+}
+};
 
 </script>
 

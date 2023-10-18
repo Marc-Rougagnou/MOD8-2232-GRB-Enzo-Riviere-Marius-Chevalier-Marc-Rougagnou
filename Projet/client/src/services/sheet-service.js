@@ -3,7 +3,6 @@ import axios from 'axios'
 
 const findSheets = async () => {
     try {
-        
         const response = await axios.get('/sheets')
         return response.data
     } 
@@ -27,10 +26,11 @@ function handleError(error) {
     return { error: { message: 'Something went wrong.' } }
 }
 
-/*
+
 const findSheet = async (id) => {
     try {
-        const response = await axios.get(`/sheets/${id}`)
+        
+        const response = await axios.get(`/sheets/${id}`) 
         return response.data
     } 
     catch (error) {
@@ -38,28 +38,16 @@ const findSheet = async (id) => {
     }
 }
 
-
-
-const createSheet = async (title, group, instrument, difficulty,imageData,id_creator) => {
-    const sheet = {
-      id:0,
-      title: title.trim(),
-      group: group.trim(),
-      instrument: instrument.trim(),
-      difficulty: difficulty.trim(),
-      done: "No",
-      imageData: imageData,
-      id_creator: id_creator,
+const createSheet = async (title, group, instrument, difficulty,id_creator) => {
+    try {
+        console.log(title, group, instrument, difficulty,id_creator)
+        const response = await axios.post('/sheets', { title, group, instrument, difficulty,id_creator })
+        return response.data
+    } catch (error) {
+        return handleError(error)
     }
-  
-    const query = 'INSERT INTO sheets (title, group_name, instruments, difficulty, done, imageData, id_creator) VALUES (?, ?, ?, ?, ?, ?, ?);'
-
-    const parameters = [sheet.title, sheet.group, sheet.instrument, sheet.difficulty, sheet.done, sheet.imageData, sheet.id_creator]
-    const [result] = await database.execute(query, parameters)
-    sheet.id = result.insertId
-    return sheet
 }
-
+/*
 const deleteSheet = async (id) => {
 
     const query = 'DELETE FROM sheets WHERE id = ?'
@@ -88,8 +76,8 @@ const updateSheet = async (id, title, group_name, instruments, difficulty, done)
 
 export default {
     findSheets,
-    /*findSheet,
-    createSheet,
+    findSheet,
+    createSheet,/*
     deleteSheet,
     updateSheet,*/
 }

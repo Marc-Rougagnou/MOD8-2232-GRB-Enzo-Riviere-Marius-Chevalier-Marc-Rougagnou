@@ -2,21 +2,19 @@
 import { onMounted, ref} from 'vue';
 import AccountForm from '../components/AccountForm.vue';
 import accountService from '../services/account-service.js';
-import { useRouter } from 'vue-router';
-const router=useRouter();
+
+
+
 const accounts = ref([]);
 onMounted (async () => {
   const response = await accountService.findAccounts();
-  console.log(response)
-  console.log(response.users)
   accounts.value = response.users;
 });
 
 
 function createAccount(newuser){
-  console.log(accounts)
   accountService.createAccount_(newuser.username,newuser.email,newuser.password,newuser.gender,accounts.value);  
-  router.push('/');
+ 
 }
 
 </script>
