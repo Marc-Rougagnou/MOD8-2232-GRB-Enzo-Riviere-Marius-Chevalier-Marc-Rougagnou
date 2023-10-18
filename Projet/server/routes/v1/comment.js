@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/comments', async (req, res, next) => {
     try {
         const comments = await commentRepository.findComments();
-        res.json(comments);
+        res.json({comments});
     } catch (error) {
         next(error);
     }
@@ -17,7 +17,7 @@ router.get('/comments/:id', async (req, res, next) => {
         const id = parseInt(req.params.id);
         const comment = await commentRepository.findComment(id);
         if (comment) {
-            res.json(comment);
+            res.json({comment});
         } else {
             next();
         }
@@ -33,7 +33,7 @@ router.post('/comments', async (req, res, next) => {
         const text = req.body.text;
 
         const comment = await commentRepository.createComment(id_user, id_sheet, text);
-        res.status(201).json(comment);
+        res.status(201).json({comment});
     } catch (error) {
         next(error);
     }

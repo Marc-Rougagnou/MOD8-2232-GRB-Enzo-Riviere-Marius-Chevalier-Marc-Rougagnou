@@ -1,21 +1,46 @@
 <script setup>
-import {computed, ref} from 'vue';
+import {computed, onMounted, ref} from 'vue';
 import {RouterLink, useRouter} from 'vue-router';
-import {state} from "../store.js";
+
 import AccountForm from "@/components/AccountForm.vue";
 import SheetItem from '../components/SheetItem.vue';
-const currentuser = computed(()=>state.current_user)
+import accountService from '../services/account-service.js';
+import sheetService from '../services/sheet-service.js';
+import {useRoute} from 'vue-router';
+import {watch} from 'vue';
+
+let route = useRoute();
+let sheets = ref([]);
+let currentuser = ref([]);
+let filteredList_ = ref([]);
+
+
+onMounted(async () => {
+  console.log("mounted")
+  let id=route.params.username;
+  let response = await sheetService.findSheets();
+  sheets.value = response.sheets;  
+  let response2= await accountService.findAccount(id);
+  currentuser.value = response2.user;  
+  console.log(sheets.value)
+  filterList();
+  
+});
+
+watch([sheets,currentuser], () => {
+  console.log("watch active")
+  filterList();
+});
 
 function modifyAccount(modifyuser){ //security update
-  for(let i=0;i<state.users.length;i++){
-    if(state.users[i].id===currentuser.value.id){
-
+  /* for(let i=0;i<users.length;i++){
+    if(users[i].id===currentuser.value.id){
       if(modifyuser.email===''){
-        modifyuser.email=state.users[i].email;
+        modifyuser.email=users[i].email;
       }
-      else if (modifyuser.email!==state.users[i].email){
-        for(let j=0;j<state.users.length;j++){
-          if(state.users[j].email===modifyuser.email){
+      else if (modifyuser.email!==users[i].email){
+        for(let j=0;j<users.length;j++){
+          if(users[j].email===modifyuser.email){
             window.alert('Email already used');
             return;
           }
@@ -23,39 +48,52 @@ function modifyAccount(modifyuser){ //security update
       }
 
       if(modifyuser.username===''){
-        modifyuser.username=state.users[i].username;
+        modifyuser.username=users[i].username;
       }
-      else if (modifyuser.username!==state.users[i].username){
-        for(let j=0;j<state.users.length;j++){
-          if(state.users[j].username===modifyuser.username){
+      else if (modifyuser.username!==users[i].username){
+        for(let j=0;j<users.length;j++){
+          if(users[j].username===modifyuser.username){
             window.alert('Username already used');
             return;
           }
         }
+      } */
+      if(modifyuser.username.trim()===""){
+        modifyuser.username=currentuser.username;
       }
-
-      if(modifyuser.password===''){
-        modifyuser.password=state.users[i].password;
+      if(modifyuser.email.trim()===""){
+        modifyuser.email=currentuser.email;
       }
-      if(modifyuser.gender===''){
-        modifyuser.gender=state.users[i].gender;
+      if(modifyuser.password.trim()===""){
+        console.log(currentuser.value.password,",,oeforforefjreo freo")
+        modifyuser.password=currentuser.password;
       }
-      state.users[i].username=modifyuser.username;
-      state.users[i].email=modifyuser.email;
-      state.users[i].password=modifyuser.password;
-      state.users[i].gender=modifyuser.gender;
-      window.alert('Account modified');
-      return;
-    }
+      if(modifyuser.gender.trim()===""){
+        modifyuser.gender=currentuser.gender;
+      }
+    
+    accountService.updateAccount(route.params.username,modifyuser.username,modifyuser.email,modifyuser.password,modifyuser.gender)
+    window.alert('Account modified');
   }
-  window.alert('Wrong email or password');
-}
 
-const filterList = computed(() => {
-  return state.sheets.filter((sheet) =>
-    sheet.id_creator === state.current_user.id
+/* const filterList = computed(() => {
+  
+  return users.value.filter((sheet) =>
+    sheet.id_creator === currentuser.value.id
+  ); 
+});*/
+
+async function filterList(){
+  
+  console.log("bfrbfiurbfi"+ currentuser.value.id)
+  console.log(sheets.value,"(rfvygbuhnubgyvftcrdx")
+  filteredList_.value=sheets.value.filter((sheet) =>
+    sheet.id_creator === currentuser.value.id
+    
   );
-});
+  console.log("filteredList" + filteredList_.value)
+  return filteredList_;
+} 
 </script>
 
 <template>
@@ -73,7 +111,7 @@ const filterList = computed(() => {
     <div id="details">
       <h1>Your sheets</h1>
       <ul>
-        <li v-for="sheet in filterList" :key="sheet.id" id="ligne">
+        <li v-for="sheet in filteredList_" :key="sheet.id" id="ligne">
           <SheetItem :id="sheet.id" id="sheetitem">
             <template #info>
               {{ "Name : " + sheet.title + " | Group : " + sheet.group + " | Instrument : " + sheet.instruments + " | Difficulty :  " + sheet.difficulty + " | Done : " + sheet.done}}
