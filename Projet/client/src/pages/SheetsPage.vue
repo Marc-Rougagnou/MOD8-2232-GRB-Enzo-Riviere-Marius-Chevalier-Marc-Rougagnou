@@ -8,8 +8,7 @@ const selectedInstrument = ref("");
 const selectedDifficulty = ref("");
 const selectedDone = ref("");
 const sheets = ref();
-const filteredList = ref([]);
-
+const filteredList = ref([])
 
 onMounted(async () => {
   
