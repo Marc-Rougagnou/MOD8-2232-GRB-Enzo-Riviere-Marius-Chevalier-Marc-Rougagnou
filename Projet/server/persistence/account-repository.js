@@ -11,6 +11,11 @@ const findUser = async (id) => {
     const [rows] = await database.execute(query,[id])
     return rows.length > 0 ? mapUser(rows[0]) : null
 }
+const findUserByEmail = async (email) => {
+    const query = 'SELECT * FROM users where email = ?'
+    const [rows] = await database.execute(query,[email])
+    return rows.length > 0 ? mapUser(rows[0]) : null
+}
 
 function mapUser(row) {
     return {
@@ -47,6 +52,13 @@ const updateUser = async (id, username, email, password, gender) => {
         email: email,
         password: password,
         gender: gender,
+    }
+    const user = await findUser(id)
+    if (user.email !== sheet.email) {
+        const userWithSameEmail = await findUserByEmail(sheet.email)
+        if (userWithSameEmail) {
+            return { error: { message: 'Email address already in use.' } }
+        }
     }
 
     const command = buildUpdateCommand(id, sheet)

@@ -50,10 +50,10 @@ const createSheet = async (title, group_name, instrument, difficulty,id_creator,
       imageData: imageData,
     }
   
-    const query = 'INSERT INTO sheets (title, group_name, instruments, difficulty, done, id_creator,imageData) VALUES (?, ?, ?, ?, ?,?, ?);'
 
+    const query = 'INSERT INTO sheets (title, group_name, instruments, difficulty, done, id_creator,imageData) VALUES (?, ?, ?, ?, ?, ?, ?);'
 
-    const parameters = [sheet.title, sheet.group, sheet.instrument, sheet.difficulty, sheet.done, sheet.id_creator,sheet.imageData]
+    const parameters = [sheet.title, sheet.group_name, sheet.instruments, sheet.difficulty, sheet.done, sheet.id_creator, sheet.imageData]
 
     const [result] = await database.execute(query, parameters)
     sheet.id = result.insertId

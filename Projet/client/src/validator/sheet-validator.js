@@ -3,8 +3,11 @@ function validateFindSheet(id) {
   }
   
   function validateCreateSheet(title, group, instrument, difficulty, imageData) {
-
-    return (validateTitle(title) ?? validateGroup(group) ?? validateInstrument(instrument) ?? validateDifficulty(difficulty) ?? validateImageDate(imageData))
+    return validateTitle(title)
+      ?? validateGroup(group)
+      ?? validateInstrument(instrument)
+      ?? validateDifficulty(difficulty)
+      ?? validateImageDate(imageData)
   }
   
   function validateUpdateSheet(id, title, Group, instrument, difficulty, imageData) {
@@ -18,7 +21,6 @@ function validateFindSheet(id) {
       if (err) {
         return err
       }
-      return null
     }
   
     if (Group !== undefined) {
@@ -26,7 +28,6 @@ function validateFindSheet(id) {
       if (err) {
         return err
       }
-      return null
     }
   
     if (instrument !== undefined) {
@@ -56,21 +57,15 @@ function validateFindSheet(id) {
   }
   
   function validateId(id) {
-    if (id === undefined) {
-      return new Error('Id is missing.')
-    }
+    if (id === undefined) {throw new Error('Id is missing.')}
   
-    if (!Number.isInteger(id)) {
-      return new Error('Id must be an integer.')
-    }
+    if (!Number.isInteger(id)) {throw new Error('Id must be an integer.')}
   
     return null
   }
   
   function validateTitle(title) {
-    if (title === undefined) {
-      return new Error('Title is missing.')
-    }
+    if (title === undefined) {throw new Error('Title is missing.')}
   
     if (typeof title !== 'string') {
       return new Error('Title must be a string.')
@@ -80,7 +75,6 @@ function validateFindSheet(id) {
     if (title === '') {
       return new Error('Title must not be empty.')
     }
-
   
     return null
   }
@@ -139,6 +133,7 @@ function validateFindSheet(id) {
     if (imageData === undefined) {
       return new Error('imageData is missing.')
     }
+  
     if (typeof imageData !== 'string') {
       return new Error('imageData must be a string.')
     }
