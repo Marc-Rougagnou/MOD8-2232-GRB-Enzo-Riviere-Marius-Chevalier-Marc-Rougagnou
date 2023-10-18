@@ -5,21 +5,29 @@ import {RouterLink, useRouter} from 'vue-router';
 import AccountForm from "@/components/AccountForm.vue";
 import SheetItem from '../components/SheetItem.vue';
 import accountService from '../services/account-service.js';
+import sheetService from '../services/sheet-service.js';
 import {useRoute} from 'vue-router';
+import {watch} from 'vue';
 
 let route = useRoute();
-let users = ref({});
-let currentuser = ref({});
+let sheets = ref([]);
+let currentuser = ref([]);
+let filteredList_ = ref([]);
+
 
 onMounted(async () => {
   let id=route.params.username;
-  let response = await accountService.findAccounts();
-  users.value = response.users[0];  
+  let response = await sheetService.findSheets();
+  sheets.value = response.sheets;  
   let response2= await accountService.findAccount(id);
-  currentuser.value = response2.user;
+  currentuser.value = response2.user;  
+  console.log(sheets.value)
   
 });
 
+watch([sheets,currentuser], () => {
+  filterList();
+});
 function modifyAccount(modifyuser){ //security update
   /* for(let i=0;i<users.length;i++){
     if(users[i].id===currentuser.value.id){
@@ -53,6 +61,7 @@ function modifyAccount(modifyuser){ //security update
         modifyuser.email=currentuser.email;
       }
       if(modifyuser.password.trim()===""){
+        console.log(currentuser.value.password,",,oeforforefjreo freo")
         modifyuser.password=currentuser.password;
       }
       if(modifyuser.gender.trim()===""){
@@ -64,10 +73,21 @@ function modifyAccount(modifyuser){ //security update
   }
 
 /* const filterList = computed(() => {
-  return state.sheets.filter((sheet) =>
-    sheet.id_creator === state.current_user.id
+  
+  return users.value.filter((sheet) =>
+    sheet.id_creator === currentuser.value.id
+  ); 
+});*/
+async function filterList(){
+  
+  console.log(currentuser.value.id,"bfrbfiurbfi")
+  console.log(sheets.value,"(rfvygbuhnubgyvftcrdx")
+  filteredList_=sheets.filter((sheet) =>
+    sheet.value.id_creator === currentuser.value.id
+    
   );
-}); */
+  return filteredList_;
+} 
 </script>
 
 <template>
@@ -85,7 +105,7 @@ function modifyAccount(modifyuser){ //security update
     <div id="details">
       <h1>Your sheets</h1>
       <ul>
-        <li v-for="sheet in filterList" :key="sheet.id" id="ligne">
+        <li v-for="sheet in filterList_" :key="sheet.id" id="ligne">
           <SheetItem :id="sheet.id" id="sheetitem">
             <template #info>
               {{ "Name : " + sheet.title + " | Group : " + sheet.group + " | Instrument : " + sheet.instruments + " | Difficulty :  " + sheet.difficulty + " | Done : " + sheet.done}}
