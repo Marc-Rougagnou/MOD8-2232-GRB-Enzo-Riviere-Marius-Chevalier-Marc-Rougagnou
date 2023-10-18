@@ -15,16 +15,11 @@ const { button_text, sheet_init } = defineProps({
 const current_sheet = ref(sheet_init ? { ...sheet_init } : { title: "", group_name: "", difficulty: "", instruments: "", done: "No", id_creator: state.current_user.id, imageData: "" })
 
 function submit() {
-    console.log(current_sheet.value, "1111111111111111111")
-
     emit('response', current_sheet.value)
-    console.log(current_sheet.value, "88888")
-
     router.push('/sheets')
 }
 
 watch(sheet_init,()=>{
-    console.log("54")
     current_sheet.value = { ...sheet_init }
     
 },{deep:true})

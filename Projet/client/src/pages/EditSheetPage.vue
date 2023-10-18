@@ -20,7 +20,6 @@ let sheet_id_current=ref()
 let current_store=ref()
 
 watch(saveclick,async ()=>{
-    console.log("fnroorfnofnzonforznfoenfoenoznf")
     if (saveclick.value===true) {
         await updateSheet();
         saveclick.value=false;
@@ -29,16 +28,9 @@ watch(saveclick,async ()=>{
 });
 
 
-function remove(del_sheet){
-
-    state.sheets = state.sheets.filter((cur_sheet) => cur_sheet !== del_sheet)
-
-router.push('/');
-}
 
 onMounted(async () => {
     const response = await sheetService.findSheet(current_sheet_id);
-    console.log(current_sheet.value,"00000000000000000000000")
     current_sheet.value = response.sheet[0];
     const response2=await sheetService.findSheets();
     sheets=response2.sheets;
@@ -54,10 +46,14 @@ function onFormSubmit(sheet,id_sheet){
 }
 
 
+function remove(){
+    sheetService.deleteSheet(sheet_id_current)
+    router.push('/');
+}
+
 async function updateSheet()
 {
-  /*   console.log(current_sheet,"9999999")
-    console.log(current_store,"10101010101010101") */
+
     if (current_sheet.value.title===""){
         current_sheet.value.title=current_store.title
     }
@@ -83,12 +79,12 @@ async function updateSheet()
 
 <template>
     <main id="back">
-        <h2>{{ current_sheet.title}}</h2>
-        <h2>{{ current_sheet.group_name }}</h2>
-        <h2>{{ current_sheet.instruments }}</h2>
-        <h2>{{ current_sheet.difficulty }}</h2>
+        <h2>Title: {{ current_sheet.title}}</h2>
+        <h2>Group: {{ current_sheet.group_name }}</h2>
+        <h2>Instruments: {{ current_sheet.instruments }}</h2>
+        <h2>Difficulty: {{ current_sheet.difficulty }}</h2>
 
-        <button id="delete-button" @click="remove(current_sheet)">Delete</button>
+        <button id="delete-button" @click="remove()">Delete</button>
         <SheetForm :sheet_init="current_sheet.value" :button_text="edit_btn" @response = "onFormSubmit"></SheetForm>
     </main>
 </template>
