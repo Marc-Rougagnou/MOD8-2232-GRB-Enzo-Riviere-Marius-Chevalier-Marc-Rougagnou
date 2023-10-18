@@ -12,15 +12,17 @@ import {watch} from 'vue';
 let route = useRoute();
 let sheets = ref([]);
 let currentuser = ref([]);
-let filteredList = ref([]);
+let filteredList_ = ref([]);
 
 
 onMounted(async () => {
+  console.log("mounted")
   let id=route.params.username;
   let response = await sheetService.findSheets();
   sheets.value = response.sheets;  
   let response2= await accountService.findAccount(id);
   currentuser.value = response2.user;  
+  console.log(sheets.value)
   filterList();
   
 });
@@ -73,12 +75,20 @@ function modifyAccount(modifyuser){ //security update
     window.alert('Account modified');
   }
 
-async function filterList(){
-  filteredList.value=sheets.value.filter((sheet) =>
-    sheet.id_creator === currentuser.value.id
-  );
+/* const filterList = computed(() => {
   
-  return filteredList;
+  return users.value.filter((sheet) =>
+    sheet.id_creator === currentuser.value.id
+  ); 
+});*/
+
+async function filterList(){
+  
+  console.log("bfrbfiurbfi"+ currentuser.value.id)
+  console.log(sheets.value,"(rfvygbuhnubgyvftcrdx")
+  filteredList_.value=sheets.value.filter((sheet) => sheet.id_creator === currentuser.value.id);
+  console.log("filteredList" + filteredList_.value)
+  return filteredList_;
 } 
 </script>
 
@@ -97,10 +107,10 @@ async function filterList(){
     <div id="details">
       <h1>Your sheets</h1>
       <ul>
-        <li v-for="sheet in filteredList" :key="sheet.id" id="ligne">
+        <li v-for="sheet in filteredList_" :key="sheet.id" id="ligne">
           <SheetItem :id="sheet.id" id="sheetitem">
             <template #info>
-              {{ "Name : " + sheet.title + " | Group : " + sheet.group_name + " | Instrument : " + sheet.instruments + " | Difficulty :  " + sheet.difficulty + " | Done : " + sheet.done}}
+              {{ "Name : " + sheet.title + " | Group : " + sheet.group + " | Instrument : " + sheet.instruments + " | Difficulty :  " + sheet.difficulty + " | Done : " + sheet.done}}
             </template>
             <template #details>|See details</template>
           </SheetItem>
