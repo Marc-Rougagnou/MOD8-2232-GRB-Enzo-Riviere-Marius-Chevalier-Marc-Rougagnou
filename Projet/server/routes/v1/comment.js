@@ -28,9 +28,10 @@ router.get('/comments/:id', async (req, res, next) => {
 
 router.post('/comments', async (req, res, next) => {
     try {
+
         const id_user = req.body.id_user;
         const id_sheet = req.body.id_sheet;
-        const text = req.body.text;
+        const text = req.body.comment;
 
         const comment = await commentRepository.createComment(id_user, id_sheet, text);
         res.status(201).json({comment});
