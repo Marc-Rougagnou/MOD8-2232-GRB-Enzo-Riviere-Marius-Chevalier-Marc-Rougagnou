@@ -13,7 +13,6 @@ const filteredList = ref([])
 onMounted(async () => {
   
   const response = await sheetService.findSheets();
-  console.log(response);
   sheets.value = response.sheets;
   filteredList.value = response.sheets;
   filteredList_;

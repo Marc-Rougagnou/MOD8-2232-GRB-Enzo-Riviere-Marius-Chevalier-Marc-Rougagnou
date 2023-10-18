@@ -42,24 +42,20 @@ const createSheet = async (title, group_name, instrument, difficulty,id_creator,
     const sheet = {
       id:0,
       title: title,
-      group_name: group_name,
-      instruments: instrument,
+      group: group_name,
+      instrument: instrument,
       difficulty: difficulty,
       done: "No",
       id_creator: id_creator,
       imageData: imageData,
     }
-  
     const query = 'INSERT INTO sheets (title, group_name, instruments, difficulty, done, id_creator,imageData) VALUES (?, ?, ?, ?, ?,?, ?);'
-
-
     const parameters = [sheet.title, sheet.group, sheet.instrument, sheet.difficulty, sheet.done, sheet.id_creator,sheet.imageData]
-
     const [result] = await database.execute(query, parameters)
     sheet.id = result.insertId
-    
     return sheet
 }
+
 
 const deleteSheet = async (id) => {
 
