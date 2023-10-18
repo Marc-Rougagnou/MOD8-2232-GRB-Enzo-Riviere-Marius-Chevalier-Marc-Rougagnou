@@ -30,8 +30,8 @@ router.get('/sheets/:id', async (req, res, next) => {
 router.post('/sheets', async (req, res, next) => {
     try {
         const title = req.body.title
-        const group = req.body.group_name
-        const instrument = req.body.instruments
+        const group = req.body.group
+        const instrument = req.body.instrument
         const difficulty = req.body.difficulty
         const id_creator = req.body.id_creator
 
