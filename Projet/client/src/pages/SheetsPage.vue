@@ -21,6 +21,9 @@ watch([input, selectedInstrument, selectedDifficulty, selectedDone], () => {
   filteredList_();
 });
 
+input=" "
+input=""
+
 async function filteredList_(){
   
   filteredList = sheets.value.filter((sheet) =>
