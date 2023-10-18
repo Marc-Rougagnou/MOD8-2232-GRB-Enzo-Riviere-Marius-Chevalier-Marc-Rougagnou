@@ -16,6 +16,19 @@ function validateAccount(username,email,password,gender,accounts){
     return null;
 }
 
+function validateLogIn(username, password) {
+    if (!username) {
+      return new Error('Enter a username.')
+    }
+  
+    if (!password) {
+      return new Error('Enter a password.')
+    }
+  
+    return null
+  }
+
 export default{
-    validateAccount
+    validateAccount,
+    validateLogIn
 }

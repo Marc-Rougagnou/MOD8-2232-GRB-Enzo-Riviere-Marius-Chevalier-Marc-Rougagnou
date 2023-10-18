@@ -1,5 +1,19 @@
 import database from './database.js'
 
+const findUserCredentials = async (username) => {
+  const query = 'SELECT username, password FROM users WHERE username = ?;'
+  const [rows] = await database.execute(query, [username])
+  const credentials = rows.length > 0 ? mapUserCredentials(rows[0]) : null
+  return credentials
+}
+
+function mapUserCredentials(row) {
+  return {
+    username: row.username,
+    password: String(row.password)
+  }
+}
+
 const findSession = async (id) => {
   const query = 'SELECT id, username, start_time, extended_time, expiry_time FROM sessions WHERE id = ?;'
   const [rows] = await database.execute(query, [id])
@@ -41,6 +55,7 @@ const deleteSession = async (id) => {
 }
 
 export default {
+  findUserCredentials,
   findSession,
   createSession,
   extendSession,

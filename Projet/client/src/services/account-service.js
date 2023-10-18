@@ -28,6 +28,25 @@ const findAccounts = async () => {
     }
 }
 
+async function logIn(username, password) {
+    try {
+      authenticatedUser.value = null
+  
+      username = username.trim()
+  
+      const error = validator.validateLogIn(username, password)
+      if (error) {
+        return { error }
+      }
+  
+      const response = await axios.post('/auth/login', null, { auth: { username, password } })
+      authenticatedUser.value = response.data.user
+      return response.data
+    } catch (error) {
+      return handleError(error)
+    }
+  }
+
 
 function handleError(error) {
 if (error.response) {
@@ -47,4 +66,6 @@ return { error: { message: 'Something went wrong.' } }
 export default {
     createAccount_,
     findAccounts,
+    logIn,
 }
+
