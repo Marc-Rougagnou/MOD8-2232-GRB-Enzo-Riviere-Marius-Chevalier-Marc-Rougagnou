@@ -50,11 +50,14 @@ const createSheet = async (title, group_name, instrument, difficulty,id_creator,
       imageData: imageData,
     }
   
+
     const query = 'INSERT INTO sheets (title, group_name, instruments, difficulty, done, id_creator,imageData) VALUES (?, ?, ?, ?, ?, ?, ?);'
 
     const parameters = [sheet.title, sheet.group_name, sheet.instruments, sheet.difficulty, sheet.done, sheet.id_creator, sheet.imageData]
+
     const [result] = await database.execute(query, parameters)
     sheet.id = result.insertId
+    
     return sheet
 }
 
@@ -67,17 +70,14 @@ const deleteSheet = async (id) => {
     return result.affectedRows > 0
 }
 
-const updateSheet = async (id, title, group_name, instruments, difficulty, done, imageData) => {
+const updateSheet = async (id, title, group_name, instruments, difficulty, imageData) => {
     const sheet = {
-        id: id,
         title: title,
         group_name: group_name,
         instruments: instruments,
         difficulty: difficulty,
-        done: done,
         imageData: imageData,
     }
-
     const command = buildUpdateCommand(id, sheet)
     const [result] = await database.execute(command.query, command.parameters)
     return result.affectedRows > 0
