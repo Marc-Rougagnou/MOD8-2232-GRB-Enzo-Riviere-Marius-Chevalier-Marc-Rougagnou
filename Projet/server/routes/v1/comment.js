@@ -1,5 +1,6 @@
 import express from 'express';
 import commentRepository from '../../persistence/comment-repository.js';
+import commentValidator from '../../validators/comment-validator.js';
 
 const router = express.Router();
 
@@ -31,7 +32,6 @@ router.post('/comments', async (req, res, next) => {
         const id_user = req.body.id_user;
         const id_sheet = req.body.id_sheet;
         const text = req.body.text;
-
         const comment = await commentRepository.createComment(id_user, id_sheet, text);
         res.status(201).json({comment});
     } catch (error) {
@@ -41,6 +41,7 @@ router.post('/comments', async (req, res, next) => {
 
 router.delete('/comments/:id', async (req, res, next) => {
     try {
+        
         const id = parseInt(req.params.id);
         const deleted =await commentRepository.deleteComment(id);
         if (deleted) {
