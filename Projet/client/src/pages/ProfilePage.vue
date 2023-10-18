@@ -30,31 +30,7 @@ watch([sheets,currentuser], () => {
 });
 
 function modifyAccount(modifyuser){ //security update
-  /* for(let i=0;i<users.length;i++){
-    if(users[i].id===currentuser.value.id){
-      if(modifyuser.email===''){
-        modifyuser.email=users[i].email;
-      }
-      else if (modifyuser.email!==users[i].email){
-        for(let j=0;j<users.length;j++){
-          if(users[j].email===modifyuser.email){
-            window.alert('Email already used');
-            return;
-          }
-        }
-      }
-
-      if(modifyuser.username===''){
-        modifyuser.username=users[i].username;
-      }
-      else if (modifyuser.username!==users[i].username){
-        for(let j=0;j<users.length;j++){
-          if(users[j].username===modifyuser.username){
-            window.alert('Username already used');
-            return;
-          }
-        }
-      } */
+  
       if(modifyuser.username.trim()===""){
         modifyuser.username=currentuser.username;
       }

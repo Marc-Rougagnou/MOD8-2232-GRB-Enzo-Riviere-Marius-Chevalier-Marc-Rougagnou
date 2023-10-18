@@ -43,6 +43,7 @@ function addComment(comment_){
 <template>
     <ul v-if="filteredList.length>0">
         <li v-for="comment in filteredList" :key="comment.text">
+          <!-- From '{{ state.users[state.users.findIndex((user) => user.id == comment.id_user)].username }}': -->
             {{comment.text}}
         </li>
     </ul>
