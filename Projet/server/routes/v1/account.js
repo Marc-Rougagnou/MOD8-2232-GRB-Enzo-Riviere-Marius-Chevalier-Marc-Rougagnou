@@ -3,6 +3,14 @@ import userRepository from '../../persistence/account-repository.js';
 
 const router = express.Router();
 
+router.get('/profiles', async (req, res, next) => {
+    try {
+        const users = await userRepository.findUsers();
+        res.status(200).json({users});
+    }
+    catch (error) {
+        next(error);
+    }});
 
 router.post('/profiles', async (req, res, next) => {
     try {

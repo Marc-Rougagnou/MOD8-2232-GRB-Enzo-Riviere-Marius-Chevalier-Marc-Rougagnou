@@ -1,33 +1,22 @@
 <script setup>
+import { onMounted, ref} from 'vue';
 import AccountForm from '../components/AccountForm.vue';
-import {state, id_user} from '../store.js';
+import accountService from '../services/account-service.js';
+import { useRouter } from 'vue-router';
+const router=useRouter();
+const accounts = ref([]);
+onMounted (async () => {
+  const response = await accountService.findAccounts();
+  console.log(response)
+  console.log(response.users)
+  accounts.value = response.users;
+});
 
-function createAccount(newuser){// security update
-  id_user.value++;
-  if(newuser.email.trim()==='' || newuser.password.trim()==='' || newuser.username.trim()===''||newuser.gender.trim()===''){
-    window.alert('Please fill all the fields');
-    return;
-    }
-  for(let i=0;i<state.users.length;i++){
-    if(state.users[i].email===newuser.email){
-      window.alert('Email already used');
-      return;
-    }
-  }
-  for(let i=0;i<state.users.length;i++){
-    if(state.users[i].username===newuser.username){
-      window.alert('Username already used');
-      return;
-    }
-  }
-  state.users.push({
-    id_user: id_user.value,
-    username: newuser.username,
-    email: newuser.email,
-    password: newuser.password,
-    gender:newuser.gender,
-  });
-  window.alert('Account created');
+
+function createAccount(newuser){
+  console.log(accounts)
+  accountService.createAccount_(newuser.username,newuser.email,newuser.password,newuser.gender,accounts.value);  
+  router.push('/');
 }
 
 </script>

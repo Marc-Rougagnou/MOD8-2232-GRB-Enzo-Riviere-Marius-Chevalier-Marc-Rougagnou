@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/sheets', async (req, res, next) => {
     try {
         const sheets = await sheetRepository.findSheets();
-        res.json(sheets);
+        res.status(200).json({sheets});
     } catch (error) {
         next(error);
     }
@@ -33,8 +33,11 @@ router.post('/sheets', async (req, res, next) => {
         const group = req.body.group;
         const instrument = req.body.instrument;
         const difficulty = req.body.difficulty;
+       
+        const imageData = req.body.imageData;
+        const id_creator = req.body.id_creator;
 
-        const sheet = await sheetRepository.createSheet(title, group, instrument, difficulty);
+        const sheet = await sheetRepository.createSheet(title, group, instrument, difficulty, imageData, id_creator);
         res.status(201).json(sheet);
     } catch (error) {
         next(error);

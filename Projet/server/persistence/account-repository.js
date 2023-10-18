@@ -1,5 +1,11 @@
 import database from './database.js'
 
+const findUsers = async () => {
+    const query = 'SELECT * FROM users'
+    const [rows] = await database.execute(query)
+    return rows.map(mapUser)
+}
+
 const findUser = async (id) => {
     const query = 'SELECT username, email, password, gender FROM users where id = ?'
     const [rows] = await database.execute(query,[id])
@@ -77,6 +83,7 @@ const deleteUser = async (id) => {
 
 
 export default {
+    findUsers,
     findUser,
     createUser,
     updateUser,
