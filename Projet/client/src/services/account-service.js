@@ -28,6 +28,24 @@ const findAccounts = async () => {
         return handleError(error)
     }
 }
+const findAccount = async (id) => {
+    try {
+        const response = await axios.get(`/profiles/${id}`)
+        return response.data
+    } catch (error) {
+        return handleError(error)
+    }
+}
+
+const updateAccount = async (id, username, email, password, gender) => {
+    try {
+      
+      await axios.patch(`/profiles/${id}`, { username, email, password, gender })
+      return { success: { message: 'Successfully saved account.' } }
+    } catch (error) {
+      return handleError(error)
+    }
+  }
 
 
 function handleError(error) {
@@ -48,4 +66,6 @@ return { error: { message: 'Something went wrong.' } }
 export default {
     createAccount_,
     findAccounts,
+    findAccount,
+    updateAccount,
 }

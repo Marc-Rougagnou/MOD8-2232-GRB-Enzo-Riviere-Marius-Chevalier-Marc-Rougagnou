@@ -7,7 +7,7 @@ const findUsers = async () => {
 }
 
 const findUser = async (id) => {
-    const query = 'SELECT username, email, password, gender FROM users where id = ?'
+    const query = 'SELECT * FROM users where id = ?'
     const [rows] = await database.execute(query,[id])
     return rows.length > 0 ? mapUser(rows[0]) : null
 }

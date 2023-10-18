@@ -13,7 +13,6 @@
 
     const current_sheet = ref(sheet_init ? {...sheet_init} : {title: " ", group: " ", difficulty: " ", instruments: " ", done: "No", id: -1, id_creator: state.current_user.id, imageData: ""})
     
-
     function submit(){
         if(current_sheet.value.id === -1){
             current_sheet.value.id = sheet_id.value++

@@ -48,7 +48,7 @@ router.patch('/profiles/:id', async (req, res, next) => {
 });
 
 
-router.get('/profile/:id', async (req, res, next) => {
+router.get('/profiles/:id', async (req, res, next) => {
     try {
         const id = parseInt(req.params.id);
         const user = await userRepository.findUser(id);
@@ -58,7 +58,7 @@ router.get('/profile/:id', async (req, res, next) => {
     }
 });
 
-router.delete('/profile/:id', async (req, res, next) => {
+router.delete('/profiles/:id', async (req, res, next) => {
     try {
         const id = parseInt(req.params.id);
         const deleted =await userRepository.deleteUser(id);

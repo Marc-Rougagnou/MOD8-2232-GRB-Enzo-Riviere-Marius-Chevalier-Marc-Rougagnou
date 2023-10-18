@@ -1,21 +1,34 @@
 <script setup>
-import {computed, ref} from 'vue';
+import {computed, onMounted, ref} from 'vue';
 import {RouterLink, useRouter} from 'vue-router';
-import {state} from "../store.js";
+
 import AccountForm from "@/components/AccountForm.vue";
 import SheetItem from '../components/SheetItem.vue';
-const currentuser = computed(()=>state.current_user)
+import accountService from '../services/account-service.js';
+import {useRoute} from 'vue-router';
+
+let route = useRoute();
+let users = ref({});
+let currentuser = ref({});
+
+onMounted(async () => {
+  let id=route.params.username;
+  let response = await accountService.findAccounts();
+  users.value = response.users[0];  
+  let response2= await accountService.findAccount(id);
+  currentuser.value = response2.user;
+  
+});
 
 function modifyAccount(modifyuser){ //security update
-  for(let i=0;i<state.users.length;i++){
-    if(state.users[i].id===currentuser.value.id){
-
+  /* for(let i=0;i<users.length;i++){
+    if(users[i].id===currentuser.value.id){
       if(modifyuser.email===''){
-        modifyuser.email=state.users[i].email;
+        modifyuser.email=users[i].email;
       }
-      else if (modifyuser.email!==state.users[i].email){
-        for(let j=0;j<state.users.length;j++){
-          if(state.users[j].email===modifyuser.email){
+      else if (modifyuser.email!==users[i].email){
+        for(let j=0;j<users.length;j++){
+          if(users[j].email===modifyuser.email){
             window.alert('Email already used');
             return;
           }
@@ -23,39 +36,38 @@ function modifyAccount(modifyuser){ //security update
       }
 
       if(modifyuser.username===''){
-        modifyuser.username=state.users[i].username;
+        modifyuser.username=users[i].username;
       }
-      else if (modifyuser.username!==state.users[i].username){
-        for(let j=0;j<state.users.length;j++){
-          if(state.users[j].username===modifyuser.username){
+      else if (modifyuser.username!==users[i].username){
+        for(let j=0;j<users.length;j++){
+          if(users[j].username===modifyuser.username){
             window.alert('Username already used');
             return;
           }
         }
+      } */
+      if(modifyuser.username.trim()===""){
+        modifyuser.username=currentuser.username;
       }
-
-      if(modifyuser.password===''){
-        modifyuser.password=state.users[i].password;
+      if(modifyuser.email.trim()===""){
+        modifyuser.email=currentuser.email;
       }
-      if(modifyuser.gender===''){
-        modifyuser.gender=state.users[i].gender;
+      if(modifyuser.password.trim()===""){
+        modifyuser.password=currentuser.password;
       }
-      state.users[i].username=modifyuser.username;
-      state.users[i].email=modifyuser.email;
-      state.users[i].password=modifyuser.password;
-      state.users[i].gender=modifyuser.gender;
-      window.alert('Account modified');
-      return;
-    }
+      if(modifyuser.gender.trim()===""){
+        modifyuser.gender=currentuser.gender;
+      }
+    
+    accountService.updateAccount(route.params.username,modifyuser.username,modifyuser.email,modifyuser.password,modifyuser.gender)
+    window.alert('Account modified');
   }
-  window.alert('Wrong email or password');
-}
 
-const filterList = computed(() => {
+/* const filterList = computed(() => {
   return state.sheets.filter((sheet) =>
     sheet.id_creator === state.current_user.id
   );
-});
+}); */
 </script>
 
 <template>
