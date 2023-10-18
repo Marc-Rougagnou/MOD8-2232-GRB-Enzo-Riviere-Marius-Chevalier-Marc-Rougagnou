@@ -16,18 +16,22 @@ let filteredList_ = ref([]);
 
 
 onMounted(async () => {
+  console.log("mounted")
   let id=route.params.username;
   let response = await sheetService.findSheets();
   sheets.value = response.sheets;  
   let response2= await accountService.findAccount(id);
   currentuser.value = response2.user;  
   console.log(sheets.value)
+  filterList();
   
 });
 
 watch([sheets,currentuser], () => {
+  console.log("watch active")
   filterList();
 });
+
 function modifyAccount(modifyuser){ //security update
   /* for(let i=0;i<users.length;i++){
     if(users[i].id===currentuser.value.id){
@@ -78,14 +82,16 @@ function modifyAccount(modifyuser){ //security update
     sheet.id_creator === currentuser.value.id
   ); 
 });*/
+
 async function filterList(){
   
-  console.log(currentuser.value.id,"bfrbfiurbfi")
+  console.log("bfrbfiurbfi"+ currentuser.value.id)
   console.log(sheets.value,"(rfvygbuhnubgyvftcrdx")
-  filteredList_=sheets.filter((sheet) =>
-    sheet.value.id_creator === currentuser.value.id
+  filteredList_.value=sheets.value.filter((sheet) =>
+    sheet.id_creator === currentuser.value.id
     
   );
+  console.log("filteredList" + filteredList_.value)
   return filteredList_;
 } 
 </script>
@@ -105,7 +111,7 @@ async function filterList(){
     <div id="details">
       <h1>Your sheets</h1>
       <ul>
-        <li v-for="sheet in filterList_" :key="sheet.id" id="ligne">
+        <li v-for="sheet in filteredList_" :key="sheet.id" id="ligne">
           <SheetItem :id="sheet.id" id="sheetitem">
             <template #info>
               {{ "Name : " + sheet.title + " | Group : " + sheet.group + " | Instrument : " + sheet.instruments + " | Difficulty :  " + sheet.difficulty + " | Done : " + sheet.done}}
