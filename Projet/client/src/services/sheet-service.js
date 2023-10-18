@@ -29,6 +29,7 @@ function handleError(error) {
 
 const findSheet = async (id) => {
     try {
+        
         const response = await axios.get(`/sheets/${id}`) 
         return response.data
     } 

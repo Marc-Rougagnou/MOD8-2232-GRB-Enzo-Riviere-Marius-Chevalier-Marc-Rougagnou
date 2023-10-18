@@ -3,8 +3,11 @@ function validateFindSheet(id) {
   }
   
   function validateCreateSheet(title, group, instrument, difficulty, imageData) {
-
-    return (validateTitle(title) ?? validateGroup(group) ?? validateInstrument(instrument) ?? validateDifficulty(difficulty) ?? validateImageDate(imageData))
+    return validateTitle(title)
+      ?? validateGroup(group)
+      ?? validateInstrument(instrument)
+      ?? validateDifficulty(difficulty)
+      ?? validateImageDate(imageData)
   }
   
   function validateUpdateSheet(id, title, Group, instrument, difficulty, imageData) {
@@ -18,7 +21,6 @@ function validateFindSheet(id) {
       if (err) {
         return err
       }
-      return null
     }
   
     if (Group !== undefined) {
@@ -26,7 +28,6 @@ function validateFindSheet(id) {
       if (err) {
         return err
       }
-      return null
     }
   
     if (instrument !== undefined) {
@@ -80,7 +81,6 @@ function validateFindSheet(id) {
     if (title === '') {
       return new Error('Title must not be empty.')
     }
-
   
     return null
   }
@@ -107,14 +107,13 @@ function validateFindSheet(id) {
       return new Error('instrument is missing.')
     }
   
-    if (typeof instrument !== 'string') {
-      return new Error('instrument must be a string.')
+    if (!Number.isInteger(instrument)) {
+      return new Error('instrument must be an integer.')
     }
-    if (instrument === '') {
-      return new Error('instrument must not be empty.')
+  
+    if (instrument < 1895) {
+      return new Error('instrument must not be less than 1895.')
     }
-
-
   
     return null
   }
@@ -124,12 +123,12 @@ function validateFindSheet(id) {
       return new Error('difficulty is missing.')
     }
   
-    if (typeof difficulty !== 'string') {
-      return new Error('difficulty must be a string.')
+    if (!Number.isInteger(difficulty)) {
+      return new Error('difficulty must be an integer.')
     }
   
-    if (difficulty!=='Easy' && difficulty!=='Medium' && difficulty!=='Professional' && difficulty!=='Hard') {
-      return new Error('difficulty must be equal to "Easy", "Medium", "Professional" or "Hard"')
+    if (difficulty < 1) {
+      return new Error('difficulty must not be less than 1.')
     }
   
     return null
@@ -139,6 +138,7 @@ function validateFindSheet(id) {
     if (imageData === undefined) {
       return new Error('imageData is missing.')
     }
+  
     if (typeof imageData !== 'string') {
       return new Error('imageData must be a string.')
     }
@@ -154,13 +154,8 @@ function validateFindSheet(id) {
   export default {
     validateFindSheet,
     validateCreateSheet,
+    validateReplaceSheet,
     validateUpdateSheet,
-    validateDeleteSheet,
-    validateId,
-    validateTitle,
-    validateGroup,
-    validateInstrument,
-    validateDifficulty,
-    validateImageDate
+    validateDeleteSheet
   }
   
