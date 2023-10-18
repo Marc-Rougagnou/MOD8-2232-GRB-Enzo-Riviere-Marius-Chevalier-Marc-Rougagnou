@@ -1,18 +1,21 @@
 <script setup>
-import { ref } from 'vue'
-import { useRoute } from 'vue-router'
-import { state, sheet_id } from '../store.js';
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
 import Comment from '../components/Comment.vue';
+import axios from 'axios'; // Importez Axios
+import sheetService from '../services/sheet-service.js';
 
-
-const btn = ref('Save')
-
+const btn = ref('Save');
 const route = useRoute();
-const current_sheet_id = parseInt(route.params.id, 10);
-const sheet = ref(state.sheets.find((sheet) => sheet.id === current_sheet_id));
+const sheet = ref({});
 
+onMounted(async () => {
+  const id = parseInt(route.params.id, 10);
+  const response = await sheetService.findSheet(id);
+  sheet.value = response.sheet[0];
+});
 
-const convertBase64ToImage = () => {
+/* const convertBase64ToImage = () => {
   if (sheet.value.imageData) {
     const image = new Image();
     image.src = sheet.value.imageData;
@@ -22,7 +25,7 @@ const convertBase64ToImage = () => {
 };
 
 function seeFile_() {
-  window.open('/sheets/'+sheet.value.imageData);
+  window.open('/sheets/' + sheet.value.imageData);
 }
 
 function seeFile(name) {
@@ -30,9 +33,39 @@ function seeFile(name) {
   if (image) {
     const w = window.open('');
     w.document.write(image.outerHTML);
+    w.document.close();
+  }
+} */
+
+async function seeFile() {
+  try {
+    const response = await axios.get('/sheets/' + sheet.value.imageData, {
+      responseType: 'blob', // Spécifiez le type de réponse comme blob
+    });
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const w = window.open(url);
+  } catch (error) {
+    console.error('Erreur lors du chargement de l\'image :', error);
   }
 }
 
+async function uploadImage() {
+  if (sheet.value.imageData) { // Accédez à sheet.value.imageData
+    const formData = new FormData();
+    formData.append('image', sheet.value.imageData); // Accédez à sheet.value.imageData
+
+    try {
+      const response = await axios.post('/sheets', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('Image uploaded:', response.data);
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
+  }
+}
 
 </script>
 
@@ -41,7 +74,8 @@ function seeFile(name) {
     <article>
       <h1>Sheet Details</h1>
       <h3>Name : {{ sheet.title }}</h3>
-      <h3>Group : {{ sheet.group }}</h3>
+      <h3>Group : {{ sheet.group_name }}</h3>
+      <h3>Instruments : {{ sheet.instruments }}</h3>
       <h3>Difficulty : {{ sheet.difficulty }}</h3>
       <fieldset id="done-field">
         <select name="done" id="done" v-model="sheet.done">

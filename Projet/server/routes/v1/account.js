@@ -20,7 +20,7 @@ router.post('/profiles', async (req, res, next) => {
         const gender = req.body.gender;
 
         const user = await userRepository.createUser(username, email, password, gender);
-        res.status(201).json(user);
+        res.status(201).json({user});
     } catch (error) {
         next(error);
     }
@@ -52,7 +52,7 @@ router.get('/profile/:id', async (req, res, next) => {
     try {
         const id = parseInt(req.params.id);
         const user = await userRepository.findUser(id);
-        res.json(user);
+        res.json({user});
     } catch (error) {
         next(error);
     }

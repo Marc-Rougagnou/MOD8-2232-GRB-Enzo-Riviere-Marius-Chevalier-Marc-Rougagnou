@@ -1,20 +1,21 @@
 import axios from 'axios';
 import accountValidator from '../validator/account-validator';
-import { useRouter } from 'vue-router';
+import router from '../router';
+
 
 const createAccount_ = async (username,email,password,gender,accounts) => {
     try {
         const error=accountValidator.validateAccount(username,email,password,gender,accounts)
         if (error) {
-
+            window.alert("Error: "+error.message)
             return { error }
           }
-        console.log("passvalidated")
         const response = await axios.post('/profiles', { username,email,password,gender })
         window.alert("Account created successfully")
-        
+        router.push('/')
         return response.data
     } catch (error) {
+        window.alert("Error: "+error.message)
         return handleError(error)
     }
 }
