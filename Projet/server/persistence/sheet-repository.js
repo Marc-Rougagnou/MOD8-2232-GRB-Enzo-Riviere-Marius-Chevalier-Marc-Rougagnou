@@ -55,6 +55,7 @@ const createSheet = async (title, group_name, instrument, difficulty,id_creator,
     const parameters = [sheet.title, sheet.group, sheet.instrument, sheet.difficulty, sheet.done, sheet.id_creator,sheet.imageData]
     const [result] = await database.execute(query, parameters)
     sheet.id = result.insertId
+    
     return sheet
 }
 
