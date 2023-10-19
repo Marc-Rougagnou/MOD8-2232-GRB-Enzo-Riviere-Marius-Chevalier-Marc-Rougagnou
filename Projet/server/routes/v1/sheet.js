@@ -34,8 +34,9 @@ router.post('/sheets', async (req, res, next) => {
         const instrument = req.body.instrument
         const difficulty = req.body.difficulty
         const id_creator = req.body.id_creator
+        const imageData = req.body.imageData
 
-        const sheet = await sheetRepository.createSheet(title, group, instrument, difficulty, id_creator);
+        const sheet = await sheetRepository.createSheet(title, group, instrument, difficulty, id_creator,imageData);
         res.status(201).json(sheet);
     } catch (error) {
         next(error);
@@ -63,13 +64,12 @@ router.patch('/sheets/:id', async (req, res, next) => {
     try {
         const id = Number.parseInt(req.params.id);
         const title = req.body.title;
-        const group = req.body.group;
-        const instrument = req.body.instrument;
+        const group_name = req.body.group_name;
+        const instruments = req.body.instruments;
         const difficulty = req.body.difficulty;
-        const done = req.body.done;
         const imageData = req.body.imageData;
 
-        const sheet = await sheetRepository.updateSheet(id, title, group, instrument, difficulty, done,imageData);
+        const sheet = await sheetRepository.updateSheet(id, title, group_name, instruments, difficulty,imageData);
         if (sheet) {
             res.sendStatus(201)
             // Send 200 response indicating film was successfully deleted

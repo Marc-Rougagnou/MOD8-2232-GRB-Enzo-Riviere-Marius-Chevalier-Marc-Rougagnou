@@ -5,20 +5,9 @@ import {state} from "../store.js";
 import useAuthenticationService from '../services/authentication-service.js';
 
 const user = useAuthenticationService().user;
-/* const currentId = computed(()=>state.current_user.id) */
+
 function signOut(){//security done
-  /* for(let i=0;i<state.users.length;i++){
-    if(state.users[i].id===state.current_user.id){
-      const temp={...state.current_user};
-      state.current_user.id=0;
-      state.current_user.username='';
-      state.current_user.email='';
-      state.current_user.password='';
-      state.current_user.gender='';
-      state.users[i]=temp;
-      window.alert('You are logged out');
-    }
-  } */
+  
   useAuthenticationService().logOut();
 }
 </script>

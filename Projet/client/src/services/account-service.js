@@ -5,11 +5,7 @@ import router from '../router';
 
 const createAccount_ = async (username,email,password,gender,accounts) => {
     try {
-        /* const error=accountValidator.validateAccount(username,email,password,gender,accounts)
-        if (error) {
-            window.alert("Error: "+error.message)
-            return { error }
-          } */
+       
         const response = await axios.post('/profiles', { username,email,password,gender })
         window.alert("Account created successfully")
         router.push('/')
