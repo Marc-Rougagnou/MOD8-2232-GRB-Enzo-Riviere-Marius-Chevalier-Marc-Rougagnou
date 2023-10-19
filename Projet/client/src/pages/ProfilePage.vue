@@ -1,7 +1,6 @@
 <script setup>
 import { onMounted, ref} from 'vue';
 import {RouterLink, useRouter} from 'vue-router';
-
 import AccountForm from "@/components/AccountForm.vue";
 import SheetItem from '../components/SheetItem.vue';
 import accountService from '../services/account-service.js';
@@ -21,6 +20,7 @@ let filteredList = ref([]);
 
 onMounted(async () => {
 
+  //We get the current user
   let response = await sheetService.findSheets();
   sheets.value = response.sheets;  
   if(user){
@@ -34,7 +34,9 @@ watch([sheets,currentuser], () => {
   filterList();
 });
 
-function modifyAccount(modifyuser){ //security update
+function modifyAccount(modifyuser){
+//Not the best way to do it but we were obliged to do it like this because of the time
+//The user can enter just one of the values to modify his account
   
       if(modifyuser.username.trim()===""){
         modifyuser.username=currentuser.username;
@@ -54,6 +56,7 @@ function modifyAccount(modifyuser){ //security update
     router.push('/');
   }
 
+//We filter the list of sheets to get only the sheets that the current user created
 async function filterList(){
   filteredList.value=sheets.value.filter((sheet) =>
     sheet.id_creator === currentuser.value.id

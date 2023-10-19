@@ -9,6 +9,7 @@ const route = useRoute();
 const sheet = ref([]);
 const made = ref("");
 
+
 onMounted(async () => {
   const id = parseInt(route.params.id, 10);
   const response = await sheetService.findSheet(id);
@@ -16,14 +17,13 @@ onMounted(async () => {
   made.value = sheet.value.done;
 });
 
+//We update the sheet to done or undone when the user change the value of the select
 watch(made, async () => {
- 
-
   sheetService.updateDone(sheet.value.id, made.value);
 });
 
 
-
+//The function to convert the base64 to an image
 const convertBase64ToImage = () => {
   if (sheet.value.imageData) {
     const image = new Image();
@@ -33,6 +33,7 @@ const convertBase64ToImage = () => {
   return null;
 };
 
+//We call the function to convert the base64 to an image and we open a new window to see the image when we click on the seeFile() button
 function seeFile() {
   const image = convertBase64ToImage();
   if (image) {

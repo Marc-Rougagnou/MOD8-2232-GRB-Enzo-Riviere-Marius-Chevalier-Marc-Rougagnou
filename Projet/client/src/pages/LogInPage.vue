@@ -2,7 +2,8 @@
 import SignInForm from '../components/SignInForm.vue';
 import useAuthenticationService from '../services/authentication-service.js';
 
-function signIn(tryuser){//security update
+//We log in using the authentication service
+function signIn(tryuser){
     if(tryuser.email==='' || tryuser.password===''){
       window.alert('Please fill all the fields');
       return;

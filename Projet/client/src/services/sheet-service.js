@@ -58,6 +58,7 @@ const updateSheet = async (id, title, group_name, instruments, difficulty,imageD
     }
 }
 
+//Axios function to update the done status of a sheet
 const updateDone= async (id, done) => {
     try {
         const response = await axios.patch(`/sheets/${id}/done`, { done })

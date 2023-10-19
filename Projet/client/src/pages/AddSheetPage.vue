@@ -11,7 +11,7 @@
 
   const curuser=ref([])
 
-
+//We get the current user to have the id of the creator
   onMounted(async () => {
    
     if(user){

@@ -78,6 +78,8 @@ const updateSheet = async (id, title, group_name, instruments, difficulty, image
     const [result] = await database.execute(command.query, command.parameters)
     return result.affectedRows > 0
 }
+
+//Request to update the done status of a sheet
 const updateDone = async (id, done) => {
     const sheet = {
         done: done,

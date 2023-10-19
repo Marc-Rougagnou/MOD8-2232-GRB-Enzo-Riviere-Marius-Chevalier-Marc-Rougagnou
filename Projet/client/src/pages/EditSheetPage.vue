@@ -45,7 +45,7 @@ function onFormSubmit(sheet,id_sheet){
     saveclick.value=true
 }
 
-
+//We delete the sheet when we click on the delete button
 function remove(){
     sheetService.deleteSheet(sheet_id_current)
     router.push('/');
@@ -53,7 +53,8 @@ function remove(){
 
 async function updateSheet()
 {
-
+//Not the best way to do it but we were obliged to do it like this because of the time and difficulties with emit
+//The user can enter just one of the values to modify the sheet
     if (current_sheet.value.title===""){
         current_sheet.value.title=current_store.title
     }

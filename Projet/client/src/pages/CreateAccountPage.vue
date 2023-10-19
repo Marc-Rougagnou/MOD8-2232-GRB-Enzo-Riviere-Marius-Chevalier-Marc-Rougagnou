@@ -5,14 +5,14 @@ import accountService from '../services/account-service.js';
 import useAuthenticationService from '../services/authentication-service.js';
 
 
-
+//We get the account list
 const accounts = ref([]);
 onMounted (async () => {
   const response = await accountService.findAccounts();
   accounts.value = response.users;
 });
 
-
+//We create the account and send the list ofg accounts to the service to check if the username or email is already used
 function createAccount(newuser){
   accountService.createAccount_(newuser.username,newuser.email,newuser.password,newuser.gender,accounts.value);  
   useAuthenticationService().signUp(newuser.email, newuser.password, newuser.username)

@@ -12,6 +12,7 @@ const findUser = async (id) => {
     return rows.length > 0 ? mapUser(rows[0]) : null
 }
 
+//Request to find the user by username
 const findUserByUsername = async (username) => {
     const query = 'SELECT * FROM users where username = ?'
     const [rows] = await database.execute(query,[username])

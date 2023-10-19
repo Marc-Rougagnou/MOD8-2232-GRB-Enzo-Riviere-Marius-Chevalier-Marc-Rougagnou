@@ -26,6 +26,7 @@ router.post('/profiles', async (req, res, next) => {
     }
 });
 
+//Serverside function to find the user by username
 router.get('/profiles/:username', async (req, res, next) => {
     try {
         const username = req.params.username;

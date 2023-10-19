@@ -11,9 +11,9 @@ const curuser=ref([])
 
 const emit = defineEmits(['response'])
 
+//We search the current user to send the id of the creator
 onMounted(async () => {
     curuser.value=await accountService.findAccountByUsername(user.value.username);
-    console.log(curuser.value.id)
 });
 
 const { button_text, sheet_init } = defineProps({
@@ -23,11 +23,13 @@ const { button_text, sheet_init } = defineProps({
 
 const current_sheet = ref(sheet_init ? { ...sheet_init } : { title: "", group_name: "", difficulty: "", instruments: "", done: "No", id_creator: curuser.value.id, imageData: "" })
 
+//We send the informations of the sheet to the parents using the emit function
 function submit() {
     emit('response', current_sheet.value)
     router.push('/sheets')
 }
 
+//We update the copy of sheet_init
 watch(sheet_init,()=>{
     current_sheet.value = { ...sheet_init }
     

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, onMounted, watch } from "vue";
+import { ref, onMounted, watch } from "vue";
 import SheetItem from "../components/SheetItem.vue";
 import sheetService from "../services/sheet-service.js";
 
@@ -28,9 +28,11 @@ watch([input, selectedInstrument, selectedDifficulty, selectedDone,filteredList.
   
 });
 
+//Without this the watch is not called but we don't know why
 input.value=" ";
 input.value="";
 
+//We filter the list of sheets to get only the sheets that match the filters and/or the researche
 async function filteredList_(){
   
   filteredList.value = sheets.value.filter((sheet) =>

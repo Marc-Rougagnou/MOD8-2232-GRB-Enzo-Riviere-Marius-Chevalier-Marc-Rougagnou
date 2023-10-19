@@ -33,6 +33,7 @@ const findAccount = async (id) => {
     }
 }
 
+//Axios function to find the account by username
 const findAccountByUsername = async (username) => {
     try {
         const response = await axios.get(`/profiles/${username}`)

@@ -82,6 +82,7 @@ router.patch('/sheets/:id', async (req, res, next) => {
     }
 });
 
+//Serverside function to update the done status of a sheet
 router.patch('/sheets/:id/done', async (req, res, next) => {
     try {
         const id = Number.parseInt(req.params.id);

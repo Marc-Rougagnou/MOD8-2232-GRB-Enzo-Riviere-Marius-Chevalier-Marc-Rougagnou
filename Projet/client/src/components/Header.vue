@@ -5,7 +5,7 @@ import useAuthenticationService from '../services/authentication-service.js';
 const user = useAuthenticationService().user;
 
 //We sign out using the authentication service
-function signOut(){//security done
+function signOut(){
   
   useAuthenticationService().logOut();
 }
