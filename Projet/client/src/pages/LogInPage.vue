@@ -1,6 +1,7 @@
 <script setup>
 import SignInForm from '../components/SignInForm.vue';
 import { state } from '../store.js';
+import useAuthenticationService from '../services/authentication-service.js';
 
 function signIn(tryuser){//security update
   if(state.current_user.id!==0){
@@ -12,16 +13,9 @@ function signIn(tryuser){//security update
       window.alert('Please fill all the fields');
       return;
     }
-    for(let i=0;i<state.users.length;i++){
-      if(state.users[i].email===tryuser.email && state.users[i].password===tryuser.password){
-        state.current_user=state.users[i];
-        window.alert('You are logged in');
-        return;
-      }
-    }
+    useAuthenticationService().logIn(tryuser.email, tryuser.password);
+    
   }
-  window.alert('Wrong email or password');
-  
 }
 </script>
 

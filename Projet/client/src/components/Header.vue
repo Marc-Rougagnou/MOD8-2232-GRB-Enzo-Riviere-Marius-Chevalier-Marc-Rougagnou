@@ -2,10 +2,12 @@
 import { RouterLink } from 'vue-router'
 import {computed} from "vue";
 import {state} from "../store.js";
+import useAuthenticationService from '../services/authentication-service.js';
 
-const currentId = computed(()=>state.current_user.id)
+const user = useAuthenticationService().user;
+/* const currentId = computed(()=>state.current_user.id) */
 function signOut(){//security done
-  for(let i=0;i<state.users.length;i++){
+  /* for(let i=0;i<state.users.length;i++){
     if(state.users[i].id===state.current_user.id){
       const temp={...state.current_user};
       state.current_user.id=0;
@@ -16,7 +18,8 @@ function signOut(){//security done
       state.users[i]=temp;
       window.alert('You are logged out');
     }
-  }  
+  } */
+  useAuthenticationService().logOut();
 }
 </script>
 
@@ -31,9 +34,9 @@ function signOut(){//security done
         
       </div>
       <div id="navigation">
-        <div v-if="state.current_user.id!==0" class="log">
+        <div v-if="user" class="log">
         <p class="link">You are logged in as: 
-        {{state.current_user.username}}</p>
+        {{user.username}}</p>
           <RouterLink to="/create-account" class="link">Create account</RouterLink>
           <RouterLink :to="'/profile/' + currentId" class="link">Profile</RouterLink>
           <button class="link" id="btn" @click="signOut">Sign out</button>

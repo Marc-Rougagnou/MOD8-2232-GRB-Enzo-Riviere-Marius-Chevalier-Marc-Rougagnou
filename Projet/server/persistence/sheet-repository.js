@@ -80,6 +80,14 @@ const updateSheet = async (id, title, group_name, instruments, difficulty, done,
     const [result] = await database.execute(command.query, command.parameters)
     return result.affectedRows > 0
 }
+const updateDone = async (id, done) => {
+    const sheet = {
+        done: done,
+    }
+    const command = buildUpdateCommand(id, sheet)
+    const [result] = await database.execute(command.query, command.parameters)
+    return result.affectedRows > 0
+}
 
 function buildUpdateCommand(id, values) {
     const columns = []
@@ -107,4 +115,5 @@ export default {
     createSheet,
     deleteSheet,
     updateSheet,
+    updateDone,
 }

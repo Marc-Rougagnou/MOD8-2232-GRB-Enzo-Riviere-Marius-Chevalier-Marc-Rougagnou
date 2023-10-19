@@ -1,20 +1,35 @@
 <script setup>
   import SheetForm from "../components/SheetForm.vue";
-  import { ref } from "vue";
-  import { state } from "../store.js";
+  import { onMounted, ref } from "vue";
+  import sheetService from "../services/sheet-service";
+  import useAuthenticationService from "../services/authentication-service.js";
+  import accountService from "../services/account-service.js";
+
+  const user = useAuthenticationService().user;
+
+  
+
+  const curuser=ref([])
+
+
+  onMounted(async () => {
+   
+    if(user){
+      curuser.value=await accountService.findAccountByUsername(user.value.username);
+    }
+    
+  });
 
   let btn = ref("Add sheet");
-  
-  
 
 </script>
 
 <template>
   <section>
   
-  <section v-if="state.current_user.id!==0">
+  <section v-if="user">
     <h1>Add a sheet</h1>
-    <SheetForm :button_text="btn" @response = "(sheet) => state.sheets.push(sheet)"></SheetForm>
+    <SheetForm :button_text="btn" @response="(current_sheet)=> sheetService.createSheet(current_sheet.title, current_sheet.group_name, current_sheet.instruments, current_sheet.difficulty,curuser.id,current_sheet.imageData)"></SheetForm>
   </section>
   <section v-else>
     <div id="nologged">

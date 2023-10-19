@@ -1,5 +1,5 @@
 <script setup>
-import {computed, onMounted, ref} from 'vue';
+import { onMounted, ref} from 'vue';
 import {RouterLink, useRouter} from 'vue-router';
 
 import AccountForm from "@/components/AccountForm.vue";
@@ -8,56 +8,34 @@ import accountService from '../services/account-service.js';
 import sheetService from '../services/sheet-service.js';
 import {useRoute} from 'vue-router';
 import {watch} from 'vue';
+import useAuthenticationService from "../services/authentication-service.js";
+import router from '../router/index.js';
 
+const user = useAuthenticationService().user;
 let route = useRoute();
 let sheets = ref([]);
-let currentuser = ref([]);
-let filteredList_ = ref([]);
+const currentuser = ref([]);
+let filteredList = ref([]);
+
 
 
 onMounted(async () => {
-  console.log("mounted")
-  let id=route.params.username;
+
   let response = await sheetService.findSheets();
   sheets.value = response.sheets;  
-  let response2= await accountService.findAccount(id);
-  currentuser.value = response2.user;  
-  console.log(sheets.value)
+  if(user){
+    currentuser.value= await accountService.findAccountByUsername(user.value.username);
+  }
+
   filterList();
-  
 });
 
 watch([sheets,currentuser], () => {
-  console.log("watch active")
   filterList();
 });
 
 function modifyAccount(modifyuser){ //security update
-  /* for(let i=0;i<users.length;i++){
-    if(users[i].id===currentuser.value.id){
-      if(modifyuser.email===''){
-        modifyuser.email=users[i].email;
-      }
-      else if (modifyuser.email!==users[i].email){
-        for(let j=0;j<users.length;j++){
-          if(users[j].email===modifyuser.email){
-            window.alert('Email already used');
-            return;
-          }
-        }
-      }
-
-      if(modifyuser.username===''){
-        modifyuser.username=users[i].username;
-      }
-      else if (modifyuser.username!==users[i].username){
-        for(let j=0;j<users.length;j++){
-          if(users[j].username===modifyuser.username){
-            window.alert('Username already used');
-            return;
-          }
-        }
-      } */
+  
       if(modifyuser.username.trim()===""){
         modifyuser.username=currentuser.username;
       }
@@ -65,39 +43,28 @@ function modifyAccount(modifyuser){ //security update
         modifyuser.email=currentuser.email;
       }
       if(modifyuser.password.trim()===""){
-        console.log(currentuser.value.password,",,oeforforefjreo freo")
         modifyuser.password=currentuser.password;
       }
       if(modifyuser.gender.trim()===""){
         modifyuser.gender=currentuser.gender;
       }
     
-    accountService.updateAccount(route.params.username,modifyuser.username,modifyuser.email,modifyuser.password,modifyuser.gender)
+    accountService.updateAccount(currentuser.value.id,modifyuser.username,modifyuser.email,modifyuser.password,modifyuser.gender)
     window.alert('Account modified');
+    router.push('/');
   }
 
-/* const filterList = computed(() => {
-  
-  return users.value.filter((sheet) =>
-    sheet.id_creator === currentuser.value.id
-  ); 
-});*/
-
 async function filterList(){
-  
-  console.log("bfrbfiurbfi"+ currentuser.value.id)
-  console.log(sheets.value,"(rfvygbuhnubgyvftcrdx")
-  filteredList_.value=sheets.value.filter((sheet) =>
+  filteredList.value=sheets.value.filter((sheet) =>
     sheet.id_creator === currentuser.value.id
-    
   );
-  console.log("filteredList" + filteredList_.value)
-  return filteredList_;
+  
+  return filteredList;
 } 
 </script>
 
 <template>
-  <section v-if="currentuser.id!==0">
+  <section v-if="user">
     <div class="details">
       <h1>Profile</h1>
       <p>Username: {{currentuser.username}}</p>
@@ -111,10 +78,10 @@ async function filterList(){
     <div id="details">
       <h1>Your sheets</h1>
       <ul>
-        <li v-for="sheet in filteredList_" :key="sheet.id" id="ligne">
+        <li v-for="sheet in filteredList" :key="sheet.id" id="ligne">
           <SheetItem :id="sheet.id" id="sheetitem">
             <template #info>
-              {{ "Name : " + sheet.title + " | Group : " + sheet.group + " | Instrument : " + sheet.instruments + " | Difficulty :  " + sheet.difficulty + " | Done : " + sheet.done}}
+              {{ "Name : " + sheet.title + " | Group : " + sheet.group_name + " | Instrument : " + sheet.instruments + " | Difficulty :  " + sheet.difficulty + " | Done : " + sheet.done}}
             </template>
             <template #details>|See details</template>
           </SheetItem>

@@ -1,21 +1,30 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import Comment from '../components/Comment.vue';
-import axios from 'axios'; // Importez Axios
 import sheetService from '../services/sheet-service.js';
 
 const btn = ref('Save');
 const route = useRoute();
-const sheet = ref({});
+const sheet = ref([]);
+const made = ref("");
 
 onMounted(async () => {
   const id = parseInt(route.params.id, 10);
   const response = await sheetService.findSheet(id);
   sheet.value = response.sheet[0];
+  made.value = sheet.value.done;
 });
 
-/* const convertBase64ToImage = () => {
+watch(made, async () => {
+ 
+
+  sheetService.updateDone(sheet.value.id, made.value);
+});
+
+
+
+const convertBase64ToImage = () => {
   if (sheet.value.imageData) {
     const image = new Image();
     image.src = sheet.value.imageData;
@@ -24,46 +33,12 @@ onMounted(async () => {
   return null;
 };
 
-function seeFile_() {
-  window.open('/sheets/' + sheet.value.imageData);
-}
-
-function seeFile(name) {
+function seeFile() {
   const image = convertBase64ToImage();
   if (image) {
     const w = window.open('');
     w.document.write(image.outerHTML);
     w.document.close();
-  }
-} */
-
-async function seeFile() {
-  try {
-    const response = await axios.get('/sheets/' + sheet.value.imageData, {
-      responseType: 'blob', // Spécifiez le type de réponse comme blob
-    });
-    const url = window.URL.createObjectURL(new Blob([response.data]));
-    const w = window.open(url);
-  } catch (error) {
-    console.error('Erreur lors du chargement de l\'image :', error);
-  }
-}
-
-async function uploadImage() {
-  if (sheet.value.imageData) { // Accédez à sheet.value.imageData
-    const formData = new FormData();
-    formData.append('image', sheet.value.imageData); // Accédez à sheet.value.imageData
-
-    try {
-      const response = await axios.post('/sheets', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      console.log('Image uploaded:', response.data);
-    } catch (error) {
-      console.error('Error uploading image:', error);
-    }
   }
 }
 
@@ -78,18 +53,15 @@ async function uploadImage() {
       <h3>Instruments : {{ sheet.instruments }}</h3>
       <h3>Difficulty : {{ sheet.difficulty }}</h3>
       <fieldset id="done-field">
-        <select name="done" id="done" v-model="sheet.done">
+        <select name="done" id="done" v-model="made">
           <option value="Yes">Done</option>
           <option value="No">Undone</option>
         </select>
       </fieldset>
     </article>
     
-    <section v-if="sheet.id>4">
-      <button @click="seeFile(sheet.name)" class="see">See the sheet</button>
-    </section>
-    <section v-else>
-      <button @click="seeFile_()" class="see">See the shet</button>
+    <section>
+      <button @click="seeFile(  )" class="see">See the sheet</button>
     </section>
     <h1>Comments of the sheet</h1>
     <Comment :sheet_init="sheet">
