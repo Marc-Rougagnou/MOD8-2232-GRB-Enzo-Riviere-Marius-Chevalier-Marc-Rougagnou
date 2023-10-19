@@ -44,7 +44,7 @@ app.use(
 )
 
 // Express JSON parsing middleware
-app.use(express.json({limit:'1mb'}))
+app.use(express.json())
 
 // Cookie parser middleware for parsing request cookies
 app.use(cookieParser())
