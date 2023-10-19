@@ -1,11 +1,10 @@
 <script setup>
 import { RouterLink } from 'vue-router'
-import {computed} from "vue";
-import {state} from "../store.js";
 import useAuthenticationService from '../services/authentication-service.js';
 
 const user = useAuthenticationService().user;
 
+//We sign out using the authentication service
 function signOut(){//security done
   
   useAuthenticationService().logOut();

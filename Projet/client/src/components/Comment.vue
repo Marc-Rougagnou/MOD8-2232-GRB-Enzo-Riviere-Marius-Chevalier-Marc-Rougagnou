@@ -20,12 +20,16 @@ const filteredList = ref([]);
 const curuser=ref([])
 const users = ref([]);
 
+
 onMounted(async () => {
 
+  //We get the comments into a list
   const response = await commentService.findComments();
   comments.value = response.comments;
+  //We get the users into a list to find who created which comments
   let response3 = await accountService.findAccounts();
   users.value = response3.users;
+  //We search the current user only if he is authenticated
   if(user.value!==null){
     
     curuser.value=await accountService.findAccountByUsername(user.value.username);
@@ -33,19 +37,19 @@ onMounted(async () => {
   filterList();
 });
 
+//We find the user who created the comment
 function findUserForComment(comment) {
 
   return (users.value.find((user_) => user_.id === comment.id_user))?.username ?? null;
 }
 
+//We filter the comments to only show the ones for the current sheet
 function filterList() {
   filteredList.value = comments.value.filter((comment) => comment.id_sheet === sheetId);
 }
 
-
+//We add a comment to the database and to the list so that the user can see it without refreshing the page
 function addComment(comment_) {
-  
-  
   commentService.createComment(curuser.value.id, sheetId, comment_);
   comments.value.push({ id_user: curuser.value.id, id_sheet: sheetId, text: comment_ })
   filterList();

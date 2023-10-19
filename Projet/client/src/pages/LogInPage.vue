@@ -1,21 +1,13 @@
 <script setup>
 import SignInForm from '../components/SignInForm.vue';
-import { state } from '../store.js';
 import useAuthenticationService from '../services/authentication-service.js';
 
 function signIn(tryuser){//security update
-  if(state.current_user.id!==0){
-    window.alert('You are already logged in');
-    return;
-  }
-  else{
     if(tryuser.email==='' || tryuser.password===''){
       window.alert('Please fill all the fields');
       return;
     }
     useAuthenticationService().logIn(tryuser.email, tryuser.password);
-    
-  }
 }
 </script>
 

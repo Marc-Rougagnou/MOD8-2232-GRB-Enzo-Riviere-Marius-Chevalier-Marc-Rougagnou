@@ -1,18 +1,27 @@
 <script setup>
-import { ref,watch } from 'vue';
-import { sheet_id, state } from '../store.js';/////////////////////////
+import { onMounted, ref,watch } from 'vue';
 import router from '../router';
-import sheetService from '../services/sheet-service.js';
+import useAuthenticationService from "../services/authentication-service.js";
+import accountService from "../services/account-service.js";
+
+const user = useAuthenticationService().user;
+const curuser=ref([])
+
 
 
 const emit = defineEmits(['response'])
+
+onMounted(async () => {
+    curuser.value=await accountService.findAccountByUsername(user.value.username);
+    console.log(curuser.value.id)
+});
 
 const { button_text, sheet_init } = defineProps({
     button_text: String,
     sheet_init: Object,
 })
 
-const current_sheet = ref(sheet_init ? { ...sheet_init } : { title: "", group_name: "", difficulty: "", instruments: "", done: "No", id_creator: state.current_user.id, imageData: "" })
+const current_sheet = ref(sheet_init ? { ...sheet_init } : { title: "", group_name: "", difficulty: "", instruments: "", done: "No", id_creator: curuser.value.id, imageData: "" })
 
 function submit() {
     emit('response', current_sheet.value)
