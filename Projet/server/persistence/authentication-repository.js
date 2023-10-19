@@ -55,7 +55,7 @@ const mapSession = (row) => {
 }
 
 const createSession = async (session) => {
-  console.log(session)
+
   const query = 'INSERT INTO sessions (id, username, start_time, expiry_time) VALUES (?, ?, ?, ?);'
   const [result] = await database.execute(query, [session.id, session.username, session.startTime, session.expiryTime])
   if (result.affectedRows > 0) {

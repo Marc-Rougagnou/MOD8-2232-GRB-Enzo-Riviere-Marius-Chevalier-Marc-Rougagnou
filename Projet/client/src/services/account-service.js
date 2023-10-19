@@ -59,7 +59,7 @@ const updateAccount = async (id, username, email, password, gender) => {
 
 function handleError(error) {
 if (error.response) {
-    console.log(error.response.data)
+    
     return error.response.data
 }
 

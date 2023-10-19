@@ -49,7 +49,7 @@ async function signUp(username, password, name) {
 
 async function logIn(username, password) {
   try {
-    console.log(username, password)
+    
     authenticatedUser.value = null
 
     username = username.trim()
@@ -80,7 +80,7 @@ async function logOut() {
 
 function handleError(error) {
   if (error.response) {
-    console.log(error.response.data)
+    
     return error.response.data
   }
 

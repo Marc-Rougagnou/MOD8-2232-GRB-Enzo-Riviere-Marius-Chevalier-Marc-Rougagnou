@@ -20,7 +20,7 @@ onMounted(async () => {
 });
 
 watch([input, selectedInstrument, selectedDifficulty, selectedDone,filteredList.value], async () => {
-  console.log("watch");
+  
   const response = await sheetService.findSheets();
   sheets.value = response.sheets;
   filteredList.value = response.sheets;

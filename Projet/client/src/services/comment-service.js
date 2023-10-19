@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 const createComment = async (id_user, id_sheet, comment) => {
-    console.log(id_user, id_sheet, comment, "comment service")
+  
     try {
-        console.log(id_user, id_sheet, comment, "comment service")
+  
         const response = await axios.post('/comments', { id_sheet, id_user, comment })
         return response.data
     } catch (error) {
@@ -22,7 +22,7 @@ const findComments = async () => {
 
 function handleError(error) {
     if (error.response) {
-        console.log(error.response.data)
+      
         return error.response.data
     }
     

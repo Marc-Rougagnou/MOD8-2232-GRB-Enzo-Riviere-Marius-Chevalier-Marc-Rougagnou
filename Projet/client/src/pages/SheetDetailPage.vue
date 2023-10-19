@@ -17,7 +17,7 @@ onMounted(async () => {
 });
 
 watch(made, async () => {
-  console.log("watch jure");
+ 
 
   sheetService.updateDone(sheet.value.id, made.value);
 });

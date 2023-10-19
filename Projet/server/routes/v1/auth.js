@@ -27,7 +27,7 @@ router.post('/auth/signup', credentialsParser, async (req, res, next) => {
     const username = credentials.username.trim()
     const password = credentials.password
     const name = req.body.name.trim()
-    console.log(name)
+   
 
     await repository.createUser(username, password, name)
 
@@ -61,11 +61,10 @@ router.post('/auth/login', credentialsParser, async (req, res, next) => {
       return next(err)
     }
 
-    console.log(requestCredentials.username)
+    
     const credentials = await repository.findUserCredentials(requestCredentials.username)
 
-    console.log(requestCredentials.password)
-    console.log(credentials.password)
+    
     const authenticated =
       credentials !== null ? await requestCredentials.password == credentials.password : false
 

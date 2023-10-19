@@ -13,12 +13,11 @@
 
 
   onMounted(async () => {
-    console.log("user",user)
+   
     if(user){
       curuser.value=await accountService.findAccountByUsername(user.value.username);
     }
-    console.log("curuser mounted",curuser.value)
-    console.log("curuser mounted id",curuser.value.id)    
+    
   });
 
   let btn = ref("Add sheet");

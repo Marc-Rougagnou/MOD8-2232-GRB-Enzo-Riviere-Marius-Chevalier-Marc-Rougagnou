@@ -13,7 +13,7 @@ const findSheets = async () => {
 
 function handleError(error) {
     if (error.response) {
-      console.log(error.response.data)
+      
       return error.response.data
     }
   
@@ -40,7 +40,7 @@ const findSheet = async (id) => {
 
 const createSheet = async (title, group, instrument, difficulty,id_creator,imageData) => {
     try {
-        console.log(title, group, instrument, difficulty,id_creator,imageData)
+        
         const response = await axios.post('/sheets', { title, group, instrument, difficulty,id_creator,imageData })
         return response.data
     } catch (error) {

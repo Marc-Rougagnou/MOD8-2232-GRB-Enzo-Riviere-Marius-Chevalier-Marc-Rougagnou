@@ -26,10 +26,7 @@ onMounted(async () => {
   if(user){
     currentuser.value= await accountService.findAccountByUsername(user.value.username);
   }
-  console.log(currentuser.value.id)
-  console.log(currentuser.value.username)
-  console.log(currentuser.value.email)
-  console.log(currentuser.value.gender)
+
   filterList();
 });
 

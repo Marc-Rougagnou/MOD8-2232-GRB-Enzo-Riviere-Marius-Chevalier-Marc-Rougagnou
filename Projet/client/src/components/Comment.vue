@@ -44,7 +44,7 @@ function filterList() {
 
 
 function addComment(comment_) {
-  console.log(comment_, sheetId, curuser.value.id,"comment to post");
+  
   
   commentService.createComment(curuser.value.id, sheetId, comment_);
   comments.value.push({ id_user: curuser.value.id, id_sheet: sheetId, text: comment_ })

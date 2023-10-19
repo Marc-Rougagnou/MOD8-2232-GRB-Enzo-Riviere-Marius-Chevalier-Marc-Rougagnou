@@ -25,7 +25,7 @@ const credentialsParser = (req, res, next) => {
     const decodedCredentials = Buffer.from(encodedCredentials, 'base64').toString('ascii')
     const components = decodedCredentials.split(':')
 
-    console.log(components)
+
 
     req.credentials.username = components[0]
 
