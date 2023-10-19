@@ -1,35 +1,91 @@
 <script setup>
 
-import { ref } from 'vue'
+import { onMounted, ref,watch } from 'vue'
 import SheetForm from "../components/SheetForm.vue";
 import { useRoute } from 'vue-router'
-import { state } from '../store.js';
+import { state } from '../store.js';//////////////////////////////////
 import router from '../router';
+import sheetService from '../services/sheet-service.js';
 
 
 const edit_btn = ref('Save')
                
 const route = useRoute();
 const current_sheet_id = parseInt(route.params.id, 10);
+const sheets = ref([]);
+const current_sheet = ref({});
+const sheet_id=ref();
+const saveclick=ref(false)
+let sheet_id_current=ref()
+let current_store=ref()
 
-const sheet = ref(state.sheets.find((sheet) => sheet.id === current_sheet_id));
+watch(saveclick,async ()=>{
+    if (saveclick.value===true) {
+        await updateSheet();
+        saveclick.value=false;
+    }
+    
+});
 
-const index = state.sheets.findIndex(s => s.id === sheet.value.id);
 
-function remove(del_sheet){
 
-    state.sheets = state.sheets.filter((cur_sheet) => cur_sheet !== del_sheet)
+onMounted(async () => {
+    const response = await sheetService.findSheet(current_sheet_id);
+    current_sheet.value = response.sheet[0];
+    const response2=await sheetService.findSheets();
+    sheets=response2.sheets;
+    current_store=current_sheet.value
+    sheet_id_current=current_sheet.value.id
+});
 
-router.push('/');
+
+function onFormSubmit(sheet,id_sheet){
+    current_sheet.value=sheet
+    sheet_id.value=id_sheet
+    saveclick.value=true
 }
 
+
+function remove(){
+    sheetService.deleteSheet(sheet_id_current)
+    router.push('/');
+}
+
+async function updateSheet()
+{
+
+    if (current_sheet.value.title===""){
+        current_sheet.value.title=current_store.title
+    }
+    if(current_sheet.value.group_name===""){
+        current_sheet.value.group_name=current_store.group_name
+    }
+    if(current_sheet.value.instruments===""){
+        current_sheet.value.instruments=current_store.instruments
+    }
+    if(current_sheet.value.difficulty===""){
+        current_sheet.value.difficulty=current_store.difficulty
+    }
+    if(current_sheet.value.done===""){
+        current_sheet.value.done=current_store.done
+    }
+    if(current_sheet.value.imageData===""){
+        current_sheet.value.imageData=current_store.imageData
+    }
+    await sheetService.updateSheet(sheet_id_current, current_sheet.value.title, current_sheet.value.group_name, current_sheet.value.instruments, current_sheet.value.difficulty,current_sheet.value.imageData)
+    router.push('/sheets')
+}
 </script>
 
 <template>
     <main id="back">
-        <h2>{{ sheet.title}}</h2>
-        <button id="delete-button" @click="remove(sheet)">Delete</button>
-        <SheetForm :sheet_init="sheet" :button_text="edit_btn" @response = "(update_sheet) => state.sheets[index] = update_sheet"></SheetForm>
+        <h2>Title: {{ current_sheet.title}}</h2>
+        <h2>Group: {{ current_sheet.group_name }}</h2>
+        <h2>Instruments: {{ current_sheet.instruments }}</h2>
+        <h2>Difficulty: {{ current_sheet.difficulty }}</h2>
+
+        <button id="delete-button" @click="remove()">Delete</button>
+        <SheetForm :sheet_init="current_sheet.value" :button_text="edit_btn" @response = "onFormSubmit"></SheetForm>
     </main>
 </template>
 
