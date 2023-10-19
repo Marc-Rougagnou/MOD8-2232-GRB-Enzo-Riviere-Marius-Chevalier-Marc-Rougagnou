@@ -19,8 +19,9 @@ export default async (req, res, next) => {
     }
 
     const now = new Date(Date.now())
+    const user = await repository.findUser(session.username)
 
-    if (session.expiryTime <= now) {
+    if (session.expiryTime <= now || user === null) {
       delete req.cookies['session-id']
       deleteSessionIdCookie(res) // Instruct browser to delete session id cookie
       await repository.deleteSession(id) // Delete session from database because it is expired
@@ -28,8 +29,9 @@ export default async (req, res, next) => {
     }
 
     // Session is valid and not expired, and user account still exists
-    // Attach session to request to be accessed by subsequent middleware and request handlers
+    // Attach session and user to request to be accessed by subsequent middleware and request handlers
     req.session = session
+    req.session.user = user
 
     // Extend session by duration specified in .env
     const extendedTime = now

@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import Comment from '../components/Comment.vue';
 import sheetService from '../services/sheet-service.js';
@@ -12,6 +12,11 @@ onMounted(async () => {
   const id = parseInt(route.params.id, 10);
   const response = await sheetService.findSheet(id);
   sheet.value = response.sheet[0];
+});
+
+watch([sheet.done], async () => {
+  
+  updateSheet(done)
 });
 
 const convertBase64ToImage = () => {

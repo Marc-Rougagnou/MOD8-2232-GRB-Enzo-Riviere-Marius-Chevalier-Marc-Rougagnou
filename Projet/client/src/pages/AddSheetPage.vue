@@ -3,6 +3,11 @@
   import { ref } from "vue";
   import { state } from "../store.js";//////////////////////////////////
   import sheetService from "../services/sheet-service";
+  import useAuthenticationService from "../services/authentication-service.js";
+
+
+  const user = useAuthenticationService().user;
+  console.log(user)
  
 
   let btn = ref("Add sheet");
@@ -12,7 +17,7 @@
 <template>
   <section>
   
-  <section v-if="state.current_user.id!==0"><!-- changer le current_user -->
+  <section v-if="user"><!-- changer le current_user -->
     <h1>Add a sheet</h1>
     <SheetForm :button_text="btn" @response="(current_sheet)=> sheetService.createSheet(current_sheet.title, current_sheet.group_name, current_sheet.instruments, current_sheet.difficulty,current_sheet.id_creator,current_sheet.imageData)"></SheetForm>
   </section>

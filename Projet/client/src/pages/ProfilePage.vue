@@ -8,21 +8,27 @@ import accountService from '../services/account-service.js';
 import sheetService from '../services/sheet-service.js';
 import {useRoute} from 'vue-router';
 import {watch} from 'vue';
-
+import useAuthenticationService from "../services/authentication-service.js";
+const user = useAuthenticationService().user;
 let route = useRoute();
 let sheets = ref([]);
-let currentuser = ref([]);
+const currentuser = ref([]);
 let filteredList = ref([]);
+
 
 
 onMounted(async () => {
   let id=route.params.username;
   let response = await sheetService.findSheets();
   sheets.value = response.sheets;  
-  let response2= await accountService.findAccount(id);
+  let response2= await accountService.findAccountByUsername(user.value.username);
+  console.log(response2)
   currentuser.value = response2.user;  
+  console.log(currentuser.value.id)
+  console.log(currentuser.value.username)
+  console.log(currentuser.value.email)
+  console.log(currentuser.value.gender)
   filterList();
-  
 });
 
 watch([sheets,currentuser], () => {
@@ -38,14 +44,13 @@ function modifyAccount(modifyuser){ //security update
         modifyuser.email=currentuser.email;
       }
       if(modifyuser.password.trim()===""){
-        console.log(currentuser.value.password,",,oeforforefjreo freo")
         modifyuser.password=currentuser.password;
       }
       if(modifyuser.gender.trim()===""){
         modifyuser.gender=currentuser.gender;
       }
     
-    accountService.updateAccount(route.params.username,modifyuser.username,modifyuser.email,modifyuser.password,modifyuser.gender)
+    accountService.updateAccount(currentuser.value.id,modifyuser.username,modifyuser.email,modifyuser.password,modifyuser.gender)
     window.alert('Account modified');
   }
 
@@ -59,7 +64,7 @@ async function filterList(){
 </script>
 
 <template>
-  <section v-if="currentuser.id!==0">
+  <section v-if="user">
     <div class="details">
       <h1>Profile</h1>
       <p>Username: {{currentuser.username}}</p>

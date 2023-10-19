@@ -5,11 +5,11 @@ import router from '../router';
 
 const createAccount_ = async (username,email,password,gender,accounts) => {
     try {
-        const error=accountValidator.validateAccount(username,email,password,gender,accounts)
+        /* const error=accountValidator.validateAccount(username,email,password,gender,accounts)
         if (error) {
             window.alert("Error: "+error.message)
             return { error }
-          }
+          } */
         const response = await axios.post('/profiles', { username,email,password,gender })
         window.alert("Account created successfully")
         router.push('/')
@@ -31,6 +31,15 @@ const findAccounts = async () => {
 const findAccount = async (id) => {
     try {
         const response = await axios.get(`/profiles/${id}`)
+        return response.data
+    } catch (error) {
+        return handleError(error)
+    }
+}
+
+const findAccountByUsername = async (username) => {
+    try {
+        const response = await axios.get(`/profiles/${username}`)
         return response.data
     } catch (error) {
         return handleError(error)
@@ -68,4 +77,5 @@ export default {
     findAccounts,
     findAccount,
     updateAccount,
+    findAccountByUsername,
 }

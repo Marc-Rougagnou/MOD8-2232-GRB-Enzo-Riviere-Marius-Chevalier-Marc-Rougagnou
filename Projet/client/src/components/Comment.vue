@@ -1,29 +1,42 @@
 <script setup>
-import {computed,onMounted,ref} from 'vue';
-import {state,id_comment} from "../store.js";
-import {useRoute} from 'vue-router';
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
 import commentService from '../services/comment-service.js';
 import { watch } from 'vue';
+import useAuthenticationService from "../services/authentication-service.js";
+import accountService from "../services/account-service.js";
 
-const currentuser = computed(()=>state.current_user)
 
-const {sheet_init} = defineProps({
-    sheet_init: Object
+const { sheet_init } = defineProps({
+  sheet_init: Object
 })
 
 const route = useRoute();
 let sheetId = parseInt(route.path.split('/')[2]);
+const user = useAuthenticationService().user;
 
 const comments = ref([]);
 const filteredList = ref([]);
 
+const users = ref([]);
+
 onMounted(async () => {
-    const response = await commentService.findComments();
-    comments.value = response.comments;
-    filterList();
+  console.log("comment onMounted")
+  const response = await commentService.findComments();
+  comments.value = response.comments;
+  let response3 = await accountService.findAccounts();
+  users.value = response3.users;
+
+  console.log(users.value)
+  filterList();
 });
 
-function filterList(){
+function findUserForComment(comment) {
+
+  return (users.value.find((user_) => user_.id === comment.id_user))?.username ?? null;
+}
+
+function filterList() {
   filteredList.value = comments.value.filter((comment) => comment.id_sheet === sheetId);
 }
 
@@ -32,36 +45,35 @@ watch([comments], () => {
 });
 
 
-function addComment(comment_){
+function addComment(comment_) {
   console.log(comment_);
-  commentService.createComment(currentuser.value.id, sheetId, comment_);  
-  comments.value.push({id_user:currentuser.value.id, id_sheet:sheetId, text:comment_})
+  commentService.createComment(user.value.id, sheetId, comment_);
+  comments.value.push({ id_user: user.value.id, id_sheet: sheetId, text: comment_ })
   filterList();
 }
 
 </script>
 <template>
-    <ul v-if="filteredList.length>0">
-        <li v-for="comment in filteredList" :key="comment.text">
-          <!-- From '{{ state.users[state.users.findIndex((user) => user.id == comment.id_user)].username }}': -->
-            {{comment.text}}
-        </li>
-    </ul>
-    <p v-else>No comments yet</p>
-    <section v-if="currentuser.id!==0">
-        <input type="text" v-model="comment_" placeholder="Write a comment here">
-        <button @click="addComment(comment_)">Add a comment</button>
-    </section>
-    <section v-else>
-        <p>You are not logged to add a comment</p>
-    </section>
+  <ul v-if="filteredList.length > 0">
+    <li v-for="comment in filteredList" :key="comment.text">
+      From' {{ findUserForComment(comment) }}' :
+      {{ comment.text }}
+    </li>
+  </ul>
+  <p v-else>No comments yet</p>
+  <section v-if="user">
+    <input type="text" v-model="comment_" placeholder="Write a comment here">
+    <button @click="addComment(comment_)">Add a comment</button>
+  </section>
+  <section v-else>
+    <p>You are not logged to add a comment</p>
+  </section>
 </template>
 <style scoped>
-
 ul {
   list-style: none;
   padding: 0;
-  margin-top:1%;
+  margin-top: 1%;
 }
 
 li {
@@ -83,6 +95,7 @@ input[type="text"] {
   border-radius: 5px;
   margin: 0 auto;
 }
+
 button {
   margin-top: 10px;
   padding: 10px;
@@ -92,6 +105,7 @@ button {
   color: #666;
   cursor: pointer;
 }
+
 button:hover {
   background-color: var(--color-border);
 }
@@ -101,5 +115,4 @@ p {
   font-weight: bold;
   margin-top: 10px;
 }
-
 </style>

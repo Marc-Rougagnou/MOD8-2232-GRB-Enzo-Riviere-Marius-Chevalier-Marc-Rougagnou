@@ -12,6 +12,13 @@ const findUser = async (id) => {
     return rows.length > 0 ? mapUser(rows[0]) : null
 }
 
+const findUserByUsername = async (username) => {
+    const query = 'SELECT * FROM users where username = ?'
+    const [rows] = await database.execute(query,[username])
+    return rows.length > 0 ? mapUser(rows[0]) : null
+}
+
+
 function mapUser(row) {
     return {
         id: row.id,
@@ -88,4 +95,5 @@ export default {
     createUser,
     updateUser,
     deleteUser,
+    findUserByUsername,
 }

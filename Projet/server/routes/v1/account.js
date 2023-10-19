@@ -26,6 +26,16 @@ router.post('/profiles', async (req, res, next) => {
     }
 });
 
+router.get('/profiles/:username', async (req, res, next) => {
+    try {
+        const username = req.params.username;
+        const user = await userRepository.findUserByUsername(username);
+        res.json({user});
+    } catch (error) {
+        next(error);
+    }
+});
+
 router.patch('/profiles/:id', async (req, res, next) => {
     try {
         const id = Number.parseInt(req.params.id);

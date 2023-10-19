@@ -22,13 +22,14 @@ const credentialsParser = (req, res, next) => {
     }
 
     // Decoded basic credentials have the format: '[Username]:[Password]'
-    const decodedCredentials = Buffer.from(encodedCredentials, 'base64').toString('utf8')
+    const decodedCredentials = Buffer.from(encodedCredentials, 'base64').toString('ascii')
     const components = decodedCredentials.split(':')
+
+    console.log(components)
 
     req.credentials.username = components[0]
 
-    components.splice(0, 1)
-    req.credentials.password = components.join(':')
+    req.credentials.password = components[1]
 
     next() // Pass request to next request handler or middleware
   } catch (err) {

@@ -2,6 +2,7 @@
 import { onMounted, ref} from 'vue';
 import AccountForm from '../components/AccountForm.vue';
 import accountService from '../services/account-service.js';
+import useAuthenticationService from '../services/authentication-service.js';
 
 
 
@@ -13,7 +14,8 @@ onMounted (async () => {
 
 
 function createAccount(newuser){
-  accountService.createAccount_(newuser.username,newuser.email,newuser.password,newuser.gender,accounts.value);  
+  //accountService.createAccount_(newuser.username,newuser.email,newuser.password,newuser.gender,accounts.value);  
+  useAuthenticationService().signUp(newuser.email, newuser.password, newuser.username)
  
 }
 

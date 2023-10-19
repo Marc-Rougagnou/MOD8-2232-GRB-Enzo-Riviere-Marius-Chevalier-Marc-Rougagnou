@@ -1,3 +1,10 @@
+<script setup>
+  import  useAuthenticationService  from '../services/authentication-service.js';
+
+  const user = useAuthenticationService().user;
+  console.log("test",user)
+</script>
+
 <template>
   <h1>Welcome to Not My Tempo </h1>
   <section class="instrument">
