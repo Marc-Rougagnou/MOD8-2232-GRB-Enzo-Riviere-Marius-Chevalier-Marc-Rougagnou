@@ -14,16 +14,8 @@ function signIn(tryuser){//security update
       return;
     }
     useAuthenticationService().logIn(tryuser.email, tryuser.password);
-    /* for(let i=0;i<state.users.length;i++){
-      if(state.users[i].email===tryuser.email && state.users[i].password===tryuser.password){
-        state.current_user=state.users[i];
-        window.alert('You are logged in');
-        return;
-      }
-    } */
+    
   }
-  window.alert('Wrong email or password');
-  
 }
 </script>
 

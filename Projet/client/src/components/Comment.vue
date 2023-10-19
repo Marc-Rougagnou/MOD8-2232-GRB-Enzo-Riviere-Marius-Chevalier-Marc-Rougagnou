@@ -26,16 +26,10 @@ onMounted(async () => {
   comments.value = response.comments;
   let response3 = await accountService.findAccounts();
   users.value = response3.users;
-  
-  console.log(user,"uuuuseeerrr")
   if(user.value!==null){
     
     curuser.value=await accountService.findAccountByUsername(user.value.username);
   }
-  console.log(user,"titube")
-  console.log("curuser mounted",curuser.value)
-  console.log("curuser mounted id",curuser.value.id)
-  console.log(users.value)
   filterList();
 });
 

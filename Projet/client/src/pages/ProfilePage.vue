@@ -1,5 +1,5 @@
 <script setup>
-import {computed, onMounted, ref} from 'vue';
+import { onMounted, ref} from 'vue';
 import {RouterLink, useRouter} from 'vue-router';
 
 import AccountForm from "@/components/AccountForm.vue";
@@ -9,6 +9,8 @@ import sheetService from '../services/sheet-service.js';
 import {useRoute} from 'vue-router';
 import {watch} from 'vue';
 import useAuthenticationService from "../services/authentication-service.js";
+import router from '../router/index.js';
+
 const user = useAuthenticationService().user;
 let route = useRoute();
 let sheets = ref([]);
@@ -52,6 +54,7 @@ function modifyAccount(modifyuser){ //security update
     
     accountService.updateAccount(currentuser.value.id,modifyuser.username,modifyuser.email,modifyuser.password,modifyuser.gender)
     window.alert('Account modified');
+    router.push('/');
   }
 
 async function filterList(){

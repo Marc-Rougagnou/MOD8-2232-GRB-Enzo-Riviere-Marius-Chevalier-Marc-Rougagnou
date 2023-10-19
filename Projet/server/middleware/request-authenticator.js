@@ -7,7 +7,7 @@ export default async (req, res, next) => {
       return next() // Pass request to next request handler or middleware (request authorizer middleware or request handler for the current route)
     }
 
-    res.appendHeader('WWW-Authenticate', 'Basic') // Add response header to inform client of correct authentication scheme
+    
     const err = new Error('Request unauthenticated.')
     err.status = 401 // Set status to 401 Unauthorized (actually means unauthenticated)
     return next(err) // Pass error to next error handler middleware

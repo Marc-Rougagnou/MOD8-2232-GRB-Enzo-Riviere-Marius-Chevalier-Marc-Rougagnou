@@ -55,6 +55,7 @@ async function logIn(username, password) {
     username = username.trim()
 
     const error = validator.validateLogIn(username, password)
+    
     if (error) {
       return { error }
     }

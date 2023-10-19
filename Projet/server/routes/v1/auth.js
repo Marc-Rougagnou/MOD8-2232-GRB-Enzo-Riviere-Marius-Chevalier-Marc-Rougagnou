@@ -56,7 +56,7 @@ router.post('/auth/login', credentialsParser, async (req, res, next) => {
 
     const err = validator.validateLogIn(requestCredentials)
     if (err) {
-      res.appendHeader('WWW-Authenticate', 'Basic') // Add response header to inform client of correct authentication scheme
+      
       err.status = 401 // Set status to 401 Unauthorized (actually means unauthenticated)
       return next(err)
     }
@@ -70,7 +70,7 @@ router.post('/auth/login', credentialsParser, async (req, res, next) => {
       credentials !== null ? await requestCredentials.password == credentials.password : false
 
     if (!authenticated) {
-      res.appendHeader('WWW-Authenticate', 'Basic') // Add response header to inform client of correct authentication scheme
+      
       const err = new Error('Incorrect username or password.')
       err.status = 401 // Set status to 401 Unauthorized (actually means unauthenticated)
       return next(err)
