@@ -82,5 +82,23 @@ router.patch('/sheets/:id', async (req, res, next) => {
     }
 });
 
+router.patch('/sheets/:id/done', async (req, res, next) => {
+    try {
+        const id = Number.parseInt(req.params.id);
+        const done = req.body.done;
+
+        const sheet = await sheetRepository.updateDone(id, done);
+        if (sheet) {
+            res.sendStatus(201)
+            // Send 200 response indicating film was successfully deleted
+        } 
+        else {
+            next() // Pass request to next request handler or middleware
+        }
+    } catch (error) {
+        next(error);
+    }
+});
+
 
 export default router;

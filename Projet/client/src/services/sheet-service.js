@@ -58,6 +58,15 @@ const updateSheet = async (id, title, group_name, instruments, difficulty,imageD
     }
 }
 
+const updateDone= async (id, done) => {
+    try {
+        const response = await axios.patch(`/sheets/${id}/done`, { done })
+        return response.data
+    } catch (error) {
+        return handleError(error)
+    }
+}
+
 const deleteSheet = async (id) => {
     try {
         const response = await axios.delete(`/sheets/${id}`)
@@ -74,4 +83,5 @@ export default {
     createSheet,
     updateSheet,
     deleteSheet,
+    updateDone,
 }

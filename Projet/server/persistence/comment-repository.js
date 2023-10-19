@@ -24,11 +24,12 @@ function mapComment(row) {
 
 
 const createComment = async (id_user, id_sheet, text) => {
+    console.log(id_user, id_sheet, text, "comment repository")
     const comment = {
       id:0,
       id_user: id_user,
       id_sheet: id_sheet,
-      text: text.trim(),
+      text: text
     }
   
     const query = 'INSERT INTO comments (id_user, id_sheet, text) VALUES (?, ?, ?);'

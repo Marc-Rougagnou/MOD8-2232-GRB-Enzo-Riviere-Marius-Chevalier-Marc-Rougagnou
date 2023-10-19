@@ -40,7 +40,7 @@ const findAccount = async (id) => {
 const findAccountByUsername = async (username) => {
     try {
         const response = await axios.get(`/profiles/${username}`)
-        return response.data
+        return response.data.user
     } catch (error) {
         return handleError(error)
     }

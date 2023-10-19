@@ -6,18 +6,23 @@ import sheetService from '../services/sheet-service.js';
 
 const btn = ref('Save');
 const route = useRoute();
-const sheet = ref({});
+const sheet = ref([]);
+const made = ref("");
 
 onMounted(async () => {
   const id = parseInt(route.params.id, 10);
   const response = await sheetService.findSheet(id);
   sheet.value = response.sheet[0];
+  made.value = sheet.value.done;
 });
 
-watch([sheet.done], async () => {
-  
-  updateSheet(done)
+watch(made, async () => {
+  console.log("watch jure");
+
+  sheetService.updateDone(sheet.value.id, made.value);
 });
+
+
 
 const convertBase64ToImage = () => {
   if (sheet.value.imageData) {
@@ -48,7 +53,7 @@ function seeFile() {
       <h3>Instruments : {{ sheet.instruments }}</h3>
       <h3>Difficulty : {{ sheet.difficulty }}</h3>
       <fieldset id="done-field">
-        <select name="done" id="done" v-model="sheet.done">
+        <select name="done" id="done" v-model="made">
           <option value="Yes">Done</option>
           <option value="No">Undone</option>
         </select>

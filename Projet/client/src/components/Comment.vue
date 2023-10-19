@@ -17,16 +17,23 @@ const user = useAuthenticationService().user;
 
 const comments = ref([]);
 const filteredList = ref([]);
-
+const curuser=ref([])
 const users = ref([]);
 
 onMounted(async () => {
-  console.log("comment onMounted")
+
   const response = await commentService.findComments();
   comments.value = response.comments;
   let response3 = await accountService.findAccounts();
   users.value = response3.users;
+  console.log("user value",user.value.username)
+  if(user){
+    curuser.value=await accountService.findAccountByUsername(user.value.username);
+  }
+  console.log("curuser mounted",curuser.value)
+  console.log("curuser mounted id",curuser.value.id)
 
+  /* console.log("curuser mounted id",curuser.v) */
   console.log(users.value)
   filterList();
 });
@@ -40,15 +47,12 @@ function filterList() {
   filteredList.value = comments.value.filter((comment) => comment.id_sheet === sheetId);
 }
 
-watch([comments], () => {
-  console.log("comments changed");
-});
-
 
 function addComment(comment_) {
-  console.log(comment_);
-  commentService.createComment(user.value.id, sheetId, comment_);
-  comments.value.push({ id_user: user.value.id, id_sheet: sheetId, text: comment_ })
+  console.log(comment_, sheetId, curuser.value.id,"comment to post");
+  
+  commentService.createComment(curuser.value.id, sheetId, comment_);
+  comments.value.push({ id_user: curuser.value.id, id_sheet: sheetId, text: comment_ })
   filterList();
 }
 
